@@ -6,6 +6,7 @@ module.exports = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     // Or if using `src` directory:
     "./src/**/*.{js,ts,jsx,tsx}",
+    './stories/**/*.{js,jsx,ts,tsx}', // 스토리북 파일
   ],
   theme: {
     extend: { 

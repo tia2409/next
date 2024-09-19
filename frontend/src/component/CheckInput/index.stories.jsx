@@ -3,7 +3,12 @@ import Image from "next/image";
 
 import checkMark from "./../../../public/images/icons/Input_Checkbox_blue.svg";
 
-export default function CheckInput({ inputId, content, ...props }) {
+export default {
+  title: 'Components/Input/CheckInput',  
+  component: CheckInput,
+};
+
+export function CheckInput({ inputId, content, ...props }) {
     const [isChecked, setIsChecked] = useState(true);
   
     const checkIsChecked = () => {
