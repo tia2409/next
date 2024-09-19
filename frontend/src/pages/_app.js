@@ -17,6 +17,7 @@ function App({ Component, pageProps }) {
   const router = useRouter();
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isSidebarVisible, setIsSidebarVisible] = useState(true);
+  const isLoginPage = router.pathname === "/login"; // 로그인 페이지 여부 확인
 
   const toggleSidebar = () => {
     if (isSidebarOpen) {
@@ -31,15 +32,19 @@ function App({ Component, pageProps }) {
   };
 
   return (
-    <div className={notoSansKR.className}>
-      {router.pathname !== "/" && <Header toggleSidebar={toggleSidebar} />}
-      <div className="flex">
-        {router.pathname !== "/" && isSidebarVisible && (
-          <Sidebar isOpen={isSidebarOpen} />
-        )}
+    <>
+      {isLoginPage ? (
         <Component {...pageProps} />
-      </div>
-    </div>
+      ) : (
+        <div className={notoSansKR.className}>
+          <Header toggleSidebar={toggleSidebar} />
+          <div className="flex">
+            {isSidebarVisible && <Sidebar isOpen={isSidebarOpen} />}
+            <Component {...pageProps} />
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 

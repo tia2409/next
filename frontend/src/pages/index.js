@@ -8,7 +8,7 @@ export default function Home() {
   //   axios
   //     .get("http://localhost:8088/test/get")
   //     .then((response) => {
-  //       setMessage(response.data); 
+  //       setMessage(response.data);
   //     })
   //     .catch((error) => {
   //       console.error("Error fetching data:", error);
