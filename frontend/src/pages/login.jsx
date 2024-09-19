@@ -12,7 +12,7 @@ import logo from "../../public/images/logo/Img_Logo.svg";
 import idIcon from "../../public/images/icons/id_input.svg";
 import pwIcon from "../../public/images/icons/pw_input.svg";
 import LocaleSelect from "@/component/LocaleSelect";
-import { CheckInput } from "@/component/CheckInput";
+import CheckInput from "@/component/CheckInput";
 import ErrorMsg from "@/component/errorMsg.jsx";
 
 export default function Login() {
@@ -33,9 +33,9 @@ export default function Login() {
       })
       .then((response) => {
         console.log(response);
-        if(response.data == "success") {
+        if (response.data == "success") {
           router.push("/main");
-        }else { 
+        } else {
           setCheckLogin(true);
           return false;
         }

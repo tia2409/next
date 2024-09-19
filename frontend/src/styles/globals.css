@@ -7,6 +7,8 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --border-color: #ccc;
+  --gradient: linear-gradient(to right, #f8f9fa, #e9ecef);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,7 +21,7 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: #1e1e1e
+  background: #343434;
 }
 
 @layer utilities {
@@ -29,39 +31,50 @@ body {
 }
 
 /* 페이지 설정 */
-html, body, main, #__next {
+html,
+body,
+main,
+#__next {
   width: 100%;
   height: 100%;
   font-size: 14px;
 }
 
 /* input 공통 */
-input, textarea {
+input,
+textarea {
   box-sizing: border-box;
   border: none;
   outline: none;
   border-radius: 3px;
 }
 
-input:disabled, textarea:disabled, input:disabled::placeholder, textarea:disabled::placeholder {
+input:disabled,
+textarea:disabled,
+input:disabled::placeholder,
+textarea:disabled::placeholder {
   color: #707070;
   background-color: #4a4a4a;
-  -webkit-text-fill-color: #707070; 
+  -webkit-text-fill-color: #707070;
 }
 
-input::placeholder, textarea::placeholder {
-color: #a4a4a4;
+input::placeholder,
+textarea::placeholder {
+  color: #a4a4a4;
 }
 
-input:not(:disabled), textarea:not(:disabled) {
-  background-color: #4e4e4e; 
+input:not(:disabled),
+textarea:not(:disabled) {
+  background-color: #4e4e4e;
   color: #ffffff;
 }
 
-input:focus, textarea:focus {
-box-shadow: 0 0 0 2px #1976e5 inset;
+input:focus,
+textarea:focus {
+  box-shadow: 0 0 0 2px #1976e5 inset;
 }
 
-input[data-type="error"], textarea[data-type="error"] {
-box-shadow: 0 0 0 2px #ff1919 inset !important;
+input[data-type="error"],
+textarea[data-type="error"] {
+  box-shadow: 0 0 0 2px #ff1919 inset !important;
 }

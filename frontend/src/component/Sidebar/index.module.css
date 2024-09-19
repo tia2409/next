@@ -23,3 +23,6 @@
 .sidebarExit {
   animation: slideOut 0.5s forwards;
 }
+.link {
+  width: 100%;
+}

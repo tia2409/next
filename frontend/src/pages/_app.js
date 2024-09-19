@@ -1,10 +1,10 @@
 import "@/styles/globals.css";
 import { useRouter } from "next/router";
 import { Noto_Sans_KR } from "next/font/google";
-import { appWithTranslation } from "next-i18next";
+import { useState } from "react";
 import Header from "@/component/Header";
 import Sidebar from "@/component/Sidebar";
-import { useState } from "react";
+import Tabs from "@/component/Tabs";
 
 // 폰트 설정
 const notoSansKR = Noto_Sans_KR({
@@ -17,7 +17,7 @@ function App({ Component, pageProps }) {
   const router = useRouter();
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isSidebarVisible, setIsSidebarVisible] = useState(true);
-  const isLoginPage = router.pathname === "/login"; // 로그인 페이지 여부 확인
+  const isLoginPage = router.pathname === "/"; // 로그인 페이지 여부 확인
 
   const toggleSidebar = () => {
     if (isSidebarOpen) {
@@ -36,11 +36,14 @@ function App({ Component, pageProps }) {
       {isLoginPage ? (
         <Component {...pageProps} />
       ) : (
-        <div className={notoSansKR.className}>
+        <div className={`notoSansKR.className `}>
           <Header toggleSidebar={toggleSidebar} />
           <div className="flex">
             {isSidebarVisible && <Sidebar isOpen={isSidebarOpen} />}
-            <Component {...pageProps} />
+            <div className="w-full">
+              <Tabs />
+              <Component {...pageProps} />
+            </div>
           </div>
         </div>
       )}
@@ -48,5 +51,4 @@ function App({ Component, pageProps }) {
   );
 }
 
-// export default appWithTranslation(App);
 export default App;
