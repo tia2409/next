@@ -1,0 +1,25 @@
+<svg id="Icon_Man" xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-2 {
+        fill: #858585;
+      }
+
+      .cls-2, .cls-3 {
+        isolation: isolate;
+      }
+    </style>
+  </defs>
+  <rect id="Boundary" class="cls-1" width="44" height="44"/>
+  <g id="Icon" transform="translate(12 12)">
+    <rect id="Boundary-2" data-name="Boundary" class="cls-1" width="20" height="20"/>
+    <path id="circle" class="cls-2" d="M0,3.639A3.627,3.627,0,1,1,3.626,7.279,3.633,3.633,0,0,1,0,3.639Z" transform="translate(6.132 2.721)"/>
+    <g id="g" class="cls-3" transform="translate(3.327 10.97)">
+      <path id="path" class="cls-2" d="M6.673,0A6.758,6.758,0,0,0,0,6.308H13.345A6.69,6.69,0,0,0,6.673,0Z"/>
+    </g>
+  </g>
+</svg>

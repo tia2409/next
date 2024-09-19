@@ -1,0 +1,12 @@
+{
+  "extends": "next/core-web-vitals",
+  // rules 추가해서 vscode 첫줄에 빨간줄 뜨는거 제거
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+<svg id="Select_Arrow" xmlns="http://www.w3.org/2000/svg" width="36" height="44" viewBox="0 0 36 44">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-2, .cls-3 {
+        isolation: isolate;
+      }
+
+      .cls-3 {
+        fill: #1976e5;
+      }
+    </style>
+  </defs>
+  <rect id="사각형_26" data-name="사각형 26" class="cls-1" width="36" height="44"/>
+  <g id="Icon" class="cls-2" transform="translate(24 19) rotate(90)">
+    <path id="Vector" class="cls-3" d="M.267.289a1.038,1.038,0,0,0,0,1.389L3.8,5.5.267,9.323a1.038,1.038,0,0,0,0,1.389.86.86,0,0,0,1.285,0L5.733,6.19a1.038,1.038,0,0,0,0-1.389L1.551.28A.868.868,0,0,0,.267.289Z"/>
+  </g>
+</svg>

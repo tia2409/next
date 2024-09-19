@@ -1,0 +1,19 @@
+<svg id="Icon_Locked" xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-2 {
+        fill: #858585;
+        isolation: isolate;
+      }
+    </style>
+  </defs>
+  <rect id="Boundary" class="cls-1" width="44" height="44"/>
+  <g id="Icon" transform="translate(12 12)">
+    <rect id="Boundary-2" data-name="Boundary" class="cls-1" width="20" height="20"/>
+    <path id="path" class="cls-2" d="M10.255,5.764H9.537V3.744A3.9,3.9,0,0,0,5.5,0,3.9,3.9,0,0,0,1.459,3.744v2.02H.745A.718.718,0,0,0,0,6.455v6.854A.718.718,0,0,0,.745,14h9.509A.72.72,0,0,0,11,13.309V6.455a.72.72,0,0,0-.745-.691h0m-7.3-2.02A2.463,2.463,0,0,1,5.5,1.382,2.463,2.463,0,0,1,8.05,3.744v2.02h-5.1Z" transform="translate(4 3)"/>
+  </g>
+</svg>
