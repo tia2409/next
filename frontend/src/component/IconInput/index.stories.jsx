@@ -4,51 +4,46 @@ import Image from "next/image";
 import invisible from "./../../../public/images/icons/icon_invisible.svg";
 import visible from "./../../../public/images/icons/icon_visible.svg";
 
+import idIcon from "./../../../public/images/icons/id_input.svg";
+import pwIcon from "./../../../public/images/icons/pw_input.svg";
+import searchIcon from "./../../../public/images/icons/search_input.svg";
+import calendarIcon from "./../../../public/images/icons/calendar_input.svg";
+
+import IconInput from ".";
+
 export default {
-  title: 'Components/Input/IconInput',  
+  title: 'Components/Input',
   component: IconInput,
+  argTypes: {
+    inputType: {
+      control: { type: 'select' },
+      options: ['password', 'text'],
+    },
+    inputImg: {
+      control: { type: 'select' },
+      options: [
+        'pwIcon',
+        'idIcon',
+        'searchIcon',
+        'calendarIcon',
+      ],
+      mapping: {
+        pwIcon: pwIcon,
+        idIcon: idIcon,
+        searchIcon: searchIcon,
+        calendarIcon: calendarIcon,
+      },
+    },
+  },
 };
 
-export function IconInput({ inputType, inputId, inputImg, placeholder, ...props }) {
-  const [showPassword, setShowPassword] = useState(true);
+const Template = args => <IconInput {...args} />;
 
-  const toggleShowPassword = () => {
-    setShowPassword((prev) => !prev);
-  };
+export const IconInput_ = Template.bind({});
 
-  let buttonValue = null;
-
-  if (inputType == "password") {
-    buttonValue = (
-      <Image
-        className="absolute right-2.5 top-2"
-        src={showPassword ? invisible : visible}
-        alt="view"
-        width={28}
-        height={28}
-        onClick={toggleShowPassword}
-      />
-    );
-  }
-  return (
-    <div className="flex relative bg-[#4e4e4e] w-full">
-      <Image
-        id={inputId}
-        className="absolute top-[3px]"
-        width={38}
-        height={38}
-        src={ inputImg }
-        alt="id"
-      />
-      <input
-        id={inputId}
-        className="w-full h-[44px] py-[12px] pr-[20px] pl-[38px]"
-        type={inputType == "password" && showPassword ? "password" : "text"}
-        placeholder={placeholder}
-        {...props}
-      />
-      {buttonValue}
-    </div>
-  );
-}
-
+IconInput_.args = {
+  inputType: 'password',
+  inputImg: 'pwIcon',
+  placeholder: 'placeholder',
+  // disable: false,
+};

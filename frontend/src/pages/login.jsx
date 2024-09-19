@@ -34,9 +34,9 @@ export default function Login() {
       .then((response) => {
         console.log(response);
         if (response.data == "success") {
+          sessionStorage.setItem("user_id", loginFormData.user_id);
           router.push("/main");
         } else {
-          setCheckLogin(true);
           return false;
         }
       })

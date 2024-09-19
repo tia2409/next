@@ -46,7 +46,7 @@ export default function LocaleSelect() {
     }
 
     return (
-        <div className="relative flex cursor-pointer" onClick={localeClicked}>
+        <div className="relative flex w-[60px] cursor-pointer" onClick={localeClicked}>
             <Image className="rounded-[50%] my-[13.5px] border border-[#505050]" src={localeImg} width={18} height={18} alt="locale"/>
             {isClicked ? 
                 <div className="absolute w-[100px] h-[120px] rounded-[12px] right-2 top-[52px] bg-white">

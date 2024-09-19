@@ -1,17 +1,11 @@
 import React from 'react';
-import styles from './index.module.css';
+import Sidebar from '.';
 
 export default {
-  title: 'Components/Layout/Sidebar',  
+  title: 'Components/Layout',  
   component: Sidebar,
 };  
 
-export function Sidebar({ isOpen }) {
-  return (
-    <div
-      className={`${styles.sidebar} w-[300px] h-[calc(100vh-72px)] px-[10px] py-[20px] bg-[#121212] ${isOpen ? styles.sidebarEnter : styles.sidebarExit}`}
-    >
-      test1
-    </div>
-  );
-}
+const Template = args => <Sidebar {...args} />;
+
+export const Sidebar_ = Template.bind({});
