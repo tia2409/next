@@ -1,25 +1,25 @@
 @keyframes slideIn {
-    from {
-      transform: translateX(-100%);
-    }
-    to {
-      transform: translateX(0);
-    }
+  from {
+    transform: translateX(-100%);
   }
-  
-  @keyframes slideOut {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(-100%);
-    }
+  to {
+    transform: translateX(0);
   }
-  
-  .sidebarEnter {
-    animation: slideIn 0.3s forwards;
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
   }
-  
-  .sidebarExit {
-    animation: slideOut 1.3s forwards;
+  to {
+    transform: translateX(-100%);
   }
+}
+
+.sidebarEnter {
+  animation: slideIn 0.5s forwards;
+}
+
+.sidebarExit {
+  animation: slideOut 0.5s forwards;
+}
