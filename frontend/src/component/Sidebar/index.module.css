@@ -1,4 +1,4 @@
-@keyframes slideIn {
+/* @keyframes slideIn {
   from {
     transform: translateX(-100%);
   }
@@ -22,7 +22,33 @@
 
 .sidebarExit {
   animation: slideOut 0.5s forwards;
-}
+} */
 .link {
   width: 100%;
+}
+
+@keyframes expandWidth {
+  from {
+    width: 0;
+  }
+  to {
+    width: 250px; /* 사이드바의 최종 너비 */
+  }
+}
+
+@keyframes collapseWidth {
+  from {
+    width: 250px; /* 사이드바의 초기 너비 */
+  }
+  to {
+    width: 0;
+  }
+}
+
+.sidebarEnter {
+  animation: expandWidth 0.5s forwards;
+}
+
+.sidebarExit {
+  animation: collapseWidth 0.5s forwards;
 }

@@ -11,13 +11,13 @@ export default function Sidebar({ isOpen }) {
         isOpen ? styles.sidebarEnter : styles.sidebarExit
       }`}
     >
-      <div className="w-full h-[44px] leading-[44px]">
+      <div className="w-full h-[44px] leading-[44px] overflow-hidden">
         <Link href={"/main"}>main</Link>
       </div>
-      <div className="w-full h-[44px] leading-[44px]">
+      <div className="w-full h-[44px] leading-[44px] overflow-hidden">
         <Link href={"/test"}>test</Link>
       </div>
-      <div className="w-full h-[44px] leading-[44px]">
+      <div className="w-full h-[44px] leading-[44px] overflow-hidden">
         <Link href={"/test1"}>test1</Link>
       </div>
     </div>

@@ -28,14 +28,21 @@ export default function Tabs() {
     router.push(path); // 탭 클릭 시 해당 경로로 이동
   };
   const handleTabDelete = (index) => {
+    sessionStorage.removeItem(tabs[index].path);
+    const inputs = document.querySelectorAll("input, select");
+
+    inputs.forEach((input) => {
+      input.value = "";
+    });
     const updatedTabs = tabs.filter((_, i) => i !== index); // 탭 제거
     setTabs(updatedTabs);
-
     if (updatedTabs.length === 0) {
       // 탭이 모두 삭제되면 /main으로 이동하고 기본 탭 추가
       const mainTab = { label: "Main Tab", path: "/main" };
       setTabs([mainTab]);
       router.push("/main");
+    } else {
+      router.push(updatedTabs[0].path);
     }
     setActiveTab(0);
   };

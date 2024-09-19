@@ -1,7 +1,7 @@
 import "@/styles/globals.css";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { Noto_Sans_KR } from "next/font/google";
-import { useState } from "react";
 import Header from "@/component/Header";
 import Sidebar from "@/component/Sidebar";
 import Tabs from "@/component/Tabs";
@@ -30,7 +30,6 @@ function App({ Component, pageProps }) {
       setIsSidebarOpen(true); // 애니메이션 시작
     }
   };
-
   return (
     <>
       {isLoginPage ? (
