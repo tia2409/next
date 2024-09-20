@@ -67,7 +67,7 @@
 
 /* 활성화된 Tab 스타일 */
 .tabContainer.active {
-  background-color: var(--color-primary, #343434);
+  background-color: var(--color-primary, #2d2d2d);
   /* border: 1px solid var(--border-color, #3498db); */
   border-bottom: none;
   color: white;

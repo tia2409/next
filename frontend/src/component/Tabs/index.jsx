@@ -15,7 +15,10 @@ export default function Tabs() {
 
     // 현재 경로에 해당하는 탭이 없으면 새 탭을 추가
     if (existingTabIndex === -1) {
-      const newTab = { label: `Tab ${tabs.length + 1}`, path: currentPath };
+      const newTab = {
+        label: document.querySelector(`a[href='${currentPath}']`).innerText,
+        path: currentPath,
+      };
       setTabs((prevTabs) => [...prevTabs, newTab]);
       setActiveTab(tabs.length); // 새 탭을 추가하면서 그 탭을 활성화
     } else {
@@ -38,7 +41,10 @@ export default function Tabs() {
     setTabs(updatedTabs);
     if (updatedTabs.length === 0) {
       // 탭이 모두 삭제되면 /main으로 이동하고 기본 탭 추가
-      const mainTab = { label: "Main Tab", path: "/main" };
+      const mainTab = {
+        label: document.querySelector(`a[href="/main"]`).innerText,
+        path: "/main",
+      };
       setTabs([mainTab]);
       router.push("/main");
     } else {
@@ -48,11 +54,11 @@ export default function Tabs() {
   };
 
   return (
-    <div className={`${styles.tabsContainer} bg-[#121212]`}>
+    <div className={`${styles.tabsContainer} bg-[#1e1e1e]`}>
       {tabs.map((tab, index) => (
         <Tab
           key={index}
-          label={tab.path}
+          label={tab.label}
           isActive={activeTab === index}
           onClick={() => handleTabClick(index, tab.path)}
           onDelete={() => handleTabDelete(index)}

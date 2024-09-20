@@ -19,9 +19,10 @@
   }
 }
 
+html,
 body {
   color: rgb(var(--foreground-rgb));
-  background: #343434;
+  background: #1e1e1e;
 }
 
 @layer utilities {
