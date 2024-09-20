@@ -46,10 +46,10 @@ export default function LocaleSelect() {
     }
 
     return (
-        <div className="relative flex w-[60px] cursor-pointer" onClick={localeClicked}>
+        <div className="relative flex w-[60px] h-[44px] cursor-pointer" onClick={localeClicked}>
             <Image className="rounded-[50%] my-[13.5px] border border-[#505050]" src={localeImg} width={18} height={18} alt="locale"/>
             {isClicked ? 
-                <div className="absolute w-[100px] h-[120px] rounded-[12px] right-2 top-[52px] bg-white">
+                <div className="absolute w-[100px] h-[120px] rounded-[12px] right-2 top-[52px] bg-white z-50">
                     <div className="flex items-center w-full h-[40px] p-[10px]" onClick={localeSelected("ko")}>
                         <Image className="rounded-[50%] h-[18px] border border-[#505050]" src={koFlag} width={18} height={18} alt="ko"/>
                         <p className="pl-[10px] text-[#505050] font-medium">한국어</p>

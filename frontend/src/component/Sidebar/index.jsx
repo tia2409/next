@@ -19,23 +19,23 @@ export default function Sidebar({ toggleSidebar, isSidebarOpen }) {
         <Image src={MenuIcon} alt="Menu Icon" onClick={toggleSidebar} />
       </div>
       <SidebarButton
-        iconImage="IconMdc"
+        iconImage="iconMdc"
         href="/main"
-        innerText="IconMdc"
+        innerText="iconMdc"
         isSidebarOpen={isSidebarOpen}
         isActive={router.pathname === '/main'}
       />
       <SidebarButton
-        iconImage="IconTool"
+        iconImage="iconTool"
         href="/test"
-        innerText="IconTool"
+        innerText="iconTool"
         isSidebarOpen={isSidebarOpen}
         isActive={router.pathname === '/test'}
       />
       <SidebarButton
-        iconImage="IconAdmin"
+        iconImage="iconAdmin"
         href="/test1"
-        innerText="IconAdmin"
+        innerText="iconAdmin"
         isSidebarOpen={isSidebarOpen}
         isActive={router.pathname === '/test1'}
       />
