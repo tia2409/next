@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/router";
 
 import axios from "axios";
@@ -13,7 +13,7 @@ import idIcon from "../../public/images/icons/id_input.svg";
 import pwIcon from "../../public/images/icons/pw_input.svg";
 import LocaleSelect from "@/component/LocaleSelect";
 import CheckInput from "@/component/CheckInput";
-import ErrorMsg from "@/component/errorMsg.jsx";
+import ErrorMsg from "@/component/ErrorMsg/index.jsx";
 
 export default function Login() {
   const router = useRouter();

@@ -1,8 +1,4 @@
-import React, { useState } from "react";
-import Image from "next/image";
-
-import invisible from "./../../../public/images/icons/icon_invisible.svg";
-import visible from "./../../../public/images/icons/icon_visible.svg";
+import React from "react";
 
 import idIcon from "./../../../public/images/icons/id_input.svg";
 import pwIcon from "./../../../public/images/icons/pw_input.svg";

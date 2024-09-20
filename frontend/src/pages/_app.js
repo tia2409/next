@@ -1,12 +1,10 @@
 import "@/styles/globals.css";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { Noto_Sans_KR } from "next/font/google";
 import Header from "@/component/Header";
 import Sidebar from "@/component/Sidebar";
 import Tabs from "@/component/Tabs";
-
-import styles from "../component/Sidebar/index.module.css";
 
 // 폰트 설정
 const notoSansKR = Noto_Sans_KR({
