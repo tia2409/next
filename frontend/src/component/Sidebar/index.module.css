@@ -1,35 +1,6 @@
-/* @keyframes slideIn {
-  from {
-    transform: translateX(-100%);
-  }
-  to {
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideOut {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-100%);
-  }
-}
-
-.sidebarEnter {
-  animation: slideIn 0.5s forwards;
-}
-
-.sidebarExit {
-  animation: slideOut 0.5s forwards;
-} */
-.link {
-  width: 100%;
-}
-
 @keyframes expandWidth {
   from {
-    width: 0;
+    width: 50px;
   }
   to {
     width: 250px; /* 사이드바의 최종 너비 */
@@ -41,7 +12,7 @@
     width: 250px; /* 사이드바의 초기 너비 */
   }
   to {
-    width: 0;
+    width: 50px;
   }
 }
 

@@ -32,7 +32,7 @@ function App({ Component, pageProps }) {
         <div className={`notoSansKR.className`}>
           <Header />
           <div className="relative flex">
-            <Sidebar toggleSidebar={toggleSidebar} />
+            <Sidebar toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />
             <div className="w-full">
               <Tabs />
               <Component {...pageProps} />
