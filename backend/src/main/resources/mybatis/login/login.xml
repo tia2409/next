@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.backend.LoginMapper">
+    <select id="Login" parameterType="com.backend.domain.login.LoginDomain" resultType="com.backend.domain.login.LoginDomain">
+        { call W_LOGIN (#{user_id}, #{user_pwd}, #{ip_addr})}
+    </select>
+</mapper>
