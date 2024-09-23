@@ -33,7 +33,6 @@
   box-sizing: border-box;
 }
 .select_row {
-  background-color: #474747 !important;
   position: relative;
   z-index: 1;
 }
@@ -41,7 +40,8 @@
 .table .thead .tr {
   border-bottom: 2px solid #000;
   border-top: 2px solid #000;
-  background-color: #3b3b3b;
+  background-color: #000;
+  color: #fff;
 }
 
 .table .tbody .td:not(:first-child) {
@@ -52,7 +52,7 @@
 }
 
 .table .tbody .tr:hover {
-  background-color: #363636;
+  background-color: #e2f0fc;
   cursor: pointer;
 }
 

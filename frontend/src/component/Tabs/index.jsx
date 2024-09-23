@@ -54,7 +54,7 @@ export default function Tabs() {
   };
 
   return (
-    <div className={`${styles.tabsContainer} bg-[#1e1e1e]`}>
+    <div className={`${styles.tabsContainer} bg-[#f5f5f5]`}>
       {tabs.map((tab, index) => (
         <Tab
           key={index}

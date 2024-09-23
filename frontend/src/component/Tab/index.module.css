@@ -6,15 +6,14 @@
   transform-origin: center;
   transform: translateY(-50%);
   /* background-color: #a33b3b; */
-  opacity: 0.7;
   align-items: center;
   width: 15px;
   height: 15px;
   border-radius: 10px;
 }
-
-.closeTrigger:hover {
-  opacity: 1;
+.tabContainer.active > .closeTrigger::before,
+.tabContainer.active > .closeTrigger::after {
+  background-color: #fff;
 }
 
 .closeTrigger::before,
@@ -25,7 +24,7 @@
   content: "";
   width: 2px;
   height: 12px;
-  background-color: white;
+  background-color: #858585;
   transform-origin: center;
 }
 
@@ -52,7 +51,7 @@
 .tabContainer {
   padding: 5px 10px;
   box-sizing: border-box;
-  background-color: #121212;
+  background-color: #fff;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -61,17 +60,28 @@
   transition: background-color 0.3s ease;
   width: 150px;
   border-radius: 10px 10px 0 0;
-  margin-top: 10px;
+  margin-top: 14px;
   color: gray;
+  height: 28px;
+  border: solid 1px #e1e1e1;
+  border-bottom: none;
+}
+.tabContainer:hover {
+  background-color: #e4f2fe;
 }
 
 /* 활성화된 Tab 스타일 */
 .tabContainer.active {
-  background-color: var(--color-primary, #2d2d2d);
+  background-color: var(--color-primary, #1976e5);
   /* border: 1px solid var(--border-color, #3498db); */
   border-bottom: none;
   color: white;
+  height: 32px;
+  margin-top: 10px;
   /* padding: 4px 9px 5px 9px; */
+}
+.tabContainer.active:hover {
+  background-color: #0065bd;
 }
 
 /* Tab을 hover할 때 닫기 버튼 표시 */
