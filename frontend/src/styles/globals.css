@@ -79,7 +79,7 @@ textarea[data-type="error"] {
   color: var(--main-title-1);
   margin-top: 20px;
   padding-bottom: 10px;
-  border-bottom: 1px solid #fff;
+  border-bottom: 1px solid #cfcdcd;
   margin: 0px 0px 10px;
 }
 .main-body {
