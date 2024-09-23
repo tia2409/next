@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
-import bottomArrow from "./../../../public/images/icons/select-down-arrow-white.svg";
+import bottomArrow from "./../../../public/images/icons/down-arrow-white.svg";
 import koFlag from "./../../../public/images/icons/ic-ko-flag.webp";
 import enFlag from "./../../../public/images/icons/ic-en-flag.webp";
 import jpFlag from "./../../../public/images/icons/ic-jp-flag.webp";
