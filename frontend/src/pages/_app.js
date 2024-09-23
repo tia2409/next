@@ -18,6 +18,7 @@ const notoSansKR = Noto_Sans_KR({
 
 function App({ Component, pageProps }) {
   const router = useRouter();
+  const currentPath = router.pathname;
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isDetailbarOpen, setIsDetailbarOpen] = useState(false);
   const [title, setTitle] = useState("");
@@ -32,38 +33,49 @@ function App({ Component, pageProps }) {
   };
 
   useEffect(() => {
-    const currentPath = router.pathname;
-    const storedLocale = localStorage.getItem('selectedLocale');
-    console.log(currentPath);
-    if (currentPath !== "/") {
-      setTitle(document.querySelector(`a[href='${currentPath}']`).innerText);
-    }
-    // 로컬에 언어선택 정보가 있는지 확인
-    if (storedLocale) {
-        i18n.changeLanguage(storedLocale);
-    }
-  }, []);
+    const handleRouteChangeComplete = () => {
+      const element = document.querySelector(
+        `a[href='${currentPath}'] > div > p`
+      );
+
+      console.log("Current Path:", currentPath);
+
+      if (element) {
+        setTitle(element.innerText);
+      } else {
+        setTitle("No Title Found");
+      }
+      console.log("Title: ", element ? element.innerText : "Not found");
+    };
+
+    // router.events.on("routeChangeComplete", handleRouteChangeComplete);
+
+    // 경로가 바뀔 때마다 현재 페이지의 제목을 업데이트
+    handleRouteChangeComplete();
+
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChangeComplete);
+    };
+  }, [currentPath]);
 
   return (
     <I18nextProvider i18n={i18n}>
-      <div className={`notoSansKR.className`}>
-        {isLoginPage ? (
-          <Component {...pageProps} />
-        ) : (
-          <>
-            <Header />
-            <div className="relative flex">
-              <Sidebar
-                toggleSidebar={toggleSidebar}
-                isSidebarOpen={isSidebarOpen}
-              />
-              <div className="w-full h-[100vh - 72px]">
-                <Tabs />
-                <div className="w-[calc(100%-40px)] m-[20px] h-[calc(100vh-133px)] bg-[#2d2d2d] p-[20px] mt-0">
-                  <div className="main-title">{title}</div>
-                  <div className="main-body">
-                    <Component {...pageProps} toggleDetailbar={toggleDetailbar} />
-                  </div>
+      {isLoginPage ? (
+        <Component {...pageProps} />
+      ) : (
+        <div className={`notoSansKR.className`}>
+          <Header />
+          <div className="relative flex">
+            <Sidebar
+              toggleSidebar={toggleSidebar}
+              isSidebarOpen={isSidebarOpen}
+            />
+            <div className="w-full h-[100vh - 72px]">
+              <Tabs />
+              <div className="w-[calc(100%-40px)] m-[20px] h-[calc(100vh-133px)] bg-[#fff] p-[20px] mt-0">
+                <div className="main-title">{title}</div>
+                <div className="main-body">
+                  <Component {...pageProps} />
                 </div>
               </div>
               {isDetailbarOpen && (
