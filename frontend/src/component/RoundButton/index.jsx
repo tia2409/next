@@ -1,5 +1,5 @@
-export default function RoundButton({ innerText }) {
+export default function RoundButton({ width, innerText, toggleDetailbar }) {
     return (
-        <button type="submit" value="Login" className="text-white bg-[#0065bd] w-full font-medium h-[48px]">{innerText}</button>
+        <button type="submit" value="Login" className={`${width} text-white bg-[#0065bd] font-medium h-[48px]`} onClick={toggleDetailbar}>{innerText}</button>
     );
 }

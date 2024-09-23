@@ -1,0 +1,25 @@
+@keyframes expandWidth {
+  from {
+    width: 0px;
+  }
+  to {
+    width: 360px; 
+  }
+}
+
+@keyframes collapseWidth {
+  from {
+    width: 360px; 
+  }
+  to {
+    width: 0px;
+  }
+}
+
+.detailbarEnter {
+  animation: expandWidth 0.5s forwards;
+}
+
+.detailbarExit {
+  animation: collapseWidth 0.5s forwards;
+}

@@ -7,6 +7,7 @@ import Sidebar from "@/component/Sidebar";
 import Tabs from "@/component/Tabs";
 import { I18nextProvider } from "react-i18next";
 import i18n from "../locales/i18n";
+import Detailbar from "@/component/DetailBar";
 
 // 폰트 설정
 const notoSansKR = Noto_Sans_KR({
@@ -19,13 +20,20 @@ function App({ Component, pageProps }) {
   const router = useRouter();
   const currentPath = router.pathname;
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isDetailbarOpen, setIsDetailbarOpen] = useState(false);
   const [title, setTitle] = useState("");
   const isLoginPage = router.pathname === "/"; // 로그인 페이지 여부 확인
 
   const toggleSidebar = () => {
     setIsSidebarOpen((prev) => !prev);
   };
+
+  const toggleDetailbar = () => {
+    setIsDetailbarOpen((prev) => !prev);
+  };
+
   useEffect(() => {
+    const storedLocale = localStorage.getItem('selectedLocale');
     const handleRouteChangeComplete = () => {
       const element = document.querySelector(
         `a[href='${currentPath}'] > div > p`
@@ -45,7 +53,10 @@ function App({ Component, pageProps }) {
 
     // 경로가 바뀔 때마다 현재 페이지의 제목을 업데이트
     handleRouteChangeComplete();
-
+    // 로컬에 언어선택 정보가 있는지 확인
+    if (storedLocale) {
+      i18n.changeLanguage(storedLocale);
+    }
     return () => {
       router.events.off("routeChangeComplete", handleRouteChangeComplete);
     };
@@ -71,6 +82,12 @@ function App({ Component, pageProps }) {
                   <Component {...pageProps} />
                 </div>
               </div>
+              {isDetailbarOpen && (
+                <Detailbar
+                  toggleDetailbar={toggleDetailbar}
+                  isDetailbarOpen={isDetailbarOpen}
+                />
+              )}
             </div>
           </div>
         </div>
