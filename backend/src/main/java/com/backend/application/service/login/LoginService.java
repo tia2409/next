@@ -3,8 +3,8 @@ package com.backend.application.service.login;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.backend.adapter.out.repository.login.LoginRepository;
 import com.backend.application.port.in.login.LoginUseCase;
+import com.backend.application.port.out.login.LoginRepository;
 import com.backend.domain.login.LoginDomain;
 
 @Service
