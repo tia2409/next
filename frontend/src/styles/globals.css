@@ -42,6 +42,7 @@ textarea {
   border: none;
   outline: none;
   border-radius: 3px;
+  border: solid 1px #d4d4d4;
 }
 
 input:disabled,
@@ -60,8 +61,7 @@ textarea::placeholder {
 
 input:not(:disabled),
 textarea:not(:disabled) {
-  background-color: #4e4e4e;
-  color: #ffffff;
+  color: #363636;
 }
 
 input:focus,
@@ -96,15 +96,9 @@ textarea[data-type="error"] {
 }
 
 .select__control {
-  background-color: #4e4e4e !important;
-  border-color: #4e4e4e !important;
+  border: solid 1px #d4d4d4;
 }
 
-.select__input,
-.select__input-container,
-.select__single-value {
-  color: #fff !important;
-}
 /* 체크박스 기본 스타일 숨기기 */
 input[type="checkbox"] {
   appearance: none;
