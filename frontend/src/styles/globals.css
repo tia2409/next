@@ -26,7 +26,8 @@
 }
 
 /* 페이지 설정 */
-html, body {
+html,
+body {
   color: #fff;
   background: #1e1e1e;
   width: 100%;
@@ -72,7 +73,6 @@ input[data-type="error"],
 textarea[data-type="error"] {
   box-shadow: 0 0 0 2px #ff1919 inset !important;
 }
-<<<<<<< HEAD
 .main-title {
   font-size: 1.6rem;
   text-align: left;
@@ -89,8 +89,6 @@ textarea[data-type="error"] {
 .main-body::-webkit-scrollbar {
   width: 0;
 }
-=======
-
 
 /* React-select */
 .select__input {
@@ -105,6 +103,5 @@ textarea[data-type="error"] {
 .select__input,
 .select__input-container,
 .select__single-value {
-  color: #fff  !important;
+  color: #fff !important;
 }
->>>>>>> 73254ec99e4d871eb0257bc3896c599fb7ce8183
