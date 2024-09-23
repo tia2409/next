@@ -4,18 +4,18 @@
 
 /* 기본 설정 */
 :root {
-  --foreground-rgb: 0, 0, 0;
+  --foreground-rgb: 255, 255, 255;
   --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --background-end-rgb: 0, 0, 0;
   --border-color: #ccc;
   --gradient: linear-gradient(to right, #f8f9fa, #e9ecef);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --foreground-rgb: 0, 0, 0;
+    --background-start-rgb: 255, 255, 255;
+    --background-end-rgb: 255, 255, 255;
   }
 }
 
@@ -28,8 +28,8 @@
 /* 페이지 설정 */
 html,
 body {
-  color: #fff;
-  background: #1e1e1e;
+  color: #000;
+  background: #fff;
   width: 100%;
   height: 100%;
   font-size: 16px;
@@ -83,7 +83,7 @@ textarea[data-type="error"] {
   margin: 0px 0px 10px;
 }
 .main-body {
-  min-height: calc(100% - 54.61px);
+  height: calc(100% - 54.61px);
   overflow: auto;
 }
 .main-body::-webkit-scrollbar {
@@ -104,4 +104,24 @@ textarea[data-type="error"] {
 .select__input-container,
 .select__single-value {
   color: #fff !important;
+}
+/* 체크박스 기본 스타일 숨기기 */
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  position: relative;
+  cursor: pointer;
+  border-radius: 0;
+}
+
+input[type="checkbox"]:focus {
+  box-shadow: none;
+}
+/* 체크된 상태 */
+input[type="checkbox"]:checked,
+input[type="checkbox"]:checked:hover {
+  background-image: url("./../../public//images//icons/Input_Checkbox_blue.svg");
+  background-size: cover;
 }

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import styles from "./index.module.css";
-import CheckInput from "../CheckInput";
 
 export default function DataTable({
   headers,
@@ -102,7 +101,6 @@ export default function DataTable({
   return (
     <div>
       {/* 검색 입력 필드 */}
-      <CheckInput />
       <input
         type="text"
         placeholder="Search..."
@@ -119,12 +117,15 @@ export default function DataTable({
         <thead className={styles.thead}>
           <tr className={styles.tr}>
             {selectable && (
-              <th className={styles.th}>
+              <th
+                className={`${styles.select_column} ${styles.td} ${styles.checkTd}`}
+              >
                 <input
                   type="checkbox"
                   checked={isSelectedAll()}
                   onChange={onChangeSelectAll}
                 />
+                번호
               </th>
             )}
             {headers.map((header) => (

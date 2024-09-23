@@ -17,6 +17,7 @@ const notoSansKR = Noto_Sans_KR({
 
 function App({ Component, pageProps }) {
   const router = useRouter();
+  const currentPath = router.pathname;
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [title, setTitle] = useState("");
   const isLoginPage = router.pathname === "/"; // 로그인 페이지 여부 확인
@@ -25,12 +26,30 @@ function App({ Component, pageProps }) {
     setIsSidebarOpen((prev) => !prev);
   };
   useEffect(() => {
-    const currentPath = router.pathname;
-    console.log(currentPath);
-    if (currentPath !== "/") {
-      setTitle(document.querySelector(`a[href='${currentPath}']`).innerText);
-    }
-  }, []);
+    const handleRouteChangeComplete = () => {
+      const element = document.querySelector(
+        `a[href='${currentPath}'] > div > p`
+      );
+
+      console.log("Current Path:", currentPath);
+
+      if (element) {
+        setTitle(element.innerText);
+      } else {
+        setTitle("No Title Found");
+      }
+      console.log("Title: ", element ? element.innerText : "Not found");
+    };
+
+    // router.events.on("routeChangeComplete", handleRouteChangeComplete);
+
+    // 경로가 바뀔 때마다 현재 페이지의 제목을 업데이트
+    handleRouteChangeComplete();
+
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChangeComplete);
+    };
+  }, [currentPath]);
 
   return (
     <I18nextProvider i18n={i18n}>
@@ -46,7 +65,7 @@ function App({ Component, pageProps }) {
             />
             <div className="w-full h-[100vh - 72px]">
               <Tabs />
-              <div className="w-[calc(100%-40px)] m-[20px] h-[calc(100vh-133px)] bg-[#2d2d2d] p-[20px] mt-0">
+              <div className="w-[calc(100%-40px)] m-[20px] h-[calc(100vh-133px)] bg-[#fff] p-[20px] mt-0">
                 <div className="main-title">{title}</div>
                 <div className="main-body">
                   <Component {...pageProps} />
