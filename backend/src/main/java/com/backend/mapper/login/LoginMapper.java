@@ -1,4 +1,4 @@
-package com.backend;
+package com.backend.mapper.login;
 
 import org.apache.ibatis.annotations.Mapper;
 

@@ -1,25 +1,25 @@
 @keyframes expandWidth {
   from {
-    width: 50px;
+    width: 0px;
   }
   to {
-    width: 350px; /* 사이드바의 최종 너비 */
+    width: 360px; 
   }
 }
 
 @keyframes collapseWidth {
   from {
-    width: 350px; /* 사이드바의 초기 너비 */
+    width: 360px; 
   }
   to {
-    width: 50px;
+    width: 0px;
   }
 }
 
-.sidebarEnter {
+.detailbarEnter {
   animation: expandWidth 0.5s forwards;
 }
 
-.sidebarExit {
+.detailbarExit {
   animation: collapseWidth 0.5s forwards;
 }
