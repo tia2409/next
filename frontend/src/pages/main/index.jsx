@@ -42,7 +42,6 @@ export default function Main() {
   // 데이터가 로드된 후에만 DataTable 컴포넌트를 렌더링
   return (
     <div>
-      <div>index</div>
       {data && (
         <DataTable
           headers={data.headers}

@@ -66,6 +66,7 @@
 }
 .activePage {
   color: #1976e5;
+  font-weight: bold;
 }
 .navigationButton {
   width: 32px;
@@ -89,4 +90,45 @@
   position: absolute;
   left: 10px;
   top: calc((100% - 18px) / 2);
+}
+.firstArrow {
+  width: 32px;
+  height: 32px;
+  background-image: url("../../../public/images/icons/datatable-icon-left-arrow-double.svg");
+  background-size: cover;
+}
+.firstArrow:hover {
+  background-image: url("../../../public/images/icons/datatable-icon-left-arrow-double-hover.svg");
+}
+.preArrow {
+  width: 32px;
+  height: 32px;
+  margin-left: 10px;
+  background-image: url("../../../public/images/icons/datatable-icon-left-arrow.svg");
+  background-size: cover;
+}
+.preArrow:hover {
+  background-image: url("../../../public/images/icons/datatable-icon-left-arrow-hover.svg");
+}
+.nextArrow {
+  width: 32px;
+  height: 32px;
+  margin-right: 10px;
+  background-image: url("../../../public/images/icons/datatable-icon-right-arrow.svg");
+  background-size: cover;
+}
+.nextArrow:hover {
+  background-image: url("../../../public/images/icons/datatable-icon-right-arrow-hover.svg");
+}
+.lastArrow {
+  width: 32px;
+  height: 32px;
+  background-image: url("../../../public/images/icons/datatable-icon-right-arrow-double.svg");
+  background-size: cover;
+}
+.lastArrow:hover {
+  background-image: url("../../../public/images/icons/datatable-icon-right-arrow-double-hover.svg");
+}
+.rightContainer > :not(:last-child) {
+  margin-right: 8px;
 }

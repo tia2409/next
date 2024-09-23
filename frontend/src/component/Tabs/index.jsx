@@ -16,7 +16,8 @@ export default function Tabs() {
     // 현재 경로에 해당하는 탭이 없으면 새 탭을 추가
     if (existingTabIndex === -1) {
       const newTab = {
-        label: document.querySelector(`a[href='${currentPath}']`).innerText,
+        label: document.querySelector(`a[href='${currentPath}'] > div > p`)
+          .innerText,
         path: currentPath,
       };
       setTabs((prevTabs) => [...prevTabs, newTab]);
@@ -42,7 +43,7 @@ export default function Tabs() {
     if (updatedTabs.length === 0) {
       // 탭이 모두 삭제되면 /main으로 이동하고 기본 탭 추가
       const mainTab = {
-        label: document.querySelector(`a[href="/main"]`).innerText,
+        label: document.querySelector(`a[href="/main"] > div > p`).innerText,
         path: "/main",
       };
       setTabs([mainTab]);

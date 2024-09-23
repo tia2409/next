@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import styles from "./index.module.css";
+import InputIcon from "../InputIcon";
+import search_input from "../../../public/images/icons/search_input.svg";
+import IconButton from "../IconButton";
 
 export default function DataTable({
   headers,
@@ -101,17 +104,40 @@ export default function DataTable({
   return (
     <div>
       {/* 검색 입력 필드 */}
-      <input
-        type="text"
-        placeholder="Search..."
-        id="tableSearch"
-        value={searchQuery}
-        onChange={(e) => {
-          setSearchQuery(e.target.value);
-          setCurrentPage(1); // 검색할 때 페이지를 첫 페이지로 초기화
-        }}
-        className={styles.searchInput} // 스타일 추가 가능
-      />
+
+      <div className="flex justify-between mb-[10px] h-[34px]">
+        <label
+          htmlFor="allClickButtom"
+          className="flex text-center items-center text-[14px]"
+        >
+          <button
+            id="allClickButtom"
+            onClick={() => document.querySelector("#allCheck").click()}
+            className="font-medium"
+          >
+            전체 선택
+          </button>
+          <div className="border-r-[1px] border-solid border-[#909090] mx-[8px] h-[12px]" />
+          <div className="flex items-center text-[#1976e5] font-bold">15</div>
+        </label>
+        <div className={`flex ${styles.rightContainer}`}>
+          <InputIcon
+            inputId="tableSearch"
+            inputImg={search_input}
+            placeholder="Search..."
+            value={searchQuery}
+            onchange={(e) => {
+              setSearchQuery(e.target.value);
+              setCurrentPage(1); // 검색할 때 페이지를 첫 페이지로 초기화
+            }}
+            height="34"
+            width="230"
+            className={styles.searchInput} // 스타일 추가 가능
+          />
+          <IconButton height="32" width="32" buttonType="delete" />
+          <IconButton height="32" width="32" buttonType="filter" />
+        </div>
+      </div>
 
       <table className={styles.table}>
         <thead className={styles.thead}>
@@ -121,6 +147,7 @@ export default function DataTable({
                 className={`${styles.select_column} ${styles.td} ${styles.checkTd}`}
               >
                 <input
+                  id="allCheck"
                   type="checkbox"
                   checked={isSelectedAll()}
                   onChange={onChangeSelectAll}
@@ -181,15 +208,18 @@ export default function DataTable({
 
       {/* 페이지네이션 (검색 중이 아닐 때만 표시) */}
       {pagination && !searchQuery && (
-        <div className={styles.pagination}>
+        <div className={`flex items-center ${styles.pagination}`}>
           {/* 이전 페이지 버튼 */}
+          <button
+            onClick={() => handlePageChange(1)}
+            disabled={currentPage === 1}
+            className={`${styles.paginationButton} ${styles.firstArrow}`}
+          />
           <button
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
-            className={styles.paginationButton}
-          >
-            {"<"}
-          </button>
+            className={`${styles.paginationButton} ${styles.preArrow}`}
+          />
 
           {/* 페이지 번호 버튼 */}
           {getPaginationRange().map((page) => (
@@ -208,10 +238,14 @@ export default function DataTable({
           <button
             onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage === totalPages}
-            className={styles.paginationButton}
-          >
-            {">"}
-          </button>
+            className={`${styles.paginationButton} ${styles.nextArrow}`}
+          />
+
+          <button
+            onClick={() => handlePageChange(totalPages)}
+            disabled={currentPage === totalPages}
+            className={`${styles.paginationButton} ${styles.lastArrow}`}
+          />
         </div>
       )}
     </div>

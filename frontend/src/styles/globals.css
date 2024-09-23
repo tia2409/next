@@ -108,6 +108,7 @@ input[type="checkbox"] {
   position: relative;
   cursor: pointer;
   border-radius: 0;
+  border: none;
   background-color: transparent;
   background-image: url("./../../public//images//icons/basic_checkbox.svg");
   background-size: cover;
