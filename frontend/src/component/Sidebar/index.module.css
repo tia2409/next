@@ -3,13 +3,13 @@
     width: 50px;
   }
   to {
-    width: 250px; /* 사이드바의 최종 너비 */
+    width: 350px; /* 사이드바의 최종 너비 */
   }
 }
 
 @keyframes collapseWidth {
   from {
-    width: 250px; /* 사이드바의 초기 너비 */
+    width: 350px; /* 사이드바의 초기 너비 */
   }
   to {
     width: 50px;

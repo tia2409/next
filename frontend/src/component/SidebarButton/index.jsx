@@ -22,7 +22,7 @@ const iconMap = {
       <Link href={href}>
         <div className="w-full h-[44px] leading-[44px] flex items-center space-x-2 overflow-hidden">
           <Image src={isActive ? iconMap[iconImage].active : iconMap[iconImage].default} width={30} height={30} alt="icon" />
-          {isSidebarOpen && <p className={`pl-1 ${isActive ? 'text-[#1976e5]' : ''}`}>{innerText}</p>}
+          {isSidebarOpen ? (<p className={`pl-1 ${isActive ? 'text-[#1976e5]' : ''}`}>{innerText}</p>) : (<p className={`pl-1 hidden ${isActive ? 'text-[#1976e5]' : ''}`}>{innerText}</p>)}
         </div>
       </Link>
     );
