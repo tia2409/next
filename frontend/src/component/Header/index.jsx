@@ -16,7 +16,7 @@ export default function Header() {
         </div>
         <div className='flex justify-end items-center w-[600px]'>
             <div>
-                <LocaleSelect />
+                <LocaleSelect /> 
             </div>
             <div>
                 <Image src={Logout} />
