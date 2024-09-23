@@ -24,12 +24,11 @@ function App({ Component, pageProps }) {
   const toggleSidebar = () => {
     setIsSidebarOpen((prev) => !prev);
   };
-
-  // 로컬에 언어선택 정보가 있는지 확인
   useEffect(() => {
-    const storedLocale = localStorage.getItem("selectedLocale");
-    if (storedLocale) {
-      i18n.changeLanguage(storedLocale);
+    const currentPath = router.pathname;
+    console.log(currentPath);
+    if (currentPath !== "/") {
+      setTitle(document.querySelector(`a[href='${currentPath}']`).innerText);
     }
   }, []);
 

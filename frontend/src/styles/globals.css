@@ -83,7 +83,7 @@ textarea[data-type="error"] {
   margin: 0px 0px 10px;
 }
 .main-body {
-  max-height: calc(100% - 54.61px);
+  min-height: calc(100% - 54.61px);
   overflow: auto;
 }
 .main-body::-webkit-scrollbar {

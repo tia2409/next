@@ -8,7 +8,7 @@ export default function Index() {
   const { t } = useTranslation(); // import한 useTranslation
 
   return (
-    <div className="w-full p-4 h-[100% - 41px]">
+    <div className="w-full p-4 h-full">
       {/* json파일에서 단일 key: value */}
       <div>{t("test")}</div>
       {/* json파일에서 key: { key : value } 형태 */}
