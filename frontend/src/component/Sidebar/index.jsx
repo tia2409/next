@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styles from "./index.module.css";
-import Link from "next/link";
 import MenuIcon from "./../../../public/images/icons/sidebar_menu.svg";
 import Image from "next/image";
 import SidebarButton from "../SidebarButton";
@@ -11,7 +10,7 @@ export default function Sidebar({ toggleSidebar, isSidebarOpen }) {
 
   return (
     <div
-      className={`h-[calc(100vh-72px)] px-[10px] py-[20px] bg-[#121212] ${
+      className={`h-[calc(100vh-72px)] px-[10px] py-[20px] bg-white ${
         isSidebarOpen ? styles.sidebarEnter : styles.sidebarExit
       }`}
     >
