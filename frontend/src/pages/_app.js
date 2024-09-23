@@ -1,10 +1,12 @@
 import "@/styles/globals.css";
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { Noto_Sans_KR } from "next/font/google";
 import Header from "@/component/Header";
 import Sidebar from "@/component/Sidebar";
 import Tabs from "@/component/Tabs";
+import { I18nextProvider } from "react-i18next";
+import i18n from "../locales/i18n";
 
 // 폰트 설정
 const notoSansKR = Noto_Sans_KR({
@@ -22,16 +24,17 @@ function App({ Component, pageProps }) {
   const toggleSidebar = () => {
     setIsSidebarOpen((prev) => !prev);
   };
+
+  // 로컬에 언어선택 정보가 있는지 확인
   useEffect(() => {
-    const currentPath = router.pathname;
-    console.log(currentPath);
-    if (currentPath !== "/") {
-      setTitle(document.querySelector(`a[href='${currentPath}']`).innerText);
+    const storedLocale = localStorage.getItem("selectedLocale");
+    if (storedLocale) {
+      i18n.changeLanguage(storedLocale);
     }
   }, []);
 
   return (
-    <>
+    <I18nextProvider i18n={i18n}>
       {isLoginPage ? (
         <Component {...pageProps} />
       ) : (
@@ -54,7 +57,7 @@ function App({ Component, pageProps }) {
           </div>
         </div>
       )}
-    </>
+    </I18nextProvider>
   );
 }
 

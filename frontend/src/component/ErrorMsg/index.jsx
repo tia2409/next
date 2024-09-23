@@ -3,18 +3,11 @@ import React from 'react'
 
 import errorIcon from './../../../public/images/icons/msg_icon_red.svg';
 
-export default {
-  title: 'Components/Message/ErrorMsg',  
-  component: ErrorMsg,
-  args: {
-    message: 'This is an error message!', 
-  },
-};
 
-export function ErrorMsg({message}) {
+export default function BasicMsg({message}) {
   return (
     <div className='flex'>
-        <Image className='pr-1' src={errorIcon} />
+        <Image className='pr-1' src={errorIcon} width={18} height={18} alt='baisc-msg' />
         <div className='text-[12px] text-[#ff1919]'>{message}</div>
     </div>
   )

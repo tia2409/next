@@ -19,12 +19,6 @@
   }
 }
 
-html,
-body {
-  color: rgb(var(--foreground-rgb));
-  background: #1e1e1e;
-}
-
 @layer utilities {
   .text-balance {
     text-wrap: balance;
@@ -32,13 +26,12 @@ body {
 }
 
 /* 페이지 설정 */
-html,
-body,
-main,
-#__next {
+html, body {
+  color: #fff;
+  background: #1e1e1e;
   width: 100%;
   height: 100%;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 /* input 공통 */
@@ -79,6 +72,7 @@ input[data-type="error"],
 textarea[data-type="error"] {
   box-shadow: 0 0 0 2px #ff1919 inset !important;
 }
+<<<<<<< HEAD
 .main-title {
   font-size: 1.6rem;
   text-align: left;
@@ -95,3 +89,22 @@ textarea[data-type="error"] {
 .main-body::-webkit-scrollbar {
   width: 0;
 }
+=======
+
+
+/* React-select */
+.select__input {
+  box-shadow: none !important;
+}
+
+.select__control {
+  background-color: #4e4e4e !important;
+  border-color: #4e4e4e !important;
+}
+
+.select__input,
+.select__input-container,
+.select__single-value {
+  color: #fff  !important;
+}
+>>>>>>> 73254ec99e4d871eb0257bc3896c599fb7ce8183
