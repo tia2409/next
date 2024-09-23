@@ -79,3 +79,19 @@ input[data-type="error"],
 textarea[data-type="error"] {
   box-shadow: 0 0 0 2px #ff1919 inset !important;
 }
+.main-title {
+  font-size: 1.6rem;
+  text-align: left;
+  color: var(--main-title-1);
+  margin-top: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #fff;
+  margin: 0px 0px 10px;
+}
+.main-body {
+  max-height: calc(100% - 54.61px);
+  overflow: auto;
+}
+.main-body::-webkit-scrollbar {
+  width: 0;
+}

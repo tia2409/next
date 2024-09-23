@@ -6,8 +6,6 @@ import Header from "@/component/Header";
 import Sidebar from "@/component/Sidebar";
 import Tabs from "@/component/Tabs";
 
-import styles from "../component/Sidebar/index.module.css";
-
 // 폰트 설정
 const notoSansKR = Noto_Sans_KR({
   weight: ["400", "500", "700"],
@@ -18,11 +16,19 @@ const notoSansKR = Noto_Sans_KR({
 function App({ Component, pageProps }) {
   const router = useRouter();
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [title, setTitle] = useState("");
   const isLoginPage = router.pathname === "/"; // 로그인 페이지 여부 확인
 
   const toggleSidebar = () => {
     setIsSidebarOpen((prev) => !prev);
   };
+  useEffect(() => {
+    const currentPath = router.pathname;
+    console.log(currentPath);
+    if (currentPath !== "/") {
+      setTitle(document.querySelector(`a[href='${currentPath}']`).innerText);
+    }
+  }, []);
 
   return (
     <>
@@ -38,8 +44,11 @@ function App({ Component, pageProps }) {
             />
             <div className="w-full h-[100vh - 72px]">
               <Tabs />
-              <div className="w-[calc(100%-40px)] m-[20px] h-[calc(100%-61px)] bg-[#2d2d2d] p-[20px] mt-0">
-                <Component {...pageProps} />
+              <div className="w-[calc(100%-40px)] m-[20px] h-[calc(100vh-133px)] bg-[#2d2d2d] p-[20px] mt-0">
+                <div className="main-title">{title}</div>
+                <div className="main-body">
+                  <Component {...pageProps} />
+                </div>
               </div>
             </div>
           </div>
