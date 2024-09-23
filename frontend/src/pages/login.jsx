@@ -26,14 +26,14 @@ export default function Login() {
   const handleLoginSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("/DB_test", loginFormData, {
+      .post("/Login", loginFormData, {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         },
       })
       .then((response) => {
         console.log(response);
-        if (response.data == "success") {
+        if (response.data == "1") {
           sessionStorage.setItem("user_id", loginFormData.user_id);
           router.push("/main");
         } else {

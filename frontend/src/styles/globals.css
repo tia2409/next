@@ -4,25 +4,19 @@
 
 /* 기본 설정 */
 :root {
-  --foreground-rgb: 0, 0, 0;
+  --foreground-rgb: 255, 255, 255;
   --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --background-end-rgb: 0, 0, 0;
   --border-color: #ccc;
   --gradient: linear-gradient(to right, #f8f9fa, #e9ecef);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --foreground-rgb: 0, 0, 0;
+    --background-start-rgb: 255, 255, 255;
+    --background-end-rgb: 255, 255, 255;
   }
-}
-
-html,
-body {
-  color: rgb(var(--foreground-rgb));
-  background: #1e1e1e;
 }
 
 @layer utilities {
@@ -33,9 +27,9 @@ body {
 
 /* 페이지 설정 */
 html,
-body,
-main,
-#__next {
+body {
+  color: #000;
+  background: #fff;
   width: 100%;
   height: 100%;
   font-size: 16px;
@@ -78,4 +72,56 @@ textarea:focus {
 input[data-type="error"],
 textarea[data-type="error"] {
   box-shadow: 0 0 0 2px #ff1919 inset !important;
+}
+.main-title {
+  font-size: 1.6rem;
+  text-align: left;
+  color: var(--main-title-1);
+  margin-top: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #cfcdcd;
+  margin: 0px 0px 10px;
+}
+.main-body {
+  height: calc(100% - 54.61px);
+  overflow: auto;
+}
+.main-body::-webkit-scrollbar {
+  width: 0;
+}
+
+/* React-select */
+.select__input {
+  box-shadow: none !important;
+}
+
+.select__control {
+  background-color: #4e4e4e !important;
+  border-color: #4e4e4e !important;
+}
+
+.select__input,
+.select__input-container,
+.select__single-value {
+  color: #fff !important;
+}
+/* 체크박스 기본 스타일 숨기기 */
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  position: relative;
+  cursor: pointer;
+  border-radius: 0;
+}
+
+input[type="checkbox"]:focus {
+  box-shadow: none;
+}
+/* 체크된 상태 */
+input[type="checkbox"]:checked,
+input[type="checkbox"]:checked:hover {
+  background-image: url("./../../public//images//icons/Input_Checkbox_blue.svg");
+  background-size: cover;
 }
