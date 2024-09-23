@@ -27,12 +27,13 @@ function App({ Component, pageProps }) {
   const toggleSidebar = () => {
     setIsSidebarOpen((prev) => !prev);
   };
-  
+
   const toggleDetailbar = () => {
     setIsDetailbarOpen((prev) => !prev);
   };
 
   useEffect(() => {
+    const storedLocale = localStorage.getItem('selectedLocale');
     const handleRouteChangeComplete = () => {
       const element = document.querySelector(
         `a[href='${currentPath}'] > div > p`
@@ -52,7 +53,10 @@ function App({ Component, pageProps }) {
 
     // 경로가 바뀔 때마다 현재 페이지의 제목을 업데이트
     handleRouteChangeComplete();
-
+    // 로컬에 언어선택 정보가 있는지 확인
+    if (storedLocale) {
+      i18n.changeLanguage(storedLocale);
+    }
     return () => {
       router.events.off("routeChangeComplete", handleRouteChangeComplete);
     };
@@ -79,16 +83,17 @@ function App({ Component, pageProps }) {
                 </div>
               </div>
               {isDetailbarOpen && (
-                <Detailbar toggleDetailbar={toggleDetailbar} isDetailbarOpen={isDetailbarOpen} />
+                <Detailbar
+                  toggleDetailbar={toggleDetailbar}
+                  isDetailbarOpen={isDetailbarOpen}
+                />
               )}
             </div>
-          </>
-        )}
-      </div>
+          </div>
+        </div>
+      )}
     </I18nextProvider>
   );
-  
-  
 }
 
 export default App;
