@@ -1,3 +1,4 @@
+import BasicSelect from "@/component/BasicSelect";
 import useFormData from "@/component/hooks/useFormData";
 import React from "react";
 import { useTranslation } from 'react-i18next'; // 다국어 처리를 위해 import 하기
@@ -13,6 +14,7 @@ export default function index() {
       {/* json파일에서 key: { key : value } 형태 */}
       <div>{t('menu.add')}</div>
       <input id="plz2" />
+      <BasicSelect />
     </div>
   );
 }
