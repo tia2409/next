@@ -35,6 +35,14 @@ body {
   font-size: 16px;
 }
 
+body, div {
+  scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+  display: none; 
+}
+
 /* input 공통 */
 input,
 textarea {

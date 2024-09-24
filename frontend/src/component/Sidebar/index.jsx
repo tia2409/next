@@ -10,11 +10,11 @@ export default function Sidebar({ toggleSidebar, isSidebarOpen }) {
 
   return (
     <div
-      className={`min-h-[calc(100vh-72px)] h-auto p-[10px] bg-white ${styles.sidebar} ${
+      className={`h-[calc(100vh-72px)] p-[10px] bg-white overflow-y-scroll ${styles.sidebar} ${
         isSidebarOpen ? styles.sidebarEnter : styles.sidebarExit
       }`}
     >
-      <div className="flex justify-end items-center w-full h-[36px] mb-2.5">
+      <div className={`flex items-center w-full h-[36px] mb-2.5 ${isSidebarOpen ? "justify-end" : "justify-center"}`}>
         <Image className="cursor-pointer" src={MenuIcon} alt="Menu Icon" onClick={toggleSidebar} />
       </div>
       <SidebarButton
@@ -66,11 +66,15 @@ export default function Sidebar({ toggleSidebar, isSidebarOpen }) {
         isSidebarOpen={isSidebarOpen}
       />
       <SidebarButton
-        menu="iconUserManagement"
+        menu="iconOffice"
         isSidebarOpen={isSidebarOpen}
       />
       <SidebarButton
-        menu="iconUserManagement"
+        menu="iconProduce"
+        isSidebarOpen={isSidebarOpen}
+      />
+      <SidebarButton
+        menu="iconQuality"
         isSidebarOpen={isSidebarOpen}
       />
       <SidebarButton

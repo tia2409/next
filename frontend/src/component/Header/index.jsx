@@ -3,7 +3,7 @@ import React from 'react'
 
 import LocaleSelect from '../LocaleSelect'
 
-import HeaderTitle from './../../../public/images/logo/img-logo.webp'
+import HeaderTitle from './../../../public/images/logo/logo-white.webp'
 import Logout from './../../../public/images/icons/icon_login.svg'
 import Mymenu from './../../../public/images/icons/icon_mymenu.svg'
 import DefaultUser from './../../../public/images/icons/default_user.svg'
