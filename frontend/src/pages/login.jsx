@@ -8,7 +8,7 @@ import IconInput from "@/component/IconInput";
 import RoundButton from "@/component/RoundButton";
 import Image from "next/image";
 import banner from "../../public/images/banner/rain_banner_01.png";
-import logo from "../../public/images/logo/Img_Logo.svg";
+import logo from "../../public/images/logo/logo-black.svg";
 import idIcon from "../../public/images/icons/id_input.svg";
 import pwIcon from "../../public/images/icons/pw_input.svg";
 import LocaleSelect from "@/component/LocaleSelect";
@@ -50,7 +50,7 @@ export default function Login() {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-[#282c32]">
+    <div className="flex justify-center items-center h-screen bg-[#F1F1F1]">
       {/* 왼쪽 배너 */}
       <div className="w-780">
         {/* 임시로 class 부여 현재 배너이미지 780 * 760 아님 */}
@@ -63,7 +63,7 @@ export default function Login() {
         />
       </div>
       {/* 오른쪽 로그인Form */}
-      <div className="relative border border-[#363636] w-[360px] h-[760px] bg-[#363636] p-4">
+      <div className="relative border border-[#cfcdcd] w-[360px] h-[760px] bg-[#fff] p-4">
         <div className="flex flex-col justify-center items-center m-[50px] mt-[170px]">
           <Image src={logo} width={126} height={70} alt="logo" />
         </div>
@@ -101,15 +101,15 @@ export default function Login() {
           )}
           <RoundButton innerText="로그인" />
         </form>
-        <div className="flex justify-between py-[24px]">
+        <div className="flex justify-between py-[36px]">
           <CheckInput inputId="user_id_save" content="아이디 저장" />
           <LocaleSelect />
         </div>
         <div className="absolute flex justify-center items-center bottom-0 right-0 w-[360px] h-[60px]">
-          <div className=" text-[#909090] px-[20px] border-r border-[#7a7a7a] cursor-pointer">
+          <div className=" text-[#909090] text-sm font-semibold px-[20px] border-r border-[#7a7a7a] cursor-pointer">
             아이디·비밀번호 찾기
           </div>
-          <div className=" text-[#909090] px-[20px] cursor-pointer">
+          <div className=" text-[#909090] text-sm font-semibold px-[20px] cursor-pointer">
             회원가입
           </div>
         </div>

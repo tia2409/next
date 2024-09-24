@@ -5,11 +5,11 @@ import pwIcon from "./../../../public/images/icons/pw_input.svg";
 import searchIcon from "./../../../public/images/icons/search_input.svg";
 import calendarIcon from "./../../../public/images/icons/calendar_input.svg";
 
-import IconInput from ".";
+import IconButton from ".";
 
 export default {
-  title: 'Components/Input',
-  component: IconInput,
+  title: 'Components/Button',
+  component: IconButton,
   argTypes: {
     inputType: {
       control: { type: 'select' },
@@ -33,11 +33,11 @@ export default {
   },
 };
 
-const Template = args => <IconInput {...args} />;
+const Template = args => <IconButton {...args} />;
 
-export const IconInput_ = Template.bind({});
+export const IconButton_ = Template.bind({});
 
-IconInput_.args = {
+IconButton_.args = {
   inputType: 'password',
   inputImg: 'pwIcon',
   placeholder: 'placeholder',

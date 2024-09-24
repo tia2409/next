@@ -71,10 +71,21 @@ export default function SidebarButton({
 }) {
   const router = useRouter();
   const [isExpanded, setIsExpanded] = useState(isDropMenu);
+  const [isHovered, setIsHovered] = useState(false);
 
   // 버튼 클릭 시 펼치기/접기 토글
   const handleToggle = () => {
     setIsExpanded((prev) => !prev);
+  };
+
+  const customStyles = {
+    option: (provided, state) => ({
+      ...provided,
+      "&:hover": { // hover
+        backgroundColor: "#c9c9c9",
+        color: "#ffffff",
+      },
+    }),
   };
 
   return (
@@ -82,15 +93,18 @@ export default function SidebarButton({
       <div
         onClick={handleToggle}
         className={`
-          ${isActive ? "border-[#1976e5] bg-[#E4F2FE]" : "border-[#cfcdcd]"} 
-          ${isSidebarOpen ? "" : "border-none bg-none"}
+          ${isActive ? "border-[#1976e5]" : "border-[#cfcdcd]"} 
+          ${isActive && isSidebarOpen ? "bg-[#E4F2FE]" : ""}
+          ${isSidebarOpen ? "hover:bg-[#F1F0F1]" : "border-none bg-none justify-center"}
           relative w-full h-[44px] leading-[44px] flex items-center space-x-2 mb-2.5 
           overflow-hidden border rounded-[3px] cursor-pointer`}
       >
         <Image
           src={
-            isActive ? iconMap[menu].active : iconMap[menu].default
+            isActive || isHovered ? iconMap[menu].active : iconMap[menu].default
           }
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
           width={36}
           height={36}
           alt="icon"
@@ -102,13 +116,15 @@ export default function SidebarButton({
             {menu}
           </p>
         )}
-        <Image
-          className="absolute right-0"
-          src={isExpanded ? upArrowWhite : downArrowBlack}
-          width={36}
-          height={36}
-          alt="arrow"
-        />
+        {isSidebarOpen &&
+          <Image
+            className="absolute right-0"
+            src={isExpanded ? upArrowWhite : downArrowBlack}
+            width={36}
+            height={36}
+            alt="arrow"
+          />
+        }
       </div>
 
       {/* depth 메뉴 - isExpanded가 true일 때 표시 */}

@@ -3,7 +3,7 @@ import Image from "next/image";
 import deleteIcon from "../../../public/images/icons/icon_cal_delete.svg";
 import filterIcon from "../../../public/images/icons/icon-filter.svg";
 import styles from "./index.module.css";
-export default function IconInput({
+export default function IconButton({
   buttonType,
   buttonId,
   buttonImg,
