@@ -51,16 +51,16 @@ export default function LocaleSelect() {
         <div className="relative flex w-[60px] h-[44px] cursor-pointer" onClick={localeClicked}>
             <Image className="rounded-[50%] my-[13.5px] border border-[#505050]" src={localeImg} width={18} height={18} alt="locale"/>
             {isClicked ? 
-                <div className="absolute w-[100px] h-[120px] rounded-[12px] right-2 top-[52px] bg-white z-50">
-                    <div className="flex items-center w-full h-[40px] p-[10px]" onClick={localeSelected("ko_KR")}>
+                <div className="absolute w-[100px] h-[120px] rounded-[12px] right-2 top-[52px] bg-white border border-[#cfcdcd] z-50">
+                    <div className="flex items-center w-full h-[40px] p-[10px] rounded-t-[12px] hover:bg-[#F1F0F1]" onClick={localeSelected("ko_KR")}>
                         <Image className="rounded-[50%] h-[18px] border border-[#505050]" src={koFlag} width={18} height={18} alt="ko"/>
                         <p className="pl-[10px] text-[#505050] text-sm font-medium">한국어</p>
                     </div>
-                    <div className="flex items-center w-full h-[40px] p-[10px] border-y border-[#ebebeb]" onClick={localeSelected("en_US")}>
+                    <div className="flex items-center w-full h-[40px] p-[10px] border-y border-[#ebebeb] hover:bg-[#F1F0F1]" onClick={localeSelected("en_US")}>
                         <Image className="rounded-[50%] h-[18px] border border-[#505050]" src={enFlag} width={18} height={18} alt="en"/>
                         <p className="pl-[10px] text-[#505050] text-sm font-medium">English</p>
                     </div>
-                    <div className="flex items-center w-full h-[40px] p-[10px]" onClick={localeSelected("ja_JP")}>
+                    <div className="flex items-center w-full h-[40px] p-[10px] rounded-b-[12px] hover:bg-[#F1F0F1]" onClick={localeSelected("ja_JP")}>
                         <Image className="rounded-[50%] h-[18px] border border-[#505050]" src={jpFlag} width={18} height={18} alt="ja"/>
                         <p className="pl-[10px] text-[#505050] text-sm font-medium">日本語</p>
                     </div>

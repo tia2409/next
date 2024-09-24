@@ -36,7 +36,7 @@ function App({ Component, pageProps }) {
     const storedLocale = localStorage.getItem('selectedLocale');
     const handleRouteChangeComplete = () => {
       const element = document.querySelector(
-        `a[href='${currentPath}'] > div > p`
+        `a[href='${currentPath}'] > div`
       );
 
       console.log("Current Path:", currentPath);
