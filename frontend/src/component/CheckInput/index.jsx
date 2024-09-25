@@ -4,6 +4,7 @@ import Image from "next/image";
 import checkMark from "./../../../public/images/icons/checkbox/checked.svg";
 
 export default function CheckInput({ inputId, innerText, ...props }) {
+
   const [isChecked, setIsChecked] = useState(true);
 
   const checkIsChecked = () => {
