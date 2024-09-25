@@ -7,7 +7,6 @@ import Sidebar from "@/component/Sidebar";
 import Tabs from "@/component/Tabs";
 import { I18nextProvider } from "react-i18next";
 import i18n from "../locales/i18n";
-import Detailbar from "@/component/DetailBar";
 
 // 폰트 설정
 const notoSansKR = Noto_Sans_KR({
@@ -20,16 +19,11 @@ function App({ Component, pageProps }) {
   const router = useRouter();
   const currentPath = router.pathname;
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const [isDetailbarOpen, setIsDetailbarOpen] = useState(false);
   const [title, setTitle] = useState("");
   const isLoginPage = router.pathname === "/"; // 로그인 페이지 여부 확인
 
   const toggleSidebar = () => {
     setIsSidebarOpen((prev) => !prev);
-  };
-
-  const toggleDetailbar = () => {
-    setIsDetailbarOpen((prev) => !prev);
   };
 
   useEffect(() => {
@@ -78,7 +72,7 @@ function App({ Component, pageProps }) {
               <Tabs />
               <div
                 className={
-                  "w-[calc(100%-20px)] m-[10px] h-[calc(100vh-114px)] bg-[#fff] p-[20px] mt-0 mb-0 main-layer"
+                  "w-[calc(100%-20px)] m-[10px] h-[calc(100vh-114px)] bg-white p-[20px] mt-0 mb-0 main-layer"
                 }
               >
                 <div className="main-title">{title}</div>
@@ -86,12 +80,6 @@ function App({ Component, pageProps }) {
                   <Component {...pageProps} />
                 </div>
               </div>
-              {isDetailbarOpen && (
-                <Detailbar
-                  toggleDetailbar={toggleDetailbar}
-                  isDetailbarOpen={isDetailbarOpen}
-                />
-              )}
             </div>
           </div>
         </div>
