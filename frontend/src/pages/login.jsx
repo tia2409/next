@@ -103,10 +103,10 @@ export default function Login() {
           <LocaleSelect />
         </div>
         <div className="absolute flex justify-center items-center bottom-0 right-0 w-[360px] h-[60px]">
-          <div className=" text-gray04 text-sm font-semibold px-[20px] border-r border-gray04 cursor-pointer">
+          <div className=" text-gray04 font-semibold px-[20px] border-r border-gray04 cursor-pointer">
             {t("login.find")}
           </div>
-          <div className=" text-gray04 text-sm font-semibold px-[20px] cursor-pointer">
+          <div className=" text-gray04 font-semibold px-[20px] cursor-pointer">
             {t("login.join")}
           </div>
         </div>

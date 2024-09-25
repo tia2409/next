@@ -1,5 +1,10 @@
 {
     "test": "테스트",
+    "common" : {
+        "save" : "저장",
+        "cancel" : "취소",
+        "delete" : "삭제"
+    },
     "login" : {
         "insertID" : "아이디를 입력해주세요.",
         "insertPW" : "비밀번호를 입력해주세요.",
