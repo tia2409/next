@@ -43,11 +43,7 @@ export default function Tabs() {
     if (updatedTabs.length === 0) {
       // 탭이 모두 삭제되면 /main으로 이동하고 기본 탭 추가
       const mainTab = {
-<<<<<<< HEAD
-        label: document.querySelector(`a[href="/main"] > div `).innerText,
-=======
         label: document.querySelector(`a[href="/main"] > div`).innerText,
->>>>>>> 8d472c94fc0b96fe0314ddd2d51c3798aed79840
         path: "/main",
       };
       setTabs([mainTab]);
