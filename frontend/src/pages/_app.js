@@ -33,6 +33,8 @@ function App({ Component, pageProps }) {
 
       if (element) {
         setTitle(element.innerText);
+      } else if (!element && currentPath == "/main") {
+        setTitle("Main");
       } else {
         setTitle("No Title Found");
       }

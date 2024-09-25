@@ -1,0 +1,27 @@
+.container {
+  width: 100%;
+  min-height: 44px;
+  display: flex;
+  background-color: #f0f0f0; /* 예시 색상 */
+  position: relative;
+  overflow: hidden; /* 애니메이션 적용 시 내용이 넘치는 것을 방지 */
+  transition: max-height 0.4s ease-in-out; /* 높이 변화 애니메이션 */
+}
+
+.containerCollapsed {
+  max-height: 44px; /* 최소 높이 */
+}
+
+.containerExpanded {
+  max-height: 200px; /* 최대 높이 (내용에 맞게 조정 가능) */
+}
+
+.content {
+  min-height: 74px;
+}
+
+.toggle {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import CustomTable from "../../component/CustomTable";
 import useFormData from "@/component/hooks/useFormData";
+import SearchBar from "@/component/SearchBar";
 
 export default function index() {
   useFormData();
   const [selection, setSelection] = useState([]);
   const [data, setData] = useState(null); // JSON 데이터를 상태로 관리
   const [loading, setLoading] = useState(true); // 로딩 상태 관리
-
   useEffect(() => {
     // JSON 파일을 동적으로 가져오는 함수
     const fetchData = async () => {
@@ -26,6 +26,7 @@ export default function index() {
   }, []);
   return (
     <div>
+      <SearchBar>asdf</SearchBar>
       {data && <CustomTable headers={data.headers} data={data.items} />}
     </div>
   );

@@ -130,7 +130,6 @@ const index = ({ headers, data }) => {
   return (
     <div className="p-2 block max-w-full h-full">
       <div className="h-2" />
-
       <div className="flex justify-between mb-[10px] h-[44px] pt-[10px]">
         <div className="flex">
           <span className="flex text-center items-center text-[14px] mr-[8px]">
