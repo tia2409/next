@@ -15,6 +15,7 @@ public class LoginRepositoryImpl implements LoginRepository {
 	
 	// 로그인
 	public LoginDomain Login(LoginDomain domain) throws Exception {
+		System.out.println("LoginRepositoryImpl - Login() called");
 		return mapper.Login(domain);
 	}
 
