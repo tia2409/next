@@ -3,7 +3,7 @@ import React from 'react'
 
 import LocaleSelect from '../LocaleSelect'
 
-import HeaderTitle from './../../../public/images/logo/img-logo.webp'
+import HeaderTitle from './../../../public/images/logo/logo-white.webp'
 import Logout from './../../../public/images/icons/icon_login.svg'
 import Mymenu from './../../../public/images/icons/icon_mymenu.svg'
 import DefaultUser from './../../../public/images/icons/default_user.svg'
@@ -25,7 +25,7 @@ export default function Header() {
                 <Image src={Mymenu} />
             </div>
             <div className='pl-4'>
-                <Image className='rounded-full border-[#909090] bg-[#424242]' src={DefaultUser} />
+                <Image className='rounded-full border-gray04 bg-gray03' src={DefaultUser} />
             </div>
         </div>
     </div>

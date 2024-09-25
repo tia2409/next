@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-    <path data-name="사각형 100" style="fill:none" d="M0 0h32v32H0z"/>
-    <g data-name="그룹 110258">
-        <path data-name="선 698" d="M13 1.25H0A1.25 1.25 0 0 1-1.25 0 1.25 1.25 0 0 1 0-1.25h13A1.25 1.25 0 0 1 14.25 0 1.25 1.25 0 0 1 13 1.25z" transform="translate(9.25 10.25)" style="fill:#000"/>
-        <path data-name="선 699" d="M13 1.25H0A1.25 1.25 0 0 1-1.25 0 1.25 1.25 0 0 1 0-1.25h13A1.25 1.25 0 0 1 14.25 0 1.25 1.25 0 0 1 13 1.25z" transform="translate(9.25 16.25)" style="fill:#000"/>
-        <path data-name="선 700" d="M13 1.25H0A1.25 1.25 0 0 1-1.25 0 1.25 1.25 0 0 1 0-1.25h13A1.25 1.25 0 0 1 14.25 0 1.25 1.25 0 0 1 13 1.25z" transform="translate(9.25 22.25)" style="fill:#000"/>
-    </g>
-</svg>

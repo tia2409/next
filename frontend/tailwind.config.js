@@ -9,11 +9,19 @@ module.exports = {
     './stories/**/*.{js,jsx,ts,tsx}', // 스토리북 파일
   ],
   theme: {
-    extend: { 
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+    extend: {
+      // 색상명칭 추가 
+      colors: { 
+        gray01: '#202020',
+        gray02: '#363636',
+        gray03: '#505050',
+        gray04: '#858585',
+        gray05: '#A4A4A4',
+        gray06: '#F1F0F1',
+        main01: '#0065BD',
+        main02: '#1976E5',
+        main03: '#989FF1',
+        main04: '#E4F2FE',
       },
     },
   },

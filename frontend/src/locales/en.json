@@ -1,7 +1,12 @@
 {
     "test": "test",
-    "menu": {
-        "add" : "add",
-        "delete" : "delete"
+    "login" : {
+        "insertID" : "Please enter your ID.",
+        "insertPW" : "Please enter your password.",
+        "button" : "Login",
+        "saveID" : "Save ID",
+        "find" : "Find ID·Password",
+        "join" : "Join",
+        "error" : "Login failed. Please check your ID and password."
     }
 }

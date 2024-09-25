@@ -26,7 +26,7 @@ export default function IconInput({ inputType, inputId, inputImg, placeholder, .
     );
   }
   return (
-    <div className="flex relative bg-[#4e4e4e] w-full">
+    <div className="relative flex w-full">
       <Image
         id={inputId}
         className="absolute top-[3px]"
