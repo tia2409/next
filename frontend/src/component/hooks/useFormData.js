@@ -13,9 +13,14 @@ const useFormData = () => {
 
     inputs.forEach((input) => {
       const idOrName = input.id || input.name;
-      allData[idOrName] = input.value; // value 가져오기
+
+      // 체크박스일 경우 checked 상태 저장, 그렇지 않으면 value 저장
+      if (input.type === "checkbox") {
+        allData[idOrName] = input.checked;
+      } else {
+        allData[idOrName] = input.value; // value 가져오기
+      }
     });
-    console.log("Saving data for path:", currentPath, allData);
     sessionStorage.setItem(currentPath, JSON.stringify(allData));
   };
 
@@ -25,11 +30,17 @@ const useFormData = () => {
 
     if (savedData) {
       const inputs = document.querySelectorAll("input, select");
-
       inputs.forEach((input) => {
         const idOrName = input.id || input.name;
-        if (savedData[idOrName]) {
-          input.value = savedData[idOrName]; // value 설정하기
+
+        // 체크박스일 경우 checked 상태 복원, 그렇지 않으면 value 복원
+        if (savedData[idOrName] !== undefined) {
+          console.log(idOrName, savedData[idOrName], input.type);
+          if (input.type === "checkbox") {
+            input.checked = savedData[idOrName];
+          } else {
+            input.value = savedData[idOrName]; // value 설정하기
+          }
         }
       });
     }
@@ -59,19 +70,16 @@ const useFormData = () => {
 
     return () => {
       router.events.off("routeChangeStart", handleRouteChange);
-      // saveAllData(); // 언마운트 시 데이터 저장
     };
   }, [currentPath]);
 
   useEffect(() => {
     const handleRouteChange = (url) => {
-      console.log("Page changed to: ", url);
       //페이지 이동 감지
     };
 
     const handleBeforeUnload = (event) => {
       // 여기에서 새로 고침 감지
-      console.log("Page is being refreshed");
       sessionStorage.clear();
     };
 
@@ -83,6 +91,8 @@ const useFormData = () => {
       window.removeEventListener("beforeunload", handleBeforeUnload);
     };
   }, [router.events]);
+
+  return { restoreAllData };
 };
 
 export default useFormData;

@@ -33,20 +33,15 @@ function App({ Component, pageProps }) {
   };
 
   useEffect(() => {
-    const storedLocale = localStorage.getItem('selectedLocale');
+    const storedLocale = localStorage.getItem("selectedLocale");
     const handleRouteChangeComplete = () => {
-      const element = document.querySelector(
-        `a[href='${currentPath}'] > div`
-      );
-
-      console.log("Current Path:", currentPath);
+      const element = document.querySelector(`a[href='${currentPath}'] > div`);
 
       if (element) {
         setTitle(element.innerText);
       } else {
         setTitle("No Title Found");
       }
-      console.log("Title: ", element ? element.innerText : "Not found");
     };
 
     // router.events.on("routeChangeComplete", handleRouteChangeComplete);
