@@ -25,7 +25,7 @@ export default function Header() {
                 <Image src={Mymenu} />
             </div>
             <div className='pl-4'>
-                <Image className='rounded-full border-[#909090] bg-[#424242]' src={DefaultUser} />
+                <Image className='rounded-full border-gray04 bg-gray03' src={DefaultUser} />
             </div>
         </div>
     </div>

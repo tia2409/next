@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import styles from "./index.module.css";
-import MenuIcon from "./../../../public/images/icons/sidebar_menu.svg";
 import Image from "next/image";
 import SidebarButton from "../SidebarButton";
 import { useRouter } from 'next/router';
+import MenuOpen from "./../../../public/images/icons/arrow/left-double-black.svg";
+import MenuClose from "./../../../public/images/icons/arrow/right-double-black.svg";
 
 export default function Sidebar({ toggleSidebar, isSidebarOpen }) {
   const router = useRouter(); // useRouter 훅 사용
@@ -15,7 +16,7 @@ export default function Sidebar({ toggleSidebar, isSidebarOpen }) {
       }`}
     >
       <div className={`flex items-center w-full h-[36px] mb-2.5 ${isSidebarOpen ? "justify-end" : "justify-center"}`}>
-        <Image className="cursor-pointer" src={MenuIcon} alt="Menu Icon" onClick={toggleSidebar} />
+        <Image className="cursor-pointer" src={isSidebarOpen ? MenuOpen : MenuClose} alt="Menu Icon" onClick={toggleSidebar} />
       </div>
       <SidebarButton
         menu="iconTotal"
