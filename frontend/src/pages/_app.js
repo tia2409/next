@@ -7,8 +7,8 @@ import Sidebar from "@/component/Sidebar";
 import Tabs from "@/component/Tabs";
 import { I18nextProvider } from "react-i18next";
 import i18n from "../locales/i18n";
+import PopUp from "@/component/PopUp";
 
-// 폰트 설정
 const notoSansKR = Noto_Sans_KR({
   weight: ["400", "500", "700"],
   subsets: ["latin"],
@@ -18,12 +18,22 @@ const notoSansKR = Noto_Sans_KR({
 function App({ Component, pageProps }) {
   const router = useRouter();
   const currentPath = router.pathname;
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true); // 사이드바 상태
   const [title, setTitle] = useState("");
-  const isLoginPage = router.pathname === "/"; // 로그인 페이지 여부 확인
+  const [isPopUpOpen, setIsPopUpOpen] = useState(false);
+  const [popUpData, setPopUpData] = useState(null); // 팝업 데이터 상태
+  const isLoginPage = router.pathname === "/";
 
   const toggleSidebar = () => {
     setIsSidebarOpen((prev) => !prev);
+  };
+
+  const togglePopUp = (data = null) => {
+    setIsPopUpOpen((prev) => {
+      console.log("Current isPopUpOpen:", prev);
+      return !prev; // 상태를 반전시키고 로그 확인
+    });
+    setPopUpData(data); // 전달된 데이터를 상태로 설정
   };
 
   useEffect(() => {
@@ -53,6 +63,12 @@ function App({ Component, pageProps }) {
     };
   }, [currentPath]);
 
+  // pageProps에 togglePopUp을 추가하여 전달
+  const updatedPageProps = {
+    ...pageProps,
+    togglePopUp,
+  };
+
   return (
     <I18nextProvider i18n={i18n}>
       {isLoginPage ? (
@@ -67,20 +83,22 @@ function App({ Component, pageProps }) {
             />
             <div className="w-full h-[100vh - 72px]">
               <Tabs />
-              <div
-                className={
-                  "w-[calc(100%-20px)] m-[10px] h-[calc(100vh-114px)] bg-white p-[20px] mt-0 mb-0 main-layer"
-                }
-              >
+              <div className="w-[calc(100%-20px)] m-[10px] h-[calc(100vh-114px)] bg-white p-[20px] mt-0 mb-0 main-layer">
                 <div className="main-title">{title}</div>
                 <div className="main-body">
-                  <Component {...pageProps} />
+                  <Component {...updatedPageProps} />
                 </div>
               </div>
             </div>
           </div>
         </div>
       )}
+      {/* PopUp 포탈 */}
+      <PopUp
+        togglePopUp={togglePopUp}
+        isPopUpOpen={isPopUpOpen}
+        data={popUpData}
+      />
     </I18nextProvider>
   );
 }
