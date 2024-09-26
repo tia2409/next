@@ -1,11 +1,11 @@
-package com.backend.adapter.in.controller.login;
+package com.backend.controller.login;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.backend.application.port.in.login.LoginUseCase;
-import com.backend.domain.login.LoginDomain;
+import com.backend.dto.login.LoginDTO;
+import com.backend.service.login.LoginService;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -13,14 +13,13 @@ import jakarta.servlet.http.HttpServletRequest;
 public class LoginController {
 	
 	@Autowired
-	private LoginUseCase usecase;
+	private LoginService service;
 	
 	@PostMapping("Login")
-	public int Login(LoginDomain domain, HttpServletRequest servletRequest) throws Exception {
+	public int Login(LoginDTO dto, HttpServletRequest servletRequest) throws Exception {
 		System.out.println("LoginController - Login() called");
+		dto.setIp_addr(servletRequest.getRemoteAddr());
 		
-		domain.setIp_addr(servletRequest.getRemoteAddr());
-		
-		return usecase.Login(domain);
+		return service.Login(dto);
 	}
 }
