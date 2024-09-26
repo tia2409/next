@@ -1,13 +1,14 @@
-import useFormData from "@/component/hooks/useFormData";
 import React, { useState, useEffect } from "react";
-import DataTable from "@/component/DataTable";
+import CustomTable from "../../component/CustomTable";
+import useFormData from "@/component/hooks/useFormData";
+import SearchBar from "@/component/SearchBar";
+import BasicLabel from "@/component/BasicLabel";
 
-export default function Main() {
+export default function index() {
   useFormData();
   const [selection, setSelection] = useState([]);
   const [data, setData] = useState(null); // JSON 데이터를 상태로 관리
   const [loading, setLoading] = useState(true); // 로딩 상태 관리
-
   useEffect(() => {
     // JSON 파일을 동적으로 가져오는 함수
     const fetchData = async () => {
@@ -24,35 +25,17 @@ export default function Main() {
 
     fetchData();
   }, []);
-
-  useEffect(() => {
-    console.log(selection);
-  }, [selection]);
-
-  // 로딩 중일 때 로딩 메시지 표시
-  if (loading) {
-    return <div>로딩 중...</div>;
-  }
-
-  // 데이터가 없는 경우 처리
-  if (!data || !data.headers || !data.items) {
-    return <div>데이터가 없습니다.</div>;
-  }
-
-  // 데이터가 로드된 후에만 DataTable 컴포넌트를 렌더링
   return (
     <div>
-      {data && (
-        <DataTable
-          headers={data.headers}
-          items={data.items}
-          selectable={true}
-          updateSelection={setSelection}
-          pagination={true}
-          itemsPerPage={10}
-          itemKey="item_cd"
-        />
-      )}
+      <SearchBar>
+        <BasicLabel labelTitle="Label Here">
+          <div>1234</div>
+        </BasicLabel>
+        <BasicLabel labelTitle="Label Here2">
+          <div>4567</div>
+        </BasicLabel>
+      </SearchBar>
+      {data && <CustomTable headers={data.headers} data={data.items} />}
     </div>
   );
 }

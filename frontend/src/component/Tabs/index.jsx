@@ -15,9 +15,10 @@ export default function Tabs() {
 
     // 현재 경로에 해당하는 탭이 없으면 새 탭을 추가
     if (existingTabIndex === -1) {
+      const label = document.querySelector(`a[href='${currentPath}'] > div`);
+
       const newTab = {
-        label: document.querySelector(`a[href='${currentPath}'] > div`)
-          .innerText,
+        label: label && currentPath !== "/main" ? label.innerText : "Main",
         path: currentPath,
       };
       setTabs((prevTabs) => [...prevTabs, newTab]);
@@ -33,7 +34,7 @@ export default function Tabs() {
   };
   const handleTabDelete = (index) => {
     sessionStorage.removeItem(tabs[index].path);
-    const inputs = document.querySelectorAll("input, select");
+    const inputs = document.querySelectorAll("input");
 
     inputs.forEach((input) => {
       input.value = "";

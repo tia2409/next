@@ -11,6 +11,7 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@tanstack/react-table": "^8.20.5",
     "axios": "^1.7.7",
     "i18next": "^23.15.1",
     "next": "14.1.0",

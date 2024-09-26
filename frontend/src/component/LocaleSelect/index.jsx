@@ -54,15 +54,15 @@ export default function LocaleSelect() {
                 <div className="absolute w-[100px] h-[122px] rounded-[12px] right-2 top-[52px] bg-white border border-gray05 z-50">
                     <div className="flex items-center w-full h-[40px] p-[10px] rounded-t-[12px] hover:bg-gray06" onClick={localeSelected("ko_KR")}>
                         <Image className="rounded-[50%] h-[18px] border border-gray03" src={KoLocale} width={18} height={18} alt="ko"/>
-                        <p className="pl-[10px] text-gray03 text-sm font-medium">한국어</p>
+                        <p className="pl-[10px] text-gray03 font-medium">한국어</p>
                     </div>
                     <div className="flex items-center w-full h-[40px] p-[10px] border-y border-gray05 hover:bg-gray06" onClick={localeSelected("en_US")}>
                         <Image className="rounded-[50%] h-[18px] border border-gray03" src={EnLocale} width={18} height={18} alt="en"/>
-                        <p className="pl-[10px] text-gray03 text-sm font-medium">English</p>
+                        <p className="pl-[10px] text-gray03 font-medium">English</p>
                     </div>
                     <div className="flex items-center w-full h-[40px] p-[10px] rounded-b-[12px] hover:bg-gray06" onClick={localeSelected("ja_JP")}>
                         <Image className="rounded-[50%] h-[18px] border border-gray03" src={JpLocale} width={18} height={18} alt="ja"/>
-                        <p className="pl-[10px] text-gray03 text-sm font-medium">日本語</p>
+                        <p className="pl-[10px] text-gray03 font-medium">日本語</p>
                     </div>
                 </div> 
             : ""}

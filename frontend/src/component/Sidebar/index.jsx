@@ -3,7 +3,7 @@ import styles from "./index.module.css";
 import Image from "next/image";
 import axios from "axios";
 import SidebarButton from "../SidebarButton";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 import MenuOpen from "./../../../public/images/icons/arrow/left-double-black.svg";
 import MenuClose from "./../../../public/images/icons/arrow/right-double-black.svg";
 
@@ -33,11 +33,21 @@ export default function Sidebar({ toggleSidebar, isSidebarOpen }) {
 
   return (
     <div
-      className={`h-[calc(100vh-72px)] p-[10px] bg-white overflow-y-scroll ${styles.sidebar} ${isSidebarOpen ? styles.sidebarEnter : styles.sidebarExit
-        }`}
+      className={`h-[calc(100vh-72px)] p-[10px] bg-white overflow-y-scroll ${
+        styles.sidebar
+      } ${isSidebarOpen ? styles.sidebarEnter : styles.sidebarExit}`}
     >
-      <div className={`flex items-center w-full h-[36px] mb-2.5 ${isSidebarOpen ? "justify-end" : "justify-center"}`}>
-        <Image className="cursor-pointer" src={isSidebarOpen ? MenuOpen : MenuClose} alt="Menu Icon" onClick={toggleSidebar} />
+      <div
+        className={`flex items-center w-full h-[36px] mb-2.5 ${
+          isSidebarOpen ? "justify-end" : "justify-center"
+        }`}
+      >
+        <Image
+          className="cursor-pointer"
+          src={isSidebarOpen ? MenuOpen : MenuClose}
+          alt="Menu Icon"
+          onClick={toggleSidebar}
+        />
       </div>
       {result.map((menu) => {
         let subMenu_nm = [];
@@ -68,6 +78,7 @@ export default function Sidebar({ toggleSidebar, isSidebarOpen }) {
           );
         }
       })}
+
     </div>
   );
 }

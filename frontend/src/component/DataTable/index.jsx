@@ -3,6 +3,14 @@ import styles from "./index.module.css";
 import InputIcon from "../InputIcon";
 import search_input from "../../../public/images/icons/search_input.svg";
 import IconButton from "../IconButton";
+import BasicSelect from "../BasicSelect";
+
+const options = [
+  { value: "10", label: "10줄" },
+  { value: "15", label: "15줄" },
+  { value: "20", label: "20줄" },
+  { value: "40", label: "40줄" },
+];
 
 export default function DataTable({
   headers,
@@ -10,8 +18,9 @@ export default function DataTable({
   selectable = false,
   itemKey,
   updateSelection,
-  pagination = false, // 페이지네이션 여부
-  itemsPerPage = 10, // 한 페이지당 보여줄 아이템 개수
+  pagination = false,
+  itemsPerPage = 10,
+  selectPerPage = true,
 }) {
   if (!headers || !headers.length) {
     throw new Error("<DataTable /> headers is required.");
@@ -23,9 +32,10 @@ export default function DataTable({
   }
 
   const [selection, setSelection] = useState(new Set());
-  const [searchQuery, setSearchQuery] = useState(""); // 검색어 상태 추가
-  const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 상태 추가
-  const totalPages = Math.ceil(items.length / itemsPerPage); // 총 페이지 수 계산
+  const [searchQuery, setSearchQuery] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [perPage, setPerPage] = useState(itemsPerPage);
+  const totalPages = Math.ceil(items.length / perPage);
 
   const onChangeSelect = (value) => {
     const newSelection = new Set(selection);
@@ -59,28 +69,31 @@ export default function DataTable({
     return selection.size === getAbledItems(items).length;
   };
 
-  // 검색된 아이템 필터링
   const filteredItems = items.filter((item) =>
     headerKey.some((key) =>
       item[key].toString().toLowerCase().includes(searchQuery.toLowerCase())
     )
   );
 
-  // 페이지에 따라 아이템 나누기 (검색어가 있을 때는 페이지네이션 비활성화)
-  const paginatedItems =
-    pagination && !searchQuery
-      ? filteredItems.slice(
-          (currentPage - 1) * itemsPerPage,
-          currentPage * itemsPerPage
-        )
-      : filteredItems;
+  // 페이지네이션 계산
+  const paginateItems = (items) => {
+    return pagination && !searchQuery
+      ? items.slice((currentPage - 1) * perPage, currentPage * perPage)
+      : items;
+  };
+
+  const paginatedItems = paginateItems(filteredItems);
+
+  useEffect(() => {
+    setCurrentPage(1); // 페이지 변경 시 첫 페이지로 초기화
+  }, [perPage, searchQuery]);
 
   // 페이지 변경 함수
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
 
-  // 페이지네이션에서 5개만 보여주고 현재 페이지가 가운데로 위치하도록 계산
+  // 페이지네이션 범위 계산
   const getPaginationRange = () => {
     const pageNumbersToShow = 5;
     const halfRange = Math.floor(pageNumbersToShow / 2);
@@ -88,7 +101,6 @@ export default function DataTable({
     let startPage = Math.max(1, currentPage - halfRange);
     let endPage = Math.min(totalPages, currentPage + halfRange);
 
-    // 페이지 범위가 5개보다 적은 경우, 범위를 보정
     if (currentPage <= halfRange) {
       endPage = Math.min(totalPages, pageNumbersToShow);
     } else if (totalPages - currentPage < halfRange) {
@@ -104,22 +116,36 @@ export default function DataTable({
   return (
     <div>
       {/* 검색 입력 필드 */}
-
-      <div className="flex justify-between mb-[10px] h-[34px]">
-        <label
-          htmlFor="allClickButtom"
-          className="flex text-center items-center text-[14px]"
-        >
-          <button
-            id="allClickButtom"
-            onClick={() => document.querySelector("#allCheck").click()}
-            className="font-medium"
+      <div className="flex justify-between mb-[10px] h-[44px] pt-[10px]">
+        <div className="flex">
+          <label
+            htmlFor="allClickButtom"
+            className="flex text-center items-center text-[14px] mr-[8px]"
           >
-            전체 선택
-          </button>
-          <div className="border-r-[1px] border-solid border-[#909090] mx-[8px] h-[12px]" />
-          <div className="flex items-center text-[#1976e5] font-bold">15</div>
-        </label>
+            <button
+              id="allClickButtom"
+              onClick={() => document.querySelector("#allCheck").click()}
+              className="font-medium"
+            >
+              전체 선택
+            </button>
+            <div className="border-r-[1px] border-solid border-[#909090] mx-[8px] h-[12px]" />
+            <div className="flex items-center text-[#1976e5] font-bold">
+              {selection.size}
+            </div>
+          </label>
+          {selectPerPage && (
+            <BasicSelect
+              width="100"
+              deleteOption={false}
+              placeHolder="줄수"
+              options={options}
+              defaultValue
+              onchange={(e) => setPerPage(e.value)}
+              defaultSelectValue={options[0]}
+            />
+          )}
+        </div>
         <div className={`flex ${styles.rightContainer}`}>
           <InputIcon
             inputId="tableSearch"
@@ -145,6 +171,7 @@ export default function DataTable({
             {selectable && (
               <th
                 className={`${styles.select_column} ${styles.td} ${styles.checkTd}`}
+                htmlFor="allCheck"
               >
                 <input
                   id="allCheck"
