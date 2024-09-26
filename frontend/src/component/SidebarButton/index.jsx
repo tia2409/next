@@ -93,7 +93,7 @@ export default function SidebarButton({
       >
         <Image
           src={
-            isActive || isHovered ? `${img_src}.svg` : `${img_src}-active.svg`
+            isActive || isHovered ? `${img_src}-active.svg` : `${img_src}.svg`
           }
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
