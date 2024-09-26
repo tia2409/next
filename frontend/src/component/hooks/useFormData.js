@@ -8,7 +8,7 @@ const useFormData = () => {
 
   // 모든 input과 select 값을 저장하는 함수
   const saveAllData = () => {
-    const inputs = document.querySelectorAll("input, select");
+    const inputs = document.querySelectorAll("input");
     const allData = {};
 
     inputs.forEach((input) => {
@@ -29,7 +29,7 @@ const useFormData = () => {
     const savedData = JSON.parse(sessionStorage.getItem(previousPath.current));
 
     if (savedData) {
-      const inputs = document.querySelectorAll("input, select");
+      const inputs = document.querySelectorAll("input");
       inputs.forEach((input) => {
         const idOrName = input.id || input.name;
 

@@ -34,7 +34,7 @@ export default function Tabs() {
   };
   const handleTabDelete = (index) => {
     sessionStorage.removeItem(tabs[index].path);
-    const inputs = document.querySelectorAll("input, select");
+    const inputs = document.querySelectorAll("input");
 
     inputs.forEach((input) => {
       input.value = "";

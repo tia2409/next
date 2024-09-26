@@ -4,6 +4,12 @@ import BasicButton from "@/component/BasicButton";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next"; // 다국어 처리를 위해 import 하기
 
+const options = [
+  { value: "chocolate", label: "Chocolate" },
+  { value: "strawberry", label: "Strawberry" },
+  { value: "vanilla", label: "Vanilla" },
+];
+
 export default function Index({ togglePopUp, toggleModal }) {
   useFormData();
   const { t } = useTranslation(); // import한 useTranslation
@@ -15,7 +21,28 @@ export default function Index({ togglePopUp, toggleModal }) {
       {/* json파일에서 key: { key : value } 형태 */}
       <div>{t("login.join")}</div>
       <input id="plz2" />
-      <BasicSelect />
+      <BasicSelect
+        inputId="test"
+        width="360"
+        deleteOption={false}
+        placeHolder="test"
+        options={options}
+        defaultValue
+        // onchange={(e) => setPerPage(e.value)}
+        defaultSelectValue={options[0]}
+        type="check"
+      />
+      <BasicSelect
+        inputId="test-multi"
+        width="360"
+        deleteOption={false}
+        placeHolder="test"
+        options={options}
+        defaultValue
+        // onchange={(e) => setPerPage(e.value)}
+        defaultSelectValue={options[0]}
+        type="multi"
+      />
       <BasicButton
         width="360px"
         border=""
