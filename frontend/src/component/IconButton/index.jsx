@@ -37,20 +37,20 @@ export default function IconButton({
     );
   } else {
     btnImage = (
-      <>
-        <Image className="" width={22} height={22} src={buttonImg} alt="id" />
-        <span>{innerText}</span>
-      </>
+      <Image className="" width={22} height={22} src={buttonImg} alt="id" />
     );
   }
   return (
-    <button
-      id={buttonId}
-      className={`${styles.btn} `}
-      style={{ width: `fit-content`, height: `${height}px` }}
-      onClick={onclick}
-    >
-      {btnImage}
-    </button>
+    <div>
+      <button
+        id={buttonId}
+        className={`${styles.btn} `}
+        style={{ width: `${width}px`, height: `${height}px` }}
+        onClick={onclick}
+      >
+        {btnImage}
+        <div className="w-fit">{innerText}</div>
+      </button>
+    </div>
   );
 }

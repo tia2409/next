@@ -9,9 +9,18 @@ import {
   getSortedRowModel,
   getFilteredRowModel,
 } from "@tanstack/react-table";
+
 import styles from "./index.module.css";
 import BasicSelect from "../BasicSelect";
 import Filter from "./component/Filter";
+import both from "../../../public/images/icons/table/sort_both.png";
+import sort_desc from "../../../public/images/icons/table/sort_desc.png";
+import sort_asc from "../../../public/images/icons/table/sort_asc.png";
+import icon_excel from "../../../public/images/icons/icon_excel.svg";
+import Image from "next/image";
+import IconButton from "../IconButton";
+
+import { mkConfig, generateCsv, download } from "export-to-csv";
 
 const options = [
   { value: "10", label: "10줄" },
@@ -187,6 +196,24 @@ const index = ({
     setMergeKey(Date.now()); // 병합을 다시 그리도록 상태값을 업데이트
   };
 
+  const csvConfig = mkConfig({
+    fieldSeparator: ",",
+    filename: "sample", // 내보내기 파일 이름(.csv 없이)
+    decimalSeparator: ".",
+    useKeysAsHeaders: true,
+  });
+
+  // 내보내기 함수
+  const exportExcel = (rows) => {
+    const rowData = rows.map((row) => row.original);
+    const csv = generateCsv(csvConfig)(rowData);
+    download(csvConfig)(csv);
+  };
+
+  const handleExportToCsv = () => {
+    exportExcel(table.getFilteredRowModel().rows);
+  };
+
   return (
     <div className="block max-w-full h-full">
       <div className="h-2" />
@@ -223,6 +250,15 @@ const index = ({
             placeholder="Search all columns..."
             debounce={500}
           />
+          <IconButton
+            buttonType=""
+            buttonId="excel_download"
+            buttonImg={icon_excel}
+            innerText="엑셀다운로드"
+            onclick={handleExportToCsv}
+            width="114"
+            height="34"
+          />
         </div>
       </div>
       <table className={styles.table}>
@@ -244,7 +280,33 @@ const index = ({
                         header.getContext()
                       )}
                     </div>
-                  )}
+                  )}{" "}
+                  <div className="absolute right-2 top-1/2 -translate-y-1/2">
+                    {
+                      {
+                        asc: (
+                          <Image
+                            src={sort_asc}
+                            alt="sort_asc"
+                            width={19}
+                            height={19}
+                          />
+                        ),
+                        desc: (
+                          <Image
+                            src={sort_desc}
+                            alt="sort_desc"
+                            width={19}
+                            height={19}
+                          />
+                        ),
+                      }[header.column.getIsSorted()]
+                    }
+                    {header.column.getCanSort() &&
+                    !header.column.getIsSorted() ? (
+                      <Image src={both} alt="both" width={19} height={19} />
+                    ) : null}
+                  </div>
                 </th>
               ))}
             </tr>
