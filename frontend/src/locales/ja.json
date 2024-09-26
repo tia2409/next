@@ -1,17 +1,19 @@
 {
-    "test": "テスト",
-    "common" : {
-        "save" : "貯蔵",
-        "cancel" : "キャンセル",
-        "delete" : "削除"
-    },
-    "login" : {
-        "insertID" : "IDを入力してください.",
-        "insertPW" : "暗証番号をご入力ください.",
-        "button" : "ログイン",
-        "saveID" : "ID保存",
-        "find" : "ID·パスワードを探す",
-        "join" : "会員加入",
-        "error" : "ログインに失敗しました。 IDとパスワードを確認してください。"
-    }
+  "test": "テスト",
+  "common": {
+    "check": "かくにん",
+    "close": "閉じる",
+    "save": "ちょぞう",
+    "cancel": "キャンセル",
+    "delete": "さくじょ"
+  },
+  "login": {
+    "insertID": "IDを入力してください.",
+    "insertPW": "暗証番号をご入力ください.",
+    "button": "ログイン",
+    "saveID": "ID保存",
+    "find": "ID·パスワードを探す",
+    "join": "会員加入",
+    "error": "ログインに失敗しました。 IDとパスワードを確認してください。"
+  }
 }
