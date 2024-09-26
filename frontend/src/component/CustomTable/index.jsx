@@ -10,9 +10,7 @@ import {
   getFilteredRowModel,
 } from "@tanstack/react-table";
 import styles from "./index.module.css";
-import InputIcon from "../InputIcon";
 import BasicSelect from "../BasicSelect";
-
 import Filter from "./component/Filter";
 
 const options = [
@@ -22,7 +20,12 @@ const options = [
   { value: "40", label: "40줄" },
 ];
 
-const index = ({ headers, data }) => {
+const index = ({
+  headers,
+  data,
+  paginationEnabled = false,
+  checkEnabled = false,
+}) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [rowSelection, setRowSelection] = useState({});
   const [globalFilter, setGlobalFilter] = useState("");
@@ -33,41 +36,73 @@ const index = ({ headers, data }) => {
   });
   const { restoreAllData } = useFormData();
   const inputRef = useRef(null); // Input 값을 위한 ref
+  const [mergeKey, setMergeKey] = useState(Date.now());
 
   useEffect(() => {
-    restoreAllData(); // useEffect 내에서 메서드를 호출
-    // setGlobalFilter(document.getElementById("tableSearch")?.value);
+    restoreAllData();
     setGlobalFilter(inputRef.current?.value);
     table.setPageSize(document.getElementsByName("perPage")[0]?.value);
   }, []);
+
+  const calculateRowSpan = (table, rowIndex, columnId) => {
+    const rows = table.getRowModel().rows;
+    const currentValue =
+      rows[rowIndex - rows.length * pagination.pageIndex]?.getValue(columnId);
+    let span = 1;
+
+    // 이후 행을 확인하면서 rowSpan 계산
+    for (
+      let i = rowIndex + 1;
+      i < rows.length * (pagination.pageIndex + 1);
+      i++
+    ) {
+      const nextValue =
+        rows[i - rows.length * pagination.pageIndex]?.getValue(columnId);
+      // 값이 동일하면 span 증가
+      if (currentValue === nextValue) {
+        span++;
+      } else {
+        break; // 값이 달라지면 멈춤
+      }
+    }
+
+    return span;
+  };
+
   const columns = useMemo(
     () => [
       {
         id: "selection",
         header: ({ table }) => (
           <div className=" relative text-center">
-            <input
-              id="header-checkbox"
-              type="checkbox"
-              className="absolute left-[10px] top-[3px]"
-              checked={table.getIsAllPageRowsSelected()} // 전체 row가 선택되었는지 확인
-              onChange={table.getToggleAllPageRowsSelectedHandler()} // 전체 row를 선택/해제하는 handler
-            />
+            {checkEnabled && (
+              <input
+                id="header-checkbox"
+                type="checkbox"
+                className="absolute left-[10px] top-[3px]"
+                checked={table.getIsAllPageRowsSelected()}
+                onChange={table.getToggleAllPageRowsSelectedHandler()}
+              />
+            )}
             번호
           </div>
         ),
         cell: ({ row }) => (
-          <div className=" relative text-center">
-            <input
-              id={`cell-checkbox-${row.id}`}
-              type="checkbox"
-              className="absolute left-0 top-[3px]"
-              checked={row.getIsSelected()} // row가 선택되었는지 확인
-              disabled={!row.getCanSelect()} // row가 선택 가능한지 확인
-              onChange={row.getToggleSelectedHandler()} // row를 선택/해제하는 handler
-            />
-            {Number(row.id) + 1}
-          </div>
+          <td className={`${styles.tr} ${styles.indexTr}`}>
+            <div className=" relative text-center">
+              {checkEnabled && (
+                <input
+                  id={`cell-checkbox-${row.id}`}
+                  type="checkbox"
+                  className="absolute left-[10px] top-[1px]"
+                  checked={row.getIsSelected()}
+                  disabled={!row.getCanSelect()}
+                  onChange={row.getToggleSelectedHandler()}
+                />
+              )}
+              {Number(row.id) + 1}
+            </div>
+          </td>
         ),
         size: 50,
       },
@@ -79,9 +114,34 @@ const index = ({ headers, data }) => {
         footer: (info) => info.column.id,
         enableSorting: true,
         sortingFn: "auto",
+        cell: (info) => {
+          const cellValue = info.getValue();
+          const rowSpanValue = header.enableRowSpan
+            ? calculateRowSpan(table, info.row.index, info.column.id)
+            : 1;
+          if (
+            header.enableRowSpan &&
+            (rowSpanValue === 0 ||
+              (info.row.index > 0 &&
+                calculateRowSpan(table, info.row.index - 1, info.column.id) >
+                  1))
+          ) {
+            return null;
+          }
+
+          return (
+            <td
+              rowSpan={rowSpanValue}
+              colSpan={header.colSpan || 1}
+              className={styles.td}
+            >
+              {cellValue}
+            </td>
+          );
+        },
       })),
     ],
-    [headers, data]
+    [headers, data, mergeKey] // 여기서 mergeKey를 의존성으로 추가
   );
 
   const table = useReactTable({
@@ -89,28 +149,19 @@ const index = ({ headers, data }) => {
     columns,
     onRowSelectionChange: setRowSelection,
     state: {
-      pagination,
+      pagination: paginationEnabled ? pagination : undefined,
       rowSelection,
       globalFilter,
     },
-    onPaginationChange: setPagination,
+    onPaginationChange: paginationEnabled ? setPagination : undefined,
     getSortedRowModel: getSortedRowModel(),
     getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
-    debugTable: true,
-    globalFilterFn: (row, _columnIds, filterValue) => {
-      return row.getAllCells().some((cell) => {
-        const cellValue = cell.getValue();
-        return String(cellValue)
-          .toLowerCase()
-          .includes(String(filterValue).toLowerCase());
-      });
-    },
-
     getFilteredRowModel: getFilteredRowModel(),
+    getPaginationRowModel: paginationEnabled
+      ? getPaginationRowModel()
+      : undefined,
   });
 
-  // 페이지 범위를 계산하는 함수 (1~10, 11~20 형태)
   const getPaginationRange = () => {
     const totalPageCount = table.getPageCount();
     const currentPageGroup = Math.floor(pagination.pageIndex / 10);
@@ -123,10 +174,17 @@ const index = ({ headers, data }) => {
     );
   };
 
-  // 페이지 변경 핸들러
   const handlePageChange = (page) => {
     table.setPageIndex(page - 1);
     setRowSelection({});
+  };
+  useEffect(() => {
+    // rowSelection이 변경될 때 병합을 다시 적용
+    refreshMerge();
+  }, [pagination.pageIndex]);
+
+  const refreshMerge = () => {
+    setMergeKey(Date.now()); // 병합을 다시 그리도록 상태값을 업데이트
   };
 
   return (
@@ -134,13 +192,15 @@ const index = ({ headers, data }) => {
       <div className="h-2" />
       <div className="flex justify-between mb-[10px] h-[44px] pt-[10px] items-center">
         <div className="flex">
-          <span className="flex text-center items-center text-[14px] mr-[8px]">
-            <div>총</div>
-            <strong>
-              {table.getPageCount()} 페이지 중{" "}
-              {table.getState().pagination.pageIndex + 1}
-            </strong>
-          </span>
+          {paginationEnabled && (
+            <span className="flex text-center items-center text-[14px] mr-[8px]">
+              <div>총</div>
+              <strong>
+                {table.getPageCount()} 페이지 중{" "}
+                {table.getState().pagination.pageIndex + 1}
+              </strong>
+            </span>
+          )}
 
           <BasicSelect
             width="100"
@@ -155,16 +215,6 @@ const index = ({ headers, data }) => {
             inputId="perPage"
           />
         </div>
-        {/* <select
-          value={table.getState().pagination.pageSize}
-          onChange={(e) => table.setPageSize(Number(e.target.value))}
-        >
-          {[10, 20, 30, 40, 50].map((pageSize) => (
-            <option key={pageSize} value={pageSize}>
-              Show {pageSize}
-            </option>
-          ))}
-        </select> */}
         <div className={`flex ${styles.rightContainer}`}>
           <Filter
             ref={inputRef}
@@ -194,18 +244,7 @@ const index = ({ headers, data }) => {
                         header.getContext()
                       )}
                     </div>
-                  )}{" "}
-                  <div className="absolute right-2 top-1/2 -translate-y-1/2">
-                    {
-                      {
-                        asc: "up",
-                        desc: "down",
-                      }[header.column.getIsSorted()]
-                    }
-                    {header.column.getCanSort() && !header.column.getIsSorted()
-                      ? ""
-                      : null}
-                  </div>
+                  )}
                 </th>
               ))}
             </tr>
@@ -213,53 +252,55 @@ const index = ({ headers, data }) => {
         </thead>
         <tbody>
           {table.getRowModel().rows.map((row) => (
-            <tr key={row.id} className={`${styles.tr}`}>
-              {row.getVisibleCells().map((cell) => (
-                <td key={cell.id} className={styles.td}>
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </td>
-              ))}
+            <tr key={row.id} className={styles.tr}>
+              {row.getVisibleCells().map((cell, cellIndex) =>
+                flexRender(cell.column.columnDef.cell, {
+                  ...cell.getContext(),
+                  key: `cell-${row.id}-${cellIndex}`,
+                })
+              )}
             </tr>
           ))}
         </tbody>
       </table>
 
-      <div className={`flex items-center ${styles.pagination}`}>
-        <button
-          className={`${styles.paginationButton} ${styles.firstArrow}`}
-          onClick={() => table.setPageIndex(0)}
-          disabled={!table.getCanPreviousPage()}
-        />
-        <button
-          className={`${styles.paginationButton} ${styles.preArrow}`}
-          onClick={() => table.previousPage()}
-          disabled={!table.getCanPreviousPage()}
-        />
-
-        {/* 페이지 번호 버튼 */}
-        {getPaginationRange().map((page) => (
+      {paginationEnabled && (
+        <div className={`flex items-center ${styles.pagination}`}>
           <button
-            key={page}
-            onClick={() => handlePageChange(page)}
-            className={`${styles.navigationButton} ${
-              page === pagination.pageIndex + 1 ? styles.activePage : ""
-            }`}
-          >
-            {page}
-          </button>
-        ))}
+            className={`${styles.paginationButton} ${styles.firstArrow}`}
+            onClick={() => table.setPageIndex(0)}
+            disabled={!table.getCanPreviousPage()}
+          />
+          <button
+            className={`${styles.paginationButton} ${styles.preArrow}`}
+            onClick={() => table.previousPage()}
+            disabled={!table.getCanPreviousPage()}
+          />
 
-        <button
-          className={`${styles.paginationButton} ${styles.nextArrow}`}
-          onClick={() => table.nextPage()}
-          disabled={!table.getCanNextPage()}
-        />
-        <button
-          className={`${styles.paginationButton} ${styles.lastArrow}`}
-          onClick={() => table.setPageIndex(table.getPageCount() - 1)}
-          disabled={!table.getCanNextPage()}
-        />
-      </div>
+          {getPaginationRange().map((page) => (
+            <button
+              key={page}
+              onClick={() => handlePageChange(page)}
+              className={`${styles.navigationButton} ${
+                page === pagination.pageIndex + 1 ? styles.activePage : ""
+              }`}
+            >
+              {page}
+            </button>
+          ))}
+
+          <button
+            className={`${styles.paginationButton} ${styles.nextArrow}`}
+            onClick={() => table.nextPage()}
+            disabled={!table.getCanNextPage()}
+          />
+          <button
+            className={`${styles.paginationButton} ${styles.lastArrow}`}
+            onClick={() => table.setPageIndex(table.getPageCount() - 1)}
+            disabled={!table.getCanNextPage()}
+          />
+        </div>
+      )}
     </div>
   );
 };

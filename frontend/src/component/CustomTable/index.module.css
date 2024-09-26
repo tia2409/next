@@ -32,6 +32,14 @@
   border-right: 1px solid #a4a4a4;
   border-bottom: 1px solid #a4a4a4;
 }
+
+.indexTr:not(:last-child) {
+  border-bottom: 1px solid #a4a4a4;
+}
+.indexTr {
+  border-right: 1px solid #a4a4a4;
+}
+
 .tr {
   box-sizing: border-box;
 }

@@ -35,7 +35,14 @@ export default function index() {
           <div>4567</div>
         </BasicLabel>
       </SearchBar>
-      {data && <CustomTable headers={data.headers} data={data.items} />}
+      {data && (
+        <CustomTable
+          headers={data.headers}
+          data={data.items}
+          paginationEnabled={true}
+          checkEnabled={true}
+        />
+      )}
     </div>
   );
 }
