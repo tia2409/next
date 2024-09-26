@@ -4,7 +4,7 @@ import BasicButton from "@/component/BasicButton";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next"; // 다국어 처리를 위해 import 하기
 
-export default function Index({togglePopUp}) {
+export default function Index({ togglePopUp, toggleModal }) {
   useFormData();
   const { t } = useTranslation(); // import한 useTranslation
 
@@ -31,9 +31,32 @@ export default function Index({togglePopUp}) {
         border=""
         text="text-white"
         background="bg-main02"
-        innerText="Modal Open"
+        innerText="Modal Open, alert"
         onClick={() => {
-          togglePopUp({ title: "팝업 제목", content: "팝업 내용" });
+          toggleModal(
+            {
+              title: "모달 제목",
+              content: "모달 내용",
+            },
+            "alert"
+          );
+        }}
+      />
+      <BasicButton
+        width="360px"
+        border=""
+        text="text-white"
+        background="bg-main02"
+        innerText="Modal Open, confirm"
+        onClick={() => {
+          toggleModal(
+            {
+              title: "모달 제목",
+              content: "모달 내용",
+              caution: "※ 모달 주의사항",
+            },
+            "confirm"
+          );
         }}
       />
     </div>

@@ -1,17 +1,19 @@
 {
-    "test": "test",
-    "common" : {
-        "save" : "save",
-        "cancel" : "cancel",
-        "delete" : "delete"
-    },
-    "login" : {
-        "insertID" : "Please enter your ID.",
-        "insertPW" : "Please enter your password.",
-        "button" : "Login",
-        "saveID" : "Save ID",
-        "find" : "Find ID·Password",
-        "join" : "Join",
-        "error" : "Login failed. Please check your ID and password."
-    }
+  "test": "test",
+  "common": {
+    "check": "Check",
+    "close": "Close",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete"
+  },
+  "login": {
+    "insertID": "Please enter your ID.",
+    "insertPW": "Please enter your password.",
+    "button": "Login",
+    "saveID": "Save ID",
+    "find": "Find ID·Password",
+    "join": "Join",
+    "error": "Login failed. Please check your ID and password."
+  }
 }
