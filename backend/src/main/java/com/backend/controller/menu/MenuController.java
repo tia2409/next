@@ -1,4 +1,4 @@
-package com.backend.adapter.in.controller.menu;
+package com.backend.controller.menu;
 
 import java.util.List;
 import java.util.Map;
@@ -7,17 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.backend.application.port.in.menu.MenuUseCase;
+import com.backend.service.menu.MenuService;
 
 @RestController
 public class MenuController {
-	
 	@Autowired
-	private MenuUseCase usecase;
+	private MenuService service;
 	
-	@RequestMapping("/menu_list")
+	@RequestMapping("MenuList")
 	public List<Map<String, Object>> MenuList() throws Exception {
 		System.out.println("MenuController - MenuList() called");
-		return usecase.MenuList();
+		return service.MenuList();
 	}
 }

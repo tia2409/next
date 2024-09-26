@@ -62,17 +62,19 @@ const iconMap = {
 };
 
 export default function SidebarButton({
-  menu,
+  menu_nm,
+  img_src,
   isSidebarOpen,
   isDropMenu,
   isActive,
-  hrefDepth,
   menuDepth,
+  hrefDepth,
 }) {
   const router = useRouter();
   const [isExpanded, setIsExpanded] = useState(isDropMenu);
   const [isHovered, setIsHovered] = useState(false);
 
+  console.log("img_src" + img_src);
   // 버튼 클릭 시 펼치기/접기 토글
   const handleToggle = () => {
     setIsExpanded((prev) => !prev);
@@ -91,7 +93,7 @@ export default function SidebarButton({
       >
         <Image
           src={
-            isActive || isHovered ? iconMap[menu].active : iconMap[menu].default
+            isActive || isHovered ? `${img_src}.svg` : `${img_src}-active.svg`
           }
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
@@ -100,10 +102,10 @@ export default function SidebarButton({
           alt="icon"
         />
         {isSidebarOpen ? (
-          <p className={isActive ? "text-main02" : ""}>{menu}</p>
+          <p className={isActive ? "text-main02" : ""}>{menu_nm}</p>
         ) : (
           <p className={`hidden ${isActive ? "text-main02" : ""}`}>
-            {menu}
+            {menu_nm}
           </p>
         )}
         {isSidebarOpen &&

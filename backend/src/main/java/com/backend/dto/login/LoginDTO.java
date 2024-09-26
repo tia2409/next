@@ -1,4 +1,4 @@
-package com.backend.domain.login;
+package com.backend.dto.login;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -8,7 +8,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class LoginDomain {
+public class LoginDTO {
 	private String user_id;
 	private String user_pwd;
 	private String user_nm;
