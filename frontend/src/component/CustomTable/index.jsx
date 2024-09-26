@@ -74,6 +74,8 @@ const index = ({ headers, data }) => {
       ...headers.map((header) => ({
         accessorKey: header.key,
         header: header.label,
+        width: header.width,
+        enableRowSpan: header.enableRowSpan,
         footer: (info) => info.column.id,
         enableSorting: true,
         sortingFn: "auto",
@@ -128,9 +130,9 @@ const index = ({ headers, data }) => {
   };
 
   return (
-    <div className="p-2 block max-w-full h-full">
+    <div className="block max-w-full h-full">
       <div className="h-2" />
-      <div className="flex justify-between mb-[10px] h-[44px] pt-[10px]">
+      <div className="flex justify-between mb-[10px] h-[44px] pt-[10px] items-center">
         <div className="flex">
           <span className="flex text-center items-center text-[14px] mr-[8px]">
             <div>총</div>
@@ -183,6 +185,7 @@ const index = ({ headers, data }) => {
                   colSpan={header.colSpan}
                   className={`${styles.th} relative`}
                   onClick={header.column.getToggleSortingHandler()}
+                  style={{ width: header.getSize() }}
                 >
                   {header.isPlaceholder ? null : (
                     <div>

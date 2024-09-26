@@ -83,7 +83,7 @@ function App({ Component, pageProps }) {
             />
             <div className="w-full h-[100vh - 72px]">
               <Tabs />
-              <div className="w-[calc(100%-20px)] m-[10px] h-[calc(100vh-114px)] bg-white p-[20px] mt-0 mb-0 main-layer">
+              <div className="w-[calc(100%-20px)] m-[10px] h-[calc(100vh-114px)] bg-white py-[20px] px-[40px] mt-0 mb-0 main-layer">
                 <div className="main-title">{title}</div>
                 <div className="main-body">
                   <Component {...updatedPageProps} />

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import CustomTable from "../../component/CustomTable";
 import useFormData from "@/component/hooks/useFormData";
 import SearchBar from "@/component/SearchBar";
+import BasicLabel from "@/component/BasicLabel";
 
 export default function index() {
   useFormData();
@@ -26,7 +27,14 @@ export default function index() {
   }, []);
   return (
     <div>
-      <SearchBar>asdf</SearchBar>
+      <SearchBar>
+        <BasicLabel labelTitle="Label Here">
+          <div>1234</div>
+        </BasicLabel>
+        <BasicLabel labelTitle="Label Here2">
+          <div>4567</div>
+        </BasicLabel>
+      </SearchBar>
       {data && <CustomTable headers={data.headers} data={data.items} />}
     </div>
   );

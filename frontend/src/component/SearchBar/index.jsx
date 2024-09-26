@@ -5,13 +5,20 @@ import styles from "./index.module.css";
 function Index({ children }) {
   const [checked, setChecked] = useState(false);
   const contentRef = useRef(null);
-  const [maxHeight, setMaxHeight] = useState("44px");
+  const toggleBox = useRef(null);
+  const [maxHeight, setMaxHeight] = useState("40px");
+  const [boxPadding, setBoxPadding] = useState("40px");
 
+  useEffect(() => {
+    if (toggleBox.current) {
+      setBoxPadding(`${toggleBox.current.offsetWidth + 20}px`);
+    }
+  }, []);
   useEffect(() => {
     if (checked) {
       setMaxHeight(`${contentRef.current.scrollHeight}px`); // 내용에 따라 높이 설정
     } else {
-      setMaxHeight("44px"); // 최소 높이로 설정
+      setMaxHeight("40px"); // 최소 높이로 설정
     }
   }, [checked]);
 
@@ -21,12 +28,13 @@ function Index({ children }) {
       style={{
         maxHeight: maxHeight,
         transition: "max-height 0.4s ease-in-out",
+        paddingRight: boxPadding,
       }} // 인라인 스타일로 애니메이션 적용
     >
       <div ref={contentRef} className={styles.content}>
-        {checked && <span>{children}</span>}
+        {checked && <span className="flex">{children}</span>}
       </div>
-      <div className={styles.toggle}>
+      <div className={styles.toggle} ref={toggleBox}>
         <ToggleButton
           innerText="검색 조건 보기"
           onchange={(isActive) => setChecked(isActive)}
