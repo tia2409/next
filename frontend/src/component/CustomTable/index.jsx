@@ -11,22 +11,26 @@ import {
 } from "@tanstack/react-table";
 
 import styles from "./index.module.css";
+import Image from "next/image";
+
 import BasicSelect from "../BasicSelect";
-import Filter from "./component/Filter";
 import both from "../../../public/images/icons/table/sort_both.png";
 import sort_desc from "../../../public/images/icons/table/sort_desc.png";
 import sort_asc from "../../../public/images/icons/table/sort_asc.png";
-import icon_excel from "../../../public/images/icons/icon_excel.svg";
-import Image from "next/image";
-import IconButton from "../IconButton";
 
-import { mkConfig, generateCsv, download } from "export-to-csv";
+import Filter from "./component/Filter";
+import ExcelDownload from "./component/ExcelDownload";
+import FilterSelect from "./component/FilterSelect";
 
 const options = [
   { value: "10", label: "10줄" },
   { value: "15", label: "15줄" },
   { value: "20", label: "20줄" },
   { value: "40", label: "40줄" },
+];
+const filterOption = [
+  { value: "1", label: "최신순" },
+  { value: "2", label: "오래된순" },
 ];
 
 const index = ({
@@ -35,7 +39,6 @@ const index = ({
   paginationEnabled = false,
   checkEnabled = false,
 }) => {
-  const [searchQuery, setSearchQuery] = useState("");
   const [rowSelection, setRowSelection] = useState({});
   const [globalFilter, setGlobalFilter] = useState("");
   const [perPage, setPerPage] = useState(10);
@@ -46,6 +49,7 @@ const index = ({
   const { restoreAllData } = useFormData();
   const inputRef = useRef(null); // Input 값을 위한 ref
   const [mergeKey, setMergeKey] = useState(Date.now());
+  const [filterValue, setFilterValue] = useState(1);
 
   useEffect(() => {
     restoreAllData();
@@ -196,24 +200,6 @@ const index = ({
     setMergeKey(Date.now()); // 병합을 다시 그리도록 상태값을 업데이트
   };
 
-  const csvConfig = mkConfig({
-    fieldSeparator: ",",
-    filename: "sample", // 내보내기 파일 이름(.csv 없이)
-    decimalSeparator: ".",
-    useKeysAsHeaders: true,
-  });
-
-  // 내보내기 함수
-  const exportExcel = (rows) => {
-    const rowData = rows.map((row) => row.original);
-    const csv = generateCsv(csvConfig)(rowData);
-    download(csvConfig)(csv);
-  };
-
-  const handleExportToCsv = () => {
-    exportExcel(table.getFilteredRowModel().rows);
-  };
-
   return (
     <div className="block max-w-full h-full">
       <div className="h-2" />
@@ -242,7 +228,7 @@ const index = ({
             inputId="perPage"
           />
         </div>
-        <div className={`flex ${styles.rightContainer}`}>
+        <div className={`flex pr-[1px] ${styles.rightContainer}`}>
           <Filter
             ref={inputRef}
             value={globalFilter ?? ""}
@@ -250,15 +236,11 @@ const index = ({
             placeholder="Search all columns..."
             debounce={500}
           />
-          <IconButton
-            buttonType=""
-            buttonId="excel_download"
-            buttonImg={icon_excel}
-            innerText="엑셀다운로드"
-            onclick={handleExportToCsv}
-            width="114"
-            height="34"
+          <ExcelDownload
+            rows={table.getFilteredRowModel().rows}
+            filename="excel_data"
           />
+          <FilterSelect onchange={setFilterValue} filterOption={filterOption} />
         </div>
       </div>
       <table className={styles.table}>

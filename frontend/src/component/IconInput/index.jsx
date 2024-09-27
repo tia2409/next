@@ -4,7 +4,13 @@ import Image from "next/image";
 import invisible from "./../../../public/images/icons/icon_invisible.svg";
 import visible from "./../../../public/images/icons/icon_visible.svg";
 
-export default function IconInput({ inputType, inputId, inputImg, placeholder, ...props }) {
+export default function IconInput({
+  inputType,
+  inputId,
+  inputImg,
+  placeholder,
+  ...props
+}) {
   const [showPassword, setShowPassword] = useState(true);
 
   const toggleShowPassword = () => {
@@ -32,7 +38,7 @@ export default function IconInput({ inputType, inputId, inputImg, placeholder, .
         className="absolute top-[3px]"
         width={38}
         height={38}
-        src={ inputImg }
+        src={inputImg}
         alt="id"
       />
       <input
@@ -46,4 +52,3 @@ export default function IconInput({ inputType, inputId, inputImg, placeholder, .
     </div>
   );
 }
-

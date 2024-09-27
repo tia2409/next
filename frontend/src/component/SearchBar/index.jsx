@@ -27,7 +27,7 @@ function Index({ children }) {
       className={styles.container}
       style={{
         maxHeight: maxHeight,
-        transition: "max-height 0.4s ease-in-out",
+        transition: "max-height 0.2s ease-in-out",
         paddingRight: boxPadding,
       }} // 인라인 스타일로 애니메이션 적용
     >

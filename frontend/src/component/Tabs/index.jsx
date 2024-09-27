@@ -1,32 +1,54 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import axios from "axios";
+
 import styles from "./index.module.css";
 import Tab from "../Tab";
 
 export default function Tabs() {
   const router = useRouter();
+  const currentPath = router.pathname;
   const [tabs, setTabs] = useState([]);
   const [activeTab, setActiveTab] = useState(0);
+  const [depth, setDepth] = useState(); // 모달 타입 상태
 
-  // URL에 맞춰 탭을 추가하고 활성화 상태 관리
   useEffect(() => {
-    const currentPath = router.pathname;
     const existingTabIndex = tabs.findIndex((tab) => tab.path === currentPath);
+    const storedLocale = localStorage.getItem("selectedLocale");
 
-    // 현재 경로에 해당하는 탭이 없으면 새 탭을 추가
-    if (existingTabIndex === -1) {
-      const label = document.querySelector(`a[href='${currentPath}'] > div`);
+    const searchPath = async () => {
+      try {
+        const res = await axios.post(
+          "/MenuPath",
+          { path: currentPath },
+          {
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+            },
+          }
+        );
 
-      const newTab = {
-        label: label && currentPath !== "/main" ? label.innerText : "Main",
-        path: currentPath,
-      };
-      setTabs((prevTabs) => [...prevTabs, newTab]);
-      setActiveTab(tabs.length); // 새 탭을 추가하면서 그 탭을 활성화
-    } else {
-      setActiveTab(existingTabIndex); // 이미 존재하는 탭이면 해당 탭을 활성화
-    }
-  }, [router.pathname]); // URL이 변경될 때마다 실행
+        const depth2 = "depth2_" + storedLocale.slice(0, 2);
+        setDepth(res.data[0][depth2]);
+
+        // axios 요청이 끝난 후에 탭을 추가하거나 활성화 처리
+        if (existingTabIndex === -1) {
+          const newTab = {
+            label: res.data[0][depth2] || "undefined",
+            path: currentPath,
+          };
+          setTabs((prevTabs) => [...prevTabs, newTab]);
+          setActiveTab(tabs.length); // 새 탭을 추가하면서 그 탭을 활성화
+        } else {
+          setActiveTab(existingTabIndex); // 이미 존재하는 탭이면 해당 탭을 활성화
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    searchPath();
+  }, [router.pathname]);
 
   const handleTabClick = (index, path) => {
     setActiveTab(index);
@@ -44,8 +66,8 @@ export default function Tabs() {
     if (updatedTabs.length === 0) {
       // 탭이 모두 삭제되면 /main으로 이동하고 기본 탭 추가
       const mainTab = {
-        label: document.querySelector(`a[href="/main"] > div`).innerText,
-        path: "/main",
+        label: depth,
+        path: currentPath,
       };
       setTabs([mainTab]);
       router.push("/main");

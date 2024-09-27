@@ -184,3 +184,36 @@ input[type="checkbox"]:disabled {
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
   border: solid 1px #e1e1e1;
 }
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px); /* 아래에서 위로 올라오는 애니메이션 */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px); /* 사라지며 위로 올라가는 애니메이션 */
+  }
+}
+
+/* react-select 메뉴에 적용될 애니메이션 스타일 */
+.select__menu {
+  animation: fadeIn 0.2s ease-in;
+}
+
+.select__menu--exit {
+  animation: fadeOut 0.2s ease-out;
+}
+.lastDepth {
+  margin-right: 0 !important;
+}

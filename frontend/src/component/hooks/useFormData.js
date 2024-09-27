@@ -35,7 +35,6 @@ const useFormData = () => {
 
         // 체크박스일 경우 checked 상태 복원, 그렇지 않으면 value 복원
         if (savedData[idOrName] !== undefined) {
-          console.log(idOrName, savedData[idOrName], input.type);
           if (input.type === "checkbox") {
             input.checked = savedData[idOrName];
           } else {

@@ -1,6 +1,8 @@
 import "@/styles/globals.css";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import axios from "axios";
+
 import Header from "@/component/Header";
 import Sidebar from "@/component/Sidebar";
 import Tabs from "@/component/Tabs";
@@ -8,6 +10,10 @@ import { I18nextProvider } from "react-i18next";
 import i18n from "../locales/i18n";
 import PopUp from "@/component/PopUp";
 import Modal from "@/component/Modal";
+
+import Image from "next/image";
+import Home from "../../public/images/icons/icon-home.svg";
+import Arrow from "../../public/images/icons/history-arrow.svg";
 
 function App({ Component, pageProps }) {
   const router = useRouter();
@@ -20,6 +26,10 @@ function App({ Component, pageProps }) {
   const [modalData, setModalData] = useState(null); // 모달 데이터 상태
   const [modalDataType, setModalDataType] = useState("alert"); // 모달 타입 상태
   const isLoginPage = router.pathname === "/";
+  const [depth, setDepth] = useState({
+    depth1: "Menu1depth",
+    depth2: "Menu2depth",
+  }); // 모달 타입 상태
 
   const toggleSidebar = () => {
     setIsSidebarOpen((prev) => !prev);
@@ -38,29 +48,42 @@ function App({ Component, pageProps }) {
 
   useEffect(() => {
     const storedLocale = localStorage.getItem("selectedLocale");
-    const handleRouteChangeComplete = () => {
-      const element = document.querySelector(`a[href='${currentPath}'] > div`);
 
-      if (element) {
-        setTitle(element.innerText);
-      } else if (!element && currentPath == "/main") {
-        setTitle("Main");
-      } else {
-        setTitle("No Title Found");
-      }
-    };
-
-    // router.events.on("routeChangeComplete", handleRouteChangeComplete);
-
-    // 경로가 바뀔 때마다 현재 페이지의 제목을 업데이트
-    handleRouteChangeComplete();
     // 로컬에 언어선택 정보가 있는지 확인
     if (storedLocale) {
       i18n.changeLanguage(storedLocale);
     }
-    return () => {
-      router.events.off("routeChangeComplete", handleRouteChangeComplete);
+    const searchPath = () => {
+      axios
+        .post(
+          "/MenuPath",
+          { path: currentPath },
+          {
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+            },
+          }
+        )
+        .then((res) => {
+          const depth1 = "depth1_" + storedLocale.slice(0, 2);
+          const depth2 = "depth2_" + storedLocale.slice(0, 2);
+          console.log(
+            "depth1:",
+            res.data[0][depth1],
+            "depth2:",
+            res.data[0][depth2]
+          );
+          setDepth({
+            depth1: res.data[0][depth1],
+            depth2: res.data[0][depth2],
+          });
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
     };
+
+    searchPath();
   }, [currentPath]);
 
   // pageProps에 togglePopUp, toggleModal 추가
@@ -85,7 +108,25 @@ function App({ Component, pageProps }) {
             <div className="w-full h-[100vh - 72px]">
               <Tabs />
               <div className="w-[calc(100%-20px)] m-[10px] h-[calc(100vh-114px)] bg-white py-[20px] px-[40px] mt-0 mb-0 main-layer">
-                <div className="main-title">{title}</div>
+                <div className="main-title flex justify-between">
+                  <div>
+                    {depth.depth2 != "Menu2depth" ? depth.depth2 : "Title"}
+                  </div>
+                  <div className="flex text-[13px] *:mr-[4px] items-end text-gray04 *:h-[20px] *:flex *:items-center">
+                    <div>
+                      <Image src={Home} alt="home" width={13} height={13} />
+                    </div>
+                    <div onClick={() => router.push("/main")}>home</div>
+                    <div>
+                      <Image src={Arrow} alt="home" width={13} height={13} />
+                    </div>
+                    <div>{depth.depth1}</div>
+                    <div>
+                      <Image src={Arrow} alt="home" width={13} height={13} />
+                    </div>
+                    <div className="lastDepth text-black">{depth.depth2}</div>
+                  </div>
+                </div>
                 <div className="main-body">
                   <Component {...updatedPageProps} />
                 </div>

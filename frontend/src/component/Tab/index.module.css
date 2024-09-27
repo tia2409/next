@@ -62,11 +62,12 @@
   margin-top: 14px;
   color: gray;
   height: 28px;
-  border: solid 1px #e1e1e1;
+  border: solid 1px #d4d4d4;
   border-bottom: none;
 }
 .tabContainer:hover {
   background-color: #e4f2fe;
+  border: solid 1px #e1e1e1;
 }
 
 /* 활성화된 Tab 스타일 */
@@ -77,6 +78,7 @@
   color: white;
   height: 32px;
   margin-top: 10px;
+  border: none;
   /* padding: 4px 9px 5px 9px; */
 }
 .tabContainer.active:hover {

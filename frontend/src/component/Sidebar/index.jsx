@@ -20,7 +20,6 @@ export default function Sidebar({ toggleSidebar, isSidebarOpen }) {
           },
         })
         .then((response) => {
-          console.log(response.data);
           setResult(Object.entries(response.data));
         })
         .catch((error) => {
@@ -54,13 +53,12 @@ export default function Sidebar({ toggleSidebar, isSidebarOpen }) {
         let subMenu_url = [];
 
         if (menu[1].sub_menu) {
-          let subMenu = menu[1].sub_menu
+          let subMenu = menu[1].sub_menu;
 
-          subMenu.forEach(sub => {
-            console.log(sub.link_id);
+          subMenu.forEach((sub) => {
             subMenu_nm.push(sub.title_ko);
             subMenu_url.push(sub.link_id);
-        });
+          });
         }
 
         if (menu[1].menu_level === 1) {
@@ -78,7 +76,6 @@ export default function Sidebar({ toggleSidebar, isSidebarOpen }) {
           );
         }
       })}
-
     </div>
   );
 }

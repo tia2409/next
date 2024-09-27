@@ -88,12 +88,10 @@ export default function BasicSelect({
     const savedData = JSON.parse(
       sessionStorage.getItem(window.location.pathname)
     );
-    console.log(savedData, inputId, savedData?.[inputId]);
     if (savedData?.[inputId]) {
       const savedOption = options.find(
         (option) => option.value === savedData?.[inputId]
       );
-      console.log("????", savedOption);
       setSelectedOption(savedOption);
     }
   }, []);
