@@ -17,7 +17,6 @@ public class LoginController {
 	
 	@PostMapping("Login")
 	public int Login(LoginDTO dto, HttpServletRequest servletRequest) throws Exception {
-		System.out.println("LoginController - Login() called");
 		dto.setIp_addr(servletRequest.getRemoteAddr());
 		
 		return service.Login(dto);

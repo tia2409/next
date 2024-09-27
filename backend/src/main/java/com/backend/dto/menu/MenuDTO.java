@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class MenuDTO {
 	//Web
-	
+	private String path;
 	//공통
 	
 	//DB

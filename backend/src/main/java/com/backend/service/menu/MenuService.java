@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.backend.dto.menu.MenuDTO;
 import com.backend.mapper.menu.MenuMapper;
 
 @Service
@@ -16,8 +17,6 @@ public class MenuService {
 	private MenuMapper mapper;
 	
 	public List<Map<String, Object>> MenuList() throws Exception {
-		System.out.println("MenuService - MenuList() called");
-		
 		List<Map<String, Object>> result = mapper.MenuList();
 		// 비즈니스 로직
 		for (Map<String, Object> menu : result) {
@@ -40,5 +39,9 @@ public class MenuService {
 		}
 		
 		return result;
+	}
+	
+	public List<Map<String, Object>> MenuPath(MenuDTO dto) throws Exception {
+		return mapper.MenuPath(dto);
 	}
 }

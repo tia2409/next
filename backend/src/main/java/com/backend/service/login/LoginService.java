@@ -1,5 +1,8 @@
 package com.backend.service.login;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,13 +17,18 @@ public class LoginService {
 	
 	// 로그인
 	public int Login(LoginDTO dto) throws Exception {
-		System.out.println("LoginService - Login() called");
-		// 로직 구현
-		dto.pwd_capsule();
+		// 비즈니스 로직 구현
+		String user_id = dto.getUser_id();
+		String user_pwd = dto.getUser_pwd();
+		String temp_pwd = user_id + user_pwd;
+		
+		MessageDigest md = MessageDigest.getInstance("SHA-512");
+        md.update(temp_pwd.getBytes());
+        String sha_pwd = String.format("%0128x", new BigInteger(1, md.digest()));
+        dto.setUser_pwd(sha_pwd);
 		
 		LoginDTO result = mapper.Login(dto);
 		
-		System.out.println("LoginService - Login() complete : " + result + ", return 값: " + result.getLoginResult());
 		return result.getLoginResult();
 	}
 }
