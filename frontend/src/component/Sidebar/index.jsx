@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react";
-import styles from "./index.module.css";
+import { useRouter } from "next/router";
 import Image from "next/image";
 import axios from "axios";
-import SidebarButton from "../SidebarButton";
-import { useRouter } from "next/router";
+import styles from "./index.module.css";
+
+// image
 import MenuOpen from "./../../../public/images/icons/arrow/left-double-black.svg";
 import MenuClose from "./../../../public/images/icons/arrow/right-double-black.svg";
 
+// component
+import SidebarButton from "../SidebarButton";
+
 export default function Sidebar({ toggleSidebar, isSidebarOpen }) {
-  const router = useRouter(); // useRouter 훅 사용
+  const router = useRouter();
   const [result, setResult] = useState([]);
 
   useEffect(() => {

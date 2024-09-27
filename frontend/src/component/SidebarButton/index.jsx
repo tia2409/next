@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
 
-// depth arrow
 import downArrowBlack from "./../../../public/images/icons/arrow/down-black.svg";
 import upArrowWhite from "./../../../public/images/icons/arrow/up-white.svg";
 import rightArrowBlack from "./../../../public/images/icons/arrow/right-black.svg";
