@@ -4,7 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 
 import downArrowBlack from "./../../../public/images/icons/arrow/down-black.svg";
-import upArrowWhite from "./../../../public/images/icons/arrow/up-white.svg";
 import rightArrowBlack from "./../../../public/images/icons/arrow/right-black.svg";
 import rightArrowBlue from "./../../../public/images/icons/arrow/right-blue.svg";
 
@@ -71,7 +70,7 @@ export default function SidebarButton({
         {isSidebarOpen && (
           <Image
             className="absolute right-0"
-            src={isExpanded ? upArrowWhite : downArrowBlack}
+            src={downArrowBlack}
             width={36}
             height={36}
             alt="arrow"
