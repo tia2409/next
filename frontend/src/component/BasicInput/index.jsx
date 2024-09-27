@@ -51,15 +51,17 @@ export default function BasicInput({
         onFocus={onFocus}
         onChange={onChange}
       />
-      <Image
-        className={`${isLeftIcon && styles.right_icon} ${
-          isRightIcon && styles.left_icon
-        }  absolute right-0 -translate-y-1/2 top-1/2`}
-        width={34}
-        height={34}
-        src={inputImg}
-        alt="right"
-      />
+      {(isLeftIcon || isRightIcon) && (
+        <Image
+          className={` ${isLeftIcon && styles.left_icon} ${
+            isRightIcon && styles.right_icon
+          } absolute right-0 -translate-y-1/2 top-1/2`}
+          width={34}
+          height={34}
+          src={inputImg}
+          alt="right"
+        />
+      )}
       {isInputType === "password" && (
         <Image
           className="absolute right-0 -translate-y-1/2 top-1/2"
