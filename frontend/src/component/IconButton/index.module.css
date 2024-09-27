@@ -1,8 +1,27 @@
 .btn {
   display: flex;
   align-items: center;
+  position: relative;
   padding: 7px 6px;
   border-radius: 3px;
   border: solid 1px #bfbfbf;
   font-size: 14px;
+}
+
+.btn:hover {
+  background-color: var(--gray06);
+}
+
+.left_icon {
+  position: absolute;
+  top: 50%;
+  left: 6px;
+  transform: translateY(-50%);
+}
+
+.right_icon {
+  position: absolute;
+  top: 50%;
+  right: 6px;
+  transform: translateY(-50%);
 }

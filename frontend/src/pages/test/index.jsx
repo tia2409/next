@@ -1,9 +1,15 @@
+import React, { useState } from "react";
+import { useTranslation } from "react-i18next"; // 다국어 처리를 위해 import 하기
+
 import BasicSelect from "@/component/BasicSelect";
 import useFormData from "@/component/hooks/useFormData";
 import BasicButton from "@/component/BasicButton";
-import React, { useState } from "react";
-import { useTranslation } from "react-i18next"; // 다국어 처리를 위해 import 하기
 import BasicInput from "@/component/BasicInput";
+import IconButton from "@/component/IconButton";
+
+import IconCalendar from "../../../public/images/icons/input/calendar.svg";
+import IconPassword from "../../../public/images/icons/input/password.svg";
+import IconDelete from "../../../public/images/icons/button/delete.svg";
 
 const options = [
   { value: "chocolate", label: "Chocolate" },
@@ -93,7 +99,7 @@ export default function Index({ togglePopUp, toggleModal }) {
         height="34"
         inputType="password"
         inputId="test_input1"
-        inputImg="password"
+        inputImg={IconPassword}
         leftIcon={true}
         rightIcon={false}
         placeholder="insert password"
@@ -103,11 +109,25 @@ export default function Index({ togglePopUp, toggleModal }) {
         height="34"
         inputType="text"
         inputId="test_input2"
-        inputImg="calendar"
+        inputImg={IconCalendar}
         leftIcon={false}
         rightIcon={true}
         placeholder="YYYY-MM-DD"
         // onchange={}
+      />
+      <IconButton
+        width="114"
+        height="34"
+        buttonId="testbutton1"
+        buttonImg={IconDelete}
+        innerText={t("common.delete")}
+        leftIcon={true}
+      />
+      <IconButton
+        buttonId="testbutton2"
+        buttonImg={IconDelete}
+        innerText={t("common.delete")}
+        rightIcon={true}
       />
     </div>
   );
