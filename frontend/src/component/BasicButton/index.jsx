@@ -18,8 +18,6 @@ export default function BasicButton({
       style={{
         width: width,
         border: border || "",
-        color: text,
-        backgroundColor: background,
         borderRadius: isRound ? "17px" : "3px",
       }}
     >

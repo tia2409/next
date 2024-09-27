@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
+import styles from "./index.module.css";
 
 import IconInvisible from "./../../../public/images/icons/input/invisible.svg";
 import IconVisible from "./../../../public/images/icons/input/visible.svg";
@@ -33,15 +34,6 @@ export default function BasicInput({
       className="relative flex"
       style={{ width: `${width}px`, height: `${height}px` }}
     >
-      {isLeftIcon && (
-        <Image
-          className="absolute -translate-y-1/2 top-1/2"
-          width={34}
-          height={34}
-          src={`/images/icons/input/${inputImg}.svg`}
-          alt="left"
-        />
-      )}
       <input
         id={inputId}
         name={inputId}
@@ -59,15 +51,15 @@ export default function BasicInput({
         onFocus={onFocus}
         onChange={onChange}
       />
-      {isRightIcon && (
-        <Image
-          className="absolute right-0 -translate-y-1/2 top-1/2"
-          width={34}
-          height={34}
-          src={`/images/icons/input/${inputImg}.svg`}
-          alt="right"
-        />
-      )}
+      <Image
+        className={`${isLeftIcon && styles.right_icon} ${
+          isRightIcon && styles.left_icon
+        }  absolute right-0 -translate-y-1/2 top-1/2`}
+        width={34}
+        height={34}
+        src={inputImg}
+        alt="right"
+      />
       {isInputType === "password" && (
         <Image
           className="absolute right-0 -translate-y-1/2 top-1/2"
