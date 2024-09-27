@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 /* 기본 설정 */
-:root {
+/* :root {
   --foreground-rgb: 255, 255, 255;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 0, 0, 0;
@@ -23,7 +23,23 @@
   .text-balance {
     text-wrap: balance;
   }
+} */
+
+/* color */
+:root {
+  --main01: #0065bd;
+  --main02: #1976e5;
+  --main03: #989ff1;
+  --main04: #e4f2fe;
+
+  --gray01: #202020;
+  --gray02: #363636;
+  --gray03: #505050;
+  --gray04: #858585;
+  --gray05: #a4a4a4;
+  --gray06: #f1f1f1;
 }
+
 /* font */
 @font-face {
   font-weight: 100;

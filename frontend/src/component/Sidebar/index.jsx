@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react";
-import styles from "./index.module.css";
+import { useRouter } from "next/router";
 import Image from "next/image";
 import axios from "axios";
-import SidebarButton from "../SidebarButton";
-import { useRouter } from "next/router";
+import styles from "./index.module.css";
+
+// image
 import MenuOpen from "./../../../public/images/icons/arrow/left-double-black.svg";
 import MenuClose from "./../../../public/images/icons/arrow/right-double-black.svg";
 
+// component
+import SidebarButton from "../SidebarButton";
+
 export default function Sidebar({ toggleSidebar, isSidebarOpen }) {
-  const router = useRouter(); // useRouter 훅 사용
+  const router = useRouter();
   const [result, setResult] = useState([]);
 
   useEffect(() => {
@@ -54,13 +58,13 @@ export default function Sidebar({ toggleSidebar, isSidebarOpen }) {
         let subMenu_url = [];
 
         if (menu[1].sub_menu) {
-          let subMenu = menu[1].sub_menu
+          let subMenu = menu[1].sub_menu;
 
-          subMenu.forEach(sub => {
+          subMenu.forEach((sub) => {
             console.log(sub.link_id);
             subMenu_nm.push(sub.title_ko);
             subMenu_url.push(sub.link_id);
-        });
+          });
         }
 
         if (menu[1].menu_level === 1) {
@@ -78,7 +82,6 @@ export default function Sidebar({ toggleSidebar, isSidebarOpen }) {
           );
         }
       })}
-
     </div>
   );
 }
