@@ -48,6 +48,7 @@ export default function Index({ togglePopUp, toggleModal }) {
         border=""
         text="text-white"
         background="bg-main02"
+        round={true}
         innerText="PopUp Open"
         onClick={() => {
           togglePopUp({ title: "팝업 제목", content: "팝업 내용" });
