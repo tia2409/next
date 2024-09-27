@@ -9,7 +9,7 @@ import LocaleSelect from "@/component/LocaleSelect";
 import ErrorMsg from "@/component/ErrorMsg";
 import BasicInput from "@/component/BasicInput";
 
-// image
+// image //
 import Banner from "../../public/images/banner/rain_banner_01.png";
 import Logo from "../../public/images/logo/logo-black.svg";
 
