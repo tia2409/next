@@ -10,7 +10,7 @@ import LocaleSelect from "@/component/LocaleSelect";
 import CheckInput from "@/component/CheckInput";
 import ErrorMsg from "@/component/ErrorMsg";
 
-// image
+// image //
 import Banner from "../../public/images/banner/rain_banner_01.png";
 import Logo from "../../public/images/logo/logo-black.svg";
 import IconId from "../../public/images/icons/id_input.svg";
