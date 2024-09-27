@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34">
+    <path style="fill:none" d="M0 0h34v34H0z"/>
+    <path data-name="Boundary" style="fill:none" d="M0 0h20v20H0z" transform="translate(7 7)"/>
+    <path d="M0 3.639a3.627 3.627 0 1 1 3.626 3.64A3.633 3.633 0 0 1 0 3.639z" transform="translate(13.132 9.721)" style="isolation:isolate;fill:#858585"/>
+    <g style="isolation:isolate">
+        <path d="M6.673 0A6.758 6.758 0 0 0 0 6.308h13.345A6.69 6.69 0 0 0 6.673 0z" style="isolation:isolate;fill:#858585" transform="translate(10.327 17.97)"/>
+    </g>
+</svg>

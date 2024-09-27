@@ -5,21 +5,19 @@ import axios from "axios";
 import { useTranslation } from "react-i18next";
 
 // component
-import IconInput from "@/component/IconInput";
 import LocaleSelect from "@/component/LocaleSelect";
-import CheckInput from "@/component/CheckInput";
 import ErrorMsg from "@/component/ErrorMsg";
+import BasicInput from "@/component/BasicInput";
 
 // image
 import Banner from "../../public/images/banner/rain_banner_01.png";
 import Logo from "../../public/images/logo/logo-black.svg";
-import IconId from "../../public/images/icons/id_input.svg";
-import IconPw from "../../public/images/icons/pw_input.svg";
 
 export default function Login() {
   const { t } = useTranslation();
   const router = useRouter();
-  const [checkLogin, setCheckLogin] = useState(false);
+
+  const [checkLogin, setCheckLogin] = useState();
   const [loginFormData, setLoginFormData] = useState({
     user_id: "",
     user_pwd: "",
@@ -39,6 +37,7 @@ export default function Login() {
           sessionStorage.setItem("user_id", loginFormData.user_id);
           router.push("/main");
         } else {
+          setCheckLogin(true);
           return false;
         }
       })
@@ -71,10 +70,12 @@ export default function Login() {
           method="post"
           onSubmit={handleLoginSubmit}
         >
-          <IconInput
-            inputType="id"
+          <BasicInput
+            width="328"
+            height="44"
             inputId="user_id"
-            inputImg={IconId}
+            inputImg="user"
+            leftIcon={true}
             placeholder={t("login.insertID")}
             value={loginFormData.user_id}
             onFocus={handleInputFocus}
@@ -82,10 +83,13 @@ export default function Login() {
               setLoginFormData({ ...loginFormData, user_id: e.target.value })
             }
           />
-          <IconInput
+          <BasicInput
+            width="328"
+            height="44"
             inputType="password"
             inputId="user_pwd"
-            inputImg={IconPw}
+            inputImg="password"
+            leftIcon={true}
             placeholder={t("login.insertPW")}
             value={loginFormData.user_pwd}
             onFocus={handleInputFocus}
@@ -94,12 +98,17 @@ export default function Login() {
             }
           />
           {checkLogin ? <ErrorMsg message={t("login.error")} /> : ""}
-          <button className="h-[48px] text-white bg-main02 rounded-[3px]">
+          <button className="h-[48px] text-white bg-main02 rounded-[3px] hover:bg-main01">
             {t("login.button")}
           </button>
         </form>
         <div className="flex justify-between py-[24px]">
-          <CheckInput inputId="user_id_save" innerText={t("login.saveID")} />
+          <div className="flex items-center">
+            <input id="save_id" type="checkbox" />
+            <div className="pl-2 text-sm font-semibold text-gray04">
+              {t("login.saveID")}
+            </div>
+          </div>
           <LocaleSelect />
         </div>
         <div className="absolute flex justify-center items-center bottom-0 right-0 w-[360px] h-[60px]">
