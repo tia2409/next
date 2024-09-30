@@ -19,7 +19,7 @@ export default function index() {
         setLoading(false); // 데이터 로드 완료
       } catch (error) {
         console.error("Error fetching JSON data:", error);
-        setLoading(false); // 에러 발생 시에도 로딩 상태를 false로 설정
+        setLoading(false); // 에러 발생 시에도 로딩 상태를 false로 설정//
       }
     };
 
