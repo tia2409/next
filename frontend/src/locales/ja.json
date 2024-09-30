@@ -5,7 +5,8 @@
     "close": "閉じる",
     "save": "ちょぞう",
     "cancel": "キャンセル",
-    "delete": "さくじょ"
+    "delete": "さくじょ",
+    "selectCount": "つ選択"
   },
   "login": {
     "insertID": "IDを入力してください.",

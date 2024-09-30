@@ -44,17 +44,11 @@ export default function PopUp({ isPopUpOpen, togglePopUp, data }) {
         {/* PopUp footer */}
         <div className="absolute left-[50%] bottom-[20px] flex gap-2 transform -translate-x-1/2 ">
           <BasicButton
-            border="border border-main02"
-            text="text-main02"
-            background="bg-white hover:bg-main04"
+            border={true}
             innerText={t("common.cancel")}
             onClick={() => togglePopUp(null)}
           />
-          <BasicButton
-            text="text-white"
-            background="bg-main02 hover:bg-main01"
-            innerText={t("common.save")}
-          />
+          <BasicButton innerText={t("common.save")} />
         </div>
       </div>
     </div>,

@@ -41,9 +41,7 @@ export default function Modal({ isModalOpen, toggleModal, data, modalType }) {
         <div className="flex items-center justify-center gap-2 pt-3">
           {isModalType === "alert" && (
             <BasicButton
-              width="300px"
-              text="text-white"
-              background="bg-main02 hover:bg-main01"
+              width="300"
               innerText={t("common.check")}
               onClick={() => toggleModal(null)}
             />
@@ -51,19 +49,12 @@ export default function Modal({ isModalOpen, toggleModal, data, modalType }) {
           {isModalType === "confirm" && (
             <>
               <BasicButton
-                width="150px"
-                border="border border-main02"
-                text="text-main02"
-                background="bg-white hover:bg-main04"
+                width="150"
+                border={true}
                 innerText={t("common.close")}
                 onClick={() => toggleModal(null)}
               />
-              <BasicButton
-                width="150px"
-                text="text-white"
-                background="bg-main02 hover:bg-main01"
-                innerText={t("common.check")}
-              />
+              <BasicButton width="150" innerText={t("common.check")} />
             </>
           )}
         </div>

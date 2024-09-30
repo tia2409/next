@@ -5,7 +5,8 @@
     "close": "Close",
     "save": "Save",
     "cancel": "Cancel",
-    "delete": "Delete"
+    "delete": "Delete",
+    "selectCount": "Select"
   },
   "login": {
     "insertID": "Please enter your ID.",
