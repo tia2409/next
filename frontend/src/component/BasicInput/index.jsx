@@ -37,8 +37,9 @@ export default function BasicInput({
         style={{
           color: disable ? "var(--gray05)" : "black",
           backgroundColor: disable ? "var(--gray06)" : "white",
-          paddingLeft: leftIcon ? "34px" : "",
-          paddingRight: rightIcon || inputType == "password" ? "34px" : "",
+          paddingLeft: leftIcon ? "34px" : undefined,
+          paddingRight:
+            rightIcon || inputType == "password" ? "34px" : undefined,
         }}
         type={inputType == "password" && showPassword ? "password" : "text"}
         placeholder={placeholder}
