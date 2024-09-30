@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13">
-    <g data-name="타원 115" style="stroke:#c9c9c9;fill:none">
-        <circle cx="6.5" cy="6.5" r="6.5" style="stroke:none"/>
-        <circle cx="6.5" cy="6.5" r="6" style="fill:none"/>
-    </g>
-    <circle data-name="타원 116" cx=".5" cy=".5" r=".5" transform="translate(6 3)" style="fill:#c9c9c9"/>
-    <rect data-name="사각형 272" width="1" height="5" rx=".5" transform="translate(6 5)" style="fill:#c9c9c9"/>
-</svg>

@@ -12,8 +12,8 @@ import BasicInput from "@/component/BasicInput";
 // image //
 import Banner from "../../public/images/banner/rain_banner_01.png";
 import Logo from "../../public/images/logo/logo-black.svg";
-import IconId from "../../public/images/icons/id_input.svg";
-import IconPw from "../../public/images/icons/pw_input.svg";
+import IconId from "../../public/images/icons/input/user.svg";
+import IconPw from "../../public/images/icons/input/password.svg";
 
 export default function Login() {
   const { t } = useTranslation();

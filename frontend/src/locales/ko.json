@@ -5,7 +5,8 @@
     "close": "닫기",
     "save": "저장",
     "cancel": "취소",
-    "delete": "삭제"
+    "delete": "삭제",
+    "selectCount": "개 선택"
   },
   "login": {
     "insertID": "아이디를 입력해주세요.",

@@ -8,22 +8,18 @@ import IconVisible from "./../../../public/images/icons/input/visible.svg";
 export default function BasicInput({
   width = "360",
   height = "34",
-  inputType,
+  inputType = "text",
   inputId,
   inputImg,
-  leftIcon,
-  rightIcon,
+  leftIcon = false,
+  rightIcon = false,
   placeholder,
-  disable,
+  disable = false,
   value,
   onFocus,
   onChange,
 }) {
-  const [isInputType, setIsInputType] = useState(inputType || "text");
   const [showPassword, setShowPassword] = useState(true);
-  const [isLeftIcon, setIsLeftIcon] = useState(leftIcon || false);
-  const [isRightIcon, setIsRightIcon] = useState(rightIcon || false);
-  const [isDisable, setIsDisable] = useState(disable || false);
 
   const toggleShowPassword = () => {
     setShowPassword((prev) => !prev);
@@ -39,10 +35,10 @@ export default function BasicInput({
         name={inputId}
         className="w-full h-full p-[12px]"
         style={{
-          color: isDisable ? "var(--gray05)" : "black",
-          backgroundColor: isDisable ? "var(--gray06)" : "white",
-          paddingLeft: isLeftIcon ? "34px" : "",
-          paddingRight: isRightIcon || inputType == "password" ? "34px" : "",
+          color: disable ? "var(--gray05)" : "black",
+          backgroundColor: disable ? "var(--gray06)" : "white",
+          paddingLeft: leftIcon ? "34px" : "",
+          paddingRight: rightIcon || inputType == "password" ? "34px" : "",
         }}
         type={inputType == "password" && showPassword ? "password" : "text"}
         placeholder={placeholder}
@@ -51,10 +47,10 @@ export default function BasicInput({
         onFocus={onFocus}
         onChange={onChange}
       />
-      {(isLeftIcon || isRightIcon) && (
+      {(leftIcon || rightIcon) && (
         <Image
-          className={` ${isLeftIcon && styles.left_icon} ${
-            isRightIcon && styles.right_icon
+          className={` ${leftIcon && styles.left_icon} ${
+            rightIcon && styles.right_icon
           } absolute right-0 -translate-y-1/2 top-1/2`}
           width={34}
           height={34}
@@ -62,7 +58,7 @@ export default function BasicInput({
           alt="right"
         />
       )}
-      {isInputType === "password" && (
+      {inputType === "password" && (
         <Image
           className="absolute right-0 -translate-y-1/2 top-1/2"
           src={showPassword ? IconInvisible : IconVisible}

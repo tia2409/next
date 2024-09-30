@@ -2,29 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* 기본 설정 */
-/* :root {
-  --foreground-rgb: 255, 255, 255;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 0, 0, 0;
-  --border-color: #ccc;
-  --gradient: linear-gradient(to right, #f8f9fa, #e9ecef);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 0, 0, 0;
-    --background-start-rgb: 255, 255, 255;
-    --background-end-rgb: 255, 255, 255;
-  }
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-} */
-
 /* color */
 :root {
   --main01: #0065bd;
@@ -166,6 +143,36 @@ textarea[data-type="error"] {
 
 .select__control {
   border: solid 1px #d4d4d4;
+}
+
+/* input radio */
+input[type="radio"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  margin: 12px 51px 9px 122px;
+  object-fit: contain;
+  border: solid 1px #b8b8b8;
+  border-radius: 50%;
+  background-color: #fff;
+  outline: none;
+}
+
+input[type="radio"]:checked,
+input[type="radio"]:checked:hover {
+  border: 4px solid #1976e5;
+  background-color: #fff;
+}
+
+input[type="radio"]:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+input[type="radio"]:disabled {
+  background-color: #f1f1f1;
 }
 
 /* 체크박스 기본 스타일 숨기기 */

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "./index.module.css";
-import InputIcon from "../InputIcon";
-import search_input from "../../../public/images/icons/search_input.svg";
+import BasicInput from "../BasicInput";
+import search_input from "../../../public/images/icons/input/search.svg";
 import IconButton from "../IconButton";
 import BasicSelect from "../BasicSelect";
 
@@ -147,7 +147,7 @@ export default function DataTable({
           )}
         </div>
         <div className={`flex ${styles.rightContainer}`}>
-          <InputIcon
+          <BasicInput
             inputId="tableSearch"
             inputImg={search_input}
             placeholder="Search..."

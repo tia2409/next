@@ -7,7 +7,6 @@ import BasicButton from "@/component/BasicButton";
 import BasicInput from "@/component/BasicInput";
 import IconButton from "@/component/IconButton";
 
-import IconCalendar from "../../../public/images/icons/input/calendar.svg";
 import IconPassword from "../../../public/images/icons/input/password.svg";
 import IconDelete from "../../../public/images/icons/button/delete.svg";
 
@@ -27,12 +26,16 @@ export default function Index({ togglePopUp, toggleModal }) {
       <div>{t("test")}</div>
       {/* json파일에서 key: { key : value } 형태 */}
       <div>{t("login.join")}</div>
-      <input id="plz2" />
       <BasicSelect
         inputId="test"
-        width="360"
-        deleteOption={false}
-        placeHolder="test"
+        width="230"
+        placeHolder="select basic one"
+        options={options}
+      />
+      <BasicSelect
+        inputId="test1"
+        width="230"
+        placeHolder="select check one"
         options={options}
         defaultValue
         defaultSelectValue={options[0]}
@@ -40,20 +43,26 @@ export default function Index({ togglePopUp, toggleModal }) {
       />
       <BasicSelect
         inputId="test-multi"
-        width="360"
-        deleteOption={false}
-        placeHolder="test"
+        width="230"
+        Searchable={false}
+        placeHolder="select multi"
         options={options}
         defaultValue
-        // onchange={(e) => setPerPage(e.value)}
         defaultSelectValue={options[0]}
         type="multi"
       />
+      <BasicSelect
+        inputId="test-multi-search"
+        width="230"
+        Searchable={true}
+        placeHolder="select multi search"
+        options={options}
+        defaultValue
+        // onchange={(e) => setPerPage(e.value)}
+        type="multi"
+      />
       <BasicButton
-        width="360px"
-        border=""
-        text="text-white"
-        background="bg-main02"
+        width="360"
         round={true}
         innerText="PopUp Open"
         onClick={() => {
@@ -61,10 +70,7 @@ export default function Index({ togglePopUp, toggleModal }) {
         }}
       />
       <BasicButton
-        width="360px"
-        border=""
-        text="text-white"
-        background="bg-main02"
+        width="360"
         innerText="Modal Open, alert"
         onClick={() => {
           toggleModal(
@@ -77,10 +83,8 @@ export default function Index({ togglePopUp, toggleModal }) {
         }}
       />
       <BasicButton
-        width="360px"
-        border=""
-        text="text-white"
-        background="bg-main02"
+        width="360"
+        border={true}
         innerText="Modal Open, confirm"
         onClick={() => {
           toggleModal(
@@ -109,10 +113,10 @@ export default function Index({ togglePopUp, toggleModal }) {
         height="34"
         inputType="text"
         inputId="test_input2"
-        inputImg={IconCalendar}
+        inputImg={IconPassword}
         leftIcon={false}
         rightIcon={true}
-        placeholder="YYYY-MM-DD"
+        placeholder="test"
         // onchange={}
       />
       <IconButton
@@ -129,6 +133,16 @@ export default function Index({ togglePopUp, toggleModal }) {
         innerText={t("common.delete")}
         rightIcon={true}
       />
+      <div className="flex w-[360px]">
+        <div className="flex items-center justify-center">
+          <input type="radio" name="testRadio" id="radio1" value="off" />
+          radio1
+          <input type="radio" name="testRadio" id="radio2" />
+          radio2
+          <input type="radio" name="testRadio" id="radio3" />
+          radio3
+        </div>
+      </div>
     </div>
   );
 }
