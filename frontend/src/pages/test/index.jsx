@@ -103,7 +103,6 @@ export default function Index({ togglePopUp, toggleModal }) {
         inputId="test_input1"
         inputImg={IconPassword}
         leftIcon={true}
-        rightIcon={false}
         placeholder="insert password"
       />
       <BasicInput
@@ -112,7 +111,6 @@ export default function Index({ togglePopUp, toggleModal }) {
         inputType="text"
         inputId="test_input2"
         inputImg={IconPassword}
-        leftIcon={false}
         rightIcon={true}
         placeholder="test"
         // onchange={}

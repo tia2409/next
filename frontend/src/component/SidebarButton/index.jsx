@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 
 import { useRouter } from "next/router";
@@ -69,7 +68,7 @@ export default function SidebarButton({
         ) : (
           <p className={`hidden ${isActive ? "text-main02" : ""}`}>{menu_nm}</p>
         )}
-        {isSidebarOpen && (
+        {isSidebarOpen && !isExpanded && (
           <Image
             className="absolute right-0"
             src={downArrowBlack}
