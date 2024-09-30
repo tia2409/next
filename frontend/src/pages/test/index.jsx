@@ -37,7 +37,6 @@ export default function Index({ togglePopUp, toggleModal }) {
         width="230"
         placeHolder="select check one"
         options={options}
-        defaultValue
         defaultSelectValue={options[0]}
         type="check"
       />
@@ -47,7 +46,6 @@ export default function Index({ togglePopUp, toggleModal }) {
         Searchable={false}
         placeHolder="select multi"
         options={options}
-        defaultValue
         defaultSelectValue={options[0]}
         type="multi"
       />
