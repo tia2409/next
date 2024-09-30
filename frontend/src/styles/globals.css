@@ -153,7 +153,7 @@ textarea[data-type="error"] {
 }
 .main-body {
   height: calc(100% - 54.61px);
-  overflow: auto;
+  /* overflow: auto; */
 }
 .main-body::-webkit-scrollbar {
   width: 0;
@@ -199,6 +199,7 @@ input[type="checkbox"]:disabled {
 .main-layer {
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
   border: solid 1px #e1e1e1;
+  overflow: auto;
 }
 @keyframes fadeIn {
   0% {

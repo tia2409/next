@@ -1,0 +1,42 @@
+.customHeaderContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+
+  .month,
+  .year {
+    color: #363636;
+    font-size: 16px;
+    font-weight: 500;
+  }
+}
+.monthButton {
+  width: 34px;
+  height: 34px;
+  padding: 5px;
+  border-radius: 4px;
+
+  + .monthButton {
+    margin-left: 24px;
+  }
+
+  &:hover {
+    background-color: #eee;
+  }
+
+  &:disabled {
+    cursor: default;
+    background-color: #eee;
+  }
+}
+.toggleViewMode {
+  height: 34px;
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  border-radius: 4px;
+}
+.toggleViewMode:hover {
+  background-color: #eee;
+}

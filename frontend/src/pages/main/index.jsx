@@ -3,7 +3,7 @@ import CustomTable from "../../component/CustomTable";
 import useFormData from "@/component/hooks/useFormData";
 import SearchBar from "@/component/SearchBar";
 import BasicLabel from "@/component/BasicLabel";
-
+import DatePicker from "@/component/DatePicker";
 export default function index() {
   useFormData();
   const [selection, setSelection] = useState([]);

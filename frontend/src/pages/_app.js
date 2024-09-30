@@ -1,4 +1,6 @@
+import "react-datepicker/dist/react-datepicker.css";
 import "@/styles/globals.css";
+import "@/styles/picker.css";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
