@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd ../backend && gradlew bootRun",
+    "client": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -13,6 +15,7 @@
   "dependencies": {
     "@tanstack/react-table": "^8.20.5",
     "axios": "^1.7.7",
+    "concurrently": "^9.0.1",
     "date-fns": "^4.1.0",
     "export-to-csv": "^1.4.0",
     "i18next": "^23.15.1",
