@@ -72,7 +72,7 @@ export default function SidebarButton({
             text={menu_nm}
           />
         )}
-        {isSidebarOpen && (
+        {isSidebarOpen && !isExpanded && (
           <Image
             className="absolute right-0"
             src={downArrowBlack}

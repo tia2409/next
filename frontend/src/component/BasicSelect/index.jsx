@@ -63,41 +63,6 @@ const CustomValueContainer = ({ children, ...props }) => {
   );
 };
 
-const CustomMenu = (props) => {
-  const { t } = useTranslation();
-  const [tempSelected, setTempSelected] = useState(props.getValue());
-
-  const handleConfirm = () => {
-    props.selectProps.onConfirm(tempSelected);
-  };
-
-  const handleCancel = () => {
-    setTempSelected([]);
-    props.selectProps.onCancel();
-  };
-
-  return (
-    <components.Menu {...props}>
-      <div>
-        {props.children}
-        <div className="flex justify-center gap-2.5 px-2.5 py-2.5">
-          <BasicButton
-            innerText={t("common.cancel")}
-            width="100"
-            border={true}
-            onClick={handleCancel}
-          />
-          <BasicButton
-            innerText={t("common.check")}
-            width="100"
-            onClick={handleConfirm}
-          />
-        </div>
-      </div>
-    </components.Menu>
-  );
-};
-
 const CustomDropdownIndicator = (props) => {
   const { menuIsOpen, isSearchable } = props.selectProps;
   const icon = menuIsOpen
@@ -240,7 +205,6 @@ export default function BasicSelect({
           isSelectType === "multi"
             ? CustomValueContainer
             : components.ValueContainer,
-        Menu: CustomMenu,
         DropdownIndicator: CustomDropdownIndicator,
       }}
       hideSelectedOptions={false}
