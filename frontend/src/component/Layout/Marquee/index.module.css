@@ -1,0 +1,27 @@
+.marquee {
+  width: 100%; /* 원하는 너비 설정 */
+  overflow: hidden; /* 넘치는 부분 숨김 */
+  white-space: nowrap; /* 텍스트가 한 줄로 표시되도록 설정 */
+  box-sizing: border-box; /* 패딩과 보더를 너비에 포함 */
+  position: relative; /* 위치 설정 */
+}
+
+.marquee p {
+  /* display: inline-block; 인라인 블록으로 설정 */
+  /* position: absolute; 애니메이션에 적합하게 절대 위치 설정 */
+  left: 0; /* 초기 위치 */
+  animation: none; /* 기본적으로 애니메이션 적용하지 않음 */
+}
+
+.animation:hover p {
+  animation: marquee 7s linear infinite; /* 호버 시 애니메이션 설정 */
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0); /* 현재 위치에서 시작 */
+  }
+  100% {
+    transform: translateX(-50%); /* 텍스트 길이에 맞게 조정 */
+  }
+}

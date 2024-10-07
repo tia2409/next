@@ -1,6 +1,8 @@
 import React, { useState, useEffect, forwardRef } from "react";
 import Image from "next/image";
-import search_input from "../../../../public/images/icons/input/search.svg";
+
+// image
+import IconSearch from "../../../../public/images/icons/input/search.svg";
 
 // forwardRef를 사용해 ref를 부모로부터 받아 처리
 const Filter = forwardRef(
@@ -25,7 +27,7 @@ const Filter = forwardRef(
           className="absolute top-[0px] right-0"
           width={34}
           height={34}
-          src={search_input}
+          src={IconSearch}
           alt="search icon"
         />
         <input

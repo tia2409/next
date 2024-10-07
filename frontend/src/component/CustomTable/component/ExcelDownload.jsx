@@ -1,9 +1,15 @@
-import React, { useState, useEffect, useRef } from "react";
-import icon_excel from "../../../../public/images/icons/icon_excel.svg";
-import IconButton from "../../IconButton";
+import React, { useEffect } from "react";
 import { mkConfig, generateCsv, download } from "export-to-csv";
+import { useTranslation } from "react-i18next";
+
+// image
+import IconExcel from "../../../../public/images/icons/button/excel.svg";
+
+// component
+import IconButton from "../../Button/IconButton";
 
 const ExcelDownload = ({ rows, filename }) => {
+  const { t } = useTranslation();
   useEffect(() => {}, []);
   const csvConfig = mkConfig({
     fieldSeparator: ",",
@@ -24,8 +30,8 @@ const ExcelDownload = ({ rows, filename }) => {
     <IconButton
       buttonType=""
       buttonId="excel_download"
-      buttonImg={icon_excel}
-      innerText="엑셀다운로드"
+      buttonImg={IconExcel}
+      innerText={t("common.excelDownload")}
       onclick={handleExportToCsv}
       width="114"
       height="34"

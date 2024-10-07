@@ -4,16 +4,16 @@ import Image from "next/image";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
 
-// component //
-import LocaleSelect from "@/component/LocaleSelect";
-import ErrorMsg from "@/component/ErrorMsg";
-import BasicInput from "@/component/BasicInput";
-
-// image //
-import Banner from "../../public/images/banner/rain_banner_01.png";
+// image
+import Banner from "../../public/images/banner/banner.png";
 import Logo from "../../public/images/logo/logo-black.svg";
 import IconId from "../../public/images/icons/input/user.svg";
 import IconPw from "../../public/images/icons/input/password.svg";
+
+// component
+import LocaleSelect from "@/component/Select/Locale";
+import ErrorMessage from "@/component/Input/ErrorMessage";
+import BasicInput from "@/component/Input/BasicInput";
 
 export default function Login() {
   const { t } = useTranslation();
@@ -99,9 +99,9 @@ export default function Login() {
               setLoginFormData({ ...loginFormData, user_pwd: e.target.value })
             }
           />
-          {checkLogin ? <ErrorMsg message={t("login.error")} /> : ""}
+          {checkLogin ? <ErrorMessage message={t("login.error")} /> : ""}
           <button className="h-[48px] text-white bg-main02 rounded-[3px] hover:bg-main01">
-            {t("login.button")}
+            {t("login.login")}
           </button>
         </form>
         <div className="flex justify-between py-[24px]">

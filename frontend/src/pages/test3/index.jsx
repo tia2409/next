@@ -1,5 +1,7 @@
-import useFormData from "@/component/hooks/useFormData";
 import React from "react";
+
+// component
+import useFormData from "@/component/hooks/useFormData";
 
 export default function index() {
   useFormData();

@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
+
+// component
 import CustomTable from "../../component/CustomTable";
 import useFormData from "@/component/hooks/useFormData";
-import SearchBar from "@/component/SearchBar";
-import BasicLabel from "@/component/BasicLabel";
-import DatePicker from "@/component/DatePicker";
+import SearchBar from "@/component/Layout/SearchBar";
+import BasicLabel from "@/component/Input/BasicLabel";
+import DatePicker from "@/component/Select/DatePicker";
+
 export default function index() {
   useFormData();
   const [selection, setSelection] = useState([]);

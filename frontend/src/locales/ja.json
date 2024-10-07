@@ -6,12 +6,13 @@
     "save": "ちょぞう",
     "cancel": "キャンセル",
     "delete": "さくじょ",
-    "selectCount": "つ選択"
+    "selectCount": "つ選択",
+    "excelDownload": "エクセル·ダウンロード"
   },
   "login": {
     "insertID": "IDを入力してください.",
     "insertPW": "暗証番号をご入力ください.",
-    "button": "ログイン",
+    "login": "ログイン",
     "saveID": "ID保存",
     "find": "ID·パスワードを探す",
     "join": "会員加入",

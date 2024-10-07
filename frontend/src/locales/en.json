@@ -6,12 +6,13 @@
     "save": "Save",
     "cancel": "Cancel",
     "delete": "Delete",
-    "selectCount": "Select"
+    "selectCount": "Select",
+    "excelDownload": "Excel Download"
   },
   "login": {
     "insertID": "Please enter your ID.",
     "insertPW": "Please enter your password.",
-    "button": "Login",
+    "login": "Login",
     "saveID": "Save ID",
     "find": "Find ID·Password",
     "join": "Join",
