@@ -173,8 +173,12 @@ export default function BasicSelect({
       );
       setSelectedOption(matchedOptions);
       setTempSelectedOption(matchedOptions);
+    } else {
+      // sessionStorage에 값이 없을 경우 defaultSelectValue로 설정
+      setSelectedOption(defaultSelectValue);
+      setTempSelectedOption(defaultSelectValue);
     }
-  }, [inputId, options]);
+  }, [inputId, options, defaultSelectValue]);
 
   return (
     <Select
@@ -186,6 +190,8 @@ export default function BasicSelect({
       isClearable={isClearable}
       isRtl={isRtl}
       isSearchable={isSearchable}
+      instanceId={inputId}
+      className={inputId}
       name={inputId}
       options={[
         ...(isSelectType === "multi"

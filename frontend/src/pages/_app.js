@@ -110,7 +110,7 @@ function App({ Component, pageProps }) {
             <div className="w-full h-[100vh - 72px]">
               <Tabs />
               <div className="w-[calc(100%-20px)] m-[10px] h-[calc(100vh-114px)] bg-white py-[20px] px-[40px] mt-0 mb-0 main-layer">
-                <div className="main-title flex justify-between">
+                <div className="flex justify-between main-title">
                   <div>
                     {depth.depth2 != "Menu2depth" ? depth.depth2 : "Title"}
                   </div>
@@ -126,7 +126,7 @@ function App({ Component, pageProps }) {
                     <div>
                       <Image src={Arrow} alt="home" width={13} height={13} />
                     </div>
-                    <div className="lastDepth text-black">{depth.depth2}</div>
+                    <div className="text-black lastDepth">{depth.depth2}</div>
                   </div>
                 </div>
                 <div className="main-body">
