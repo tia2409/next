@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 
 import { useRouter } from "next/router";
@@ -8,6 +7,7 @@ import Image from "next/image";
 import downArrowBlack from "./../../../public/images/icons/arrow/down-black.svg";
 import rightArrowBlack from "./../../../public/images/icons/arrow/right-black.svg";
 import rightArrowBlue from "./../../../public/images/icons/arrow/right-blue.svg";
+import Marquee from "../Marquee";
 
 export default function SidebarButton({
   menu_nm,
@@ -65,9 +65,12 @@ export default function SidebarButton({
           alt="icon"
         />
         {isSidebarOpen ? (
-          <p className={isActive ? "text-main02" : ""}>{menu_nm}</p>
+          <Marquee classname={isActive ? "text-main02" : ""} text={menu_nm} />
         ) : (
-          <p className={`hidden ${isActive ? "text-main02" : ""}`}>{menu_nm}</p>
+          <Marquee
+            classname={`hidden ${isActive ? "text-main02" : ""}`}
+            text={menu_nm}
+          />
         )}
         {isSidebarOpen && (
           <Image
@@ -101,13 +104,12 @@ export default function SidebarButton({
                 height={34}
                 alt="right-arrow"
               />
-              <div
-                className={`flex items-center h-[34px] ${
+              <Marquee
+                classname={`flex items-center h-[34px] ${
                   router.pathname === depthHref ? "text-main02" : ""
                 }`}
-              >
-                {menuDepth[index]}
-              </div>
+                text={menuDepth[index]}
+              />
             </Link>
           ))}
         </div>
