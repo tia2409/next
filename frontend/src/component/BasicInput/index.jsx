@@ -14,7 +14,7 @@ export default function BasicInput({
   leftIcon = false,
   rightIcon = false,
   placeholder,
-  disable = false,
+  disabled = false,
   value,
   onFocus,
   onChange,
@@ -35,15 +35,15 @@ export default function BasicInput({
         name={inputId}
         className="w-full h-full p-[12px]"
         style={{
-          color: disable ? "var(--gray05)" : "black",
-          backgroundColor: disable ? "var(--gray06)" : "white",
+          color: disabled ? "var(--gray05)" : "black",
+          backgroundColor: disabled ? "var(--gray06)" : "white",
           paddingLeft: leftIcon ? "34px" : undefined,
           paddingRight:
             rightIcon || inputType == "password" ? "34px" : undefined,
         }}
         type={inputType == "password" && showPassword ? "password" : "text"}
         placeholder={placeholder}
-        disable={disable}
+        disabled={disabled}
         value={value}
         onFocus={onFocus}
         onChange={onChange}

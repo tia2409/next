@@ -36,7 +36,7 @@ export default function LocaleSelect() {
     if (storedLocale) {
       setSelectedLocale(storedLocale);
     } else {
-      setSelectedLocale("ko_KR");
+      setSelectedLocale("ko");
     }
   }, []);
 
@@ -46,9 +46,9 @@ export default function LocaleSelect() {
     }
   }, [selectedLocale]);
 
-  if (selectedLocale == "ko_KR") {
+  if (selectedLocale == "ko") {
     localeImg = KoLocale;
-  } else if (selectedLocale == "en_US") {
+  } else if (selectedLocale == "en") {
     localeImg = EnLocale;
   } else {
     localeImg = JpLocale;
@@ -68,12 +68,13 @@ export default function LocaleSelect() {
       />
       {isClicked && (
         <div
-          className="absolute w-[100px] h-[122px] rounded-[12px] right-2 top-[52px] bg-white border border-gray05 z-50"
+          // className="absolute w-[100px] h-[122px] rounded-[12px] right-2 top-[52px] bg-white border border-gray05 z-50"
+          className="absolute w-[100px] h-[82px] rounded-[12px] right-2 top-[52px] bg-white border border-gray05 z-50"
           ref={localeRef}
         >
           <div
             className="flex items-center w-full h-[40px] p-[10px] rounded-t-[12px] hover:bg-gray06"
-            onClick={localeSelected("ko_KR")}
+            onClick={localeSelected("ko")}
           >
             <Image
               className=""
@@ -85,19 +86,20 @@ export default function LocaleSelect() {
             <p className="pl-[10px] text-gray03 font-medium">한국어</p>
           </div>
           <div
-            className="flex items-center w-full h-[40px] p-[10px] border-y border-gray05 hover:bg-gray06"
-            onClick={localeSelected("en_US")}
+            // className="flex items-center w-full h-[40px] p-[10px] border-y border-gray05 hover:bg-gray06"
+            className="flex items-center w-full h-[40px] p-[10px] border-t border-gray05 rounded-b-[12px] hover:bg-gray06"
+            onClick={localeSelected("en")}
           >
             <Image src={EnLocale} width={20} height={20} alt="en" />
             <p className="pl-[10px] text-gray03 font-medium">English</p>
           </div>
-          <div
+          {/* <div
             className="flex items-center w-full h-[40px] p-[10px] rounded-b-[12px] hover:bg-gray06"
-            onClick={localeSelected("ja_JP")}
+            onClick={localeSelected("jp")}
           >
             <Image src={JpLocale} width={20} height={20} alt="ja" />
             <p className="pl-[10px] text-gray03 font-medium">日本語</p>
-          </div>
+          </div> */}
         </div>
       )}
     </div>

@@ -17,6 +17,11 @@ export default function Header() {
     }
   }, []);
 
+  const handleLogout = () => {
+    sessionStorage.removeItem("user_id");
+    router.push("/");
+  };
+
   return (
     <div className="flex justify-between items-center w-full h-[72px] px-[20px] bg-black">
       <div className="flex pl-9">
@@ -25,6 +30,7 @@ export default function Header() {
           width={101}
           height={24}
           alt="logo"
+          className="cursor-pointer"
           onClick={() => router.push("/main")}
           priority
         />{" "}
@@ -32,10 +38,25 @@ export default function Header() {
       <div className="flex justify-end items-center w-[600px]">
         <LocaleSelect />
         <div className="pl-2">
-          <Image src={Logout} alt="logout icon" />
+          <Image
+            src={Logout}
+            width={32}
+            height={32}
+            alt="logout icon"
+            className="cursor-pointer"
+            onClick={handleLogout}
+          />
         </div>
         <div className="flex items-center pl-4">
-          <Image src={Mymenu} alt="my menu icon" />
+          <Image
+            src={Mymenu}
+            width={32}
+            height={32}
+            alt="my menu icon"
+            className="cursor-pointer"
+            // mypage 추가시 수정
+            // onClick={() => router.push("/mypage")}
+          />
           <div className="text-white text-[15px] pl-1">{userId}</div>
         </div>
       </div>
