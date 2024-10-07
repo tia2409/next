@@ -4,18 +4,20 @@ import "@/styles/picker.css";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
-
-import Header from "@/component/Header";
-import Sidebar from "@/component/Sidebar";
-import Tabs from "@/component/Tabs";
+import Image from "next/image";
 import { I18nextProvider } from "react-i18next";
 import i18n from "../locales/i18n";
-import PopUp from "@/component/PopUp";
-import Modal from "@/component/Modal";
 
-import Image from "next/image";
-import Home from "../../public/images/icons/icon-home.svg";
-import Arrow from "../../public/images/icons/history-arrow.svg";
+// image
+import IconHome from "../../public/images/icons/layout/home.svg";
+import IconArrow from "../../public/images/icons/layout/history_arrow.svg";
+
+// component
+import Header from "@/component/Layout/Header";
+import Sidebar from "@/component/Layout/Sidebar";
+import Tabs from "@/component/Layout/Tabs";
+import PopUp from "@/component/Modal/PopUp";
+import Modal from "@/component/Modal/Modal";
 
 function App({ Component, pageProps }) {
   const router = useRouter();
@@ -31,7 +33,7 @@ function App({ Component, pageProps }) {
   const [depth, setDepth] = useState({
     depth1: "Menu1depth",
     depth2: "Menu2depth",
-  }); // 모달 타입 상태
+  });
 
   const toggleSidebar = () => {
     setIsSidebarOpen((prev) => !prev);
@@ -116,15 +118,25 @@ function App({ Component, pageProps }) {
                   </div>
                   <div className="flex text-[13px] *:mr-[4px] items-end text-gray04 *:h-[20px] *:flex *:items-center">
                     <div>
-                      <Image src={Home} alt="home" width={13} height={13} />
+                      <Image src={IconHome} alt="home" width={13} height={13} />
                     </div>
                     <div onClick={() => router.push("/main")}>home</div>
                     <div>
-                      <Image src={Arrow} alt="home" width={13} height={13} />
+                      <Image
+                        src={IconArrow}
+                        alt="Arrow"
+                        width={13}
+                        height={13}
+                      />
                     </div>
                     <div>{depth.depth1}</div>
                     <div>
-                      <Image src={Arrow} alt="home" width={13} height={13} />
+                      <Image
+                        src={IconArrow}
+                        alt="Arrow"
+                        width={13}
+                        height={13}
+                      />
                     </div>
                     <div className="text-black lastDepth">{depth.depth2}</div>
                   </div>

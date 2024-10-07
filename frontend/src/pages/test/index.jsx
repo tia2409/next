@@ -1,14 +1,16 @@
-import React, { useState } from "react";
-import { useTranslation } from "react-i18next"; // 다국어 처리를 위해 import 하기
+import React from "react";
+import { useTranslation } from "react-i18next";
 
-import BasicSelect from "@/component/BasicSelect";
-import useFormData from "@/component/hooks/useFormData";
-import BasicButton from "@/component/BasicButton";
-import BasicInput from "@/component/BasicInput";
-import IconButton from "@/component/IconButton";
-
+// image
 import IconPassword from "../../../public/images/icons/input/password.svg";
 import IconDelete from "../../../public/images/icons/button/delete.svg";
+
+// component
+import BasicSelect from "@/component/Select/BasicSelect";
+import useFormData from "@/component/hooks/useFormData";
+import BasicButton from "@/component/Button/BasicButton";
+import BasicInput from "@/component/Input/BasicInput";
+import IconButton from "@/component/Button/IconButton";
 
 const options = [
   { value: "chocolate", label: "Chocolate" },
@@ -18,7 +20,7 @@ const options = [
 
 export default function Index({ togglePopUp, toggleModal }) {
   useFormData();
-  const { t } = useTranslation(); // import한 useTranslation
+  const { t } = useTranslation();
 
   return (
     <div className="w-full h-full p-4">

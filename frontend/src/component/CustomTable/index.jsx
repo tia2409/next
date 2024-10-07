@@ -1,6 +1,4 @@
-// components/Table.js
 import React, { useMemo, useState, useEffect, useRef } from "react";
-import useFormData from "@/component/hooks/useFormData";
 import {
   useReactTable,
   getCoreRowModel,
@@ -9,15 +7,17 @@ import {
   getSortedRowModel,
   getFilteredRowModel,
 } from "@tanstack/react-table";
-
 import styles from "./index.module.css";
 import Image from "next/image";
 
-import BasicSelect from "../BasicSelect";
-import both from "../../../public/images/icons/table/sort_both.png";
-import sort_desc from "../../../public/images/icons/table/sort_desc.png";
-import sort_asc from "../../../public/images/icons/table/sort_asc.png";
+// image
+import IconSortBoth from "../../../public/images/icons/table/sort_both.png";
+import IconSortDesc from "../../../public/images/icons/table/sort_desc.png";
+import IconSortAsc from "../../../public/images/icons/table/sort_asc.png";
 
+// component
+import useFormData from "@/component/hooks/useFormData";
+import BasicSelect from "../Select/BasicSelect";
 import Filter from "./component/Filter";
 import ExcelDownload from "./component/ExcelDownload";
 import FilterSelect from "./component/FilterSelect";
@@ -87,7 +87,7 @@ const index = ({
       {
         id: "selection",
         header: ({ table }) => (
-          <div className=" relative text-center">
+          <div className="relative text-center ">
             {checkEnabled && (
               <input
                 id="header-checkbox"
@@ -102,7 +102,7 @@ const index = ({
         ),
         cell: ({ row }) => (
           <td className={`${styles.tr} ${styles.indexTr}`}>
-            <div className=" relative text-center">
+            <div className="relative text-center ">
               {checkEnabled && (
                 <input
                   id={`cell-checkbox-${row.id}`}
@@ -201,7 +201,7 @@ const index = ({
   };
 
   return (
-    <div className="block max-w-full h-full">
+    <div className="block h-full max-w-full">
       <div className="h-2" />
       <div className="flex justify-between mb-[10px] h-[44px] pt-[10px] items-center">
         <div className="flex">
@@ -263,12 +263,12 @@ const index = ({
                       )}
                     </div>
                   )}{" "}
-                  <div className="absolute right-2 top-1/2 -translate-y-1/2">
+                  <div className="absolute -translate-y-1/2 right-2 top-1/2">
                     {
                       {
                         asc: (
                           <Image
-                            src={sort_asc}
+                            src={IconSortAsc}
                             alt="sort_asc"
                             width={19}
                             height={19}
@@ -276,7 +276,7 @@ const index = ({
                         ),
                         desc: (
                           <Image
-                            src={sort_desc}
+                            src={IconSortDesc}
                             alt="sort_desc"
                             width={19}
                             height={19}
@@ -286,7 +286,12 @@ const index = ({
                     }
                     {header.column.getCanSort() &&
                     !header.column.getIsSorted() ? (
-                      <Image src={both} alt="both" width={19} height={19} />
+                      <Image
+                        src={IconSortBoth}
+                        alt="both"
+                        width={19}
+                        height={19}
+                      />
                     ) : null}
                   </div>
                 </th>

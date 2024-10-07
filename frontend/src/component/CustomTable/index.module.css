@@ -109,40 +109,40 @@
 .firstArrow {
   width: 32px;
   height: 32px;
-  background-image: url("../../../public/images/icons/datatable-icon-left-arrow-double.svg");
+  background-image: url("../../../public/images/icons/table/left_arrow_double.svg");
   background-size: cover;
 }
 .firstArrow:hover {
-  background-image: url("../../../public/images/icons/datatable-icon-left-arrow-double-hover.svg");
+  background-image: url("../../../public/images/icons/table/left_arrow_double_hover.svg");
 }
 .preArrow {
   width: 32px;
   height: 32px;
   margin-left: 10px;
-  background-image: url("../../../public/images/icons/datatable-icon-left-arrow.svg");
+  background-image: url("../../../public/images/icons/table/left_arrow.svg");
   background-size: cover;
 }
 .preArrow:hover {
-  background-image: url("../../../public/images/icons/datatable-icon-left-arrow-hover.svg");
+  background-image: url("../../../public/images/icons/table/left_arrow_hover.svg");
 }
 .nextArrow {
   width: 32px;
   height: 32px;
   margin-right: 10px;
-  background-image: url("../../../public/images/icons/datatable-icon-right-arrow.svg");
+  background-image: url("../../../public/images/icons/table/right_arrow.svg");
   background-size: cover;
 }
 .nextArrow:hover {
-  background-image: url("../../../public/images/icons/datatable-icon-right-arrow-hover.svg");
+  background-image: url("../../../public/images/icons/table/right_arrow_hover.svg");
 }
 .lastArrow {
   width: 32px;
   height: 32px;
-  background-image: url("../../../public/images/icons/datatable-icon-right-arrow-double.svg");
+  background-image: url("../../../public/images/icons/table/right_arrow_double.svg");
   background-size: cover;
 }
 .lastArrow:hover {
-  background-image: url("../../../public/images/icons/datatable-icon-right-arrow-double-hover.svg");
+  background-image: url("../../../public/images/icons/table/right_arrow_double_hover.svg");
 }
 .rightContainer > :not(:last-child) {
   margin-right: 8px;

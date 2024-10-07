@@ -1,37 +1,18 @@
 import React, { useState } from "react";
 import Select, { components } from "react-select";
 import Image from "next/image";
-import IconSelected from "./../../../../public/images/icons/select/selected.svg";
-import IconSelectedActive from "./../../../../public/images/icons/select/selected-active.svg";
-import filter from "./../../../../public/images/icons/table/icon-filter.svg";
-import filterActive from "./../../../../public/images/icons/table/icon-filter-active.svg";
 import { useRouter } from "next/router";
 
-const CustomOption = (props) => {
-  const isSelected = props.isSelected;
-
-  return (
-    <components.Option {...props}>
-      <div className="relative flex items-center">
-        <Image
-          src={isSelected ? IconSelectedActive : IconSelected}
-          className="absolute left-[-8px]"
-          width={34}
-          height={34}
-          alt="selected"
-        />
-        <div className="pl-8">{props.data.label}</div>
-      </div>
-    </components.Option>
-  );
-};
+// image
+import IconFilter from "./../../../../public/images/icons/table/filter.svg";
+import IconFilterActive from "./../../../../public/images/icons/table/filter_active.svg";
 
 const DropdownIndicator = (props) => {
   const isOpen = props.selectProps.menuIsOpen;
   return (
     <components.DropdownIndicator {...props}>
       <Image
-        src={!isOpen ? filter : filterActive}
+        src={!isOpen ? IconFilter : IconFilterActive}
         alt="dropdown-icon"
         width={34}
         height={34}
@@ -86,7 +67,6 @@ const FilterSelect = ({ filterOption, onchange }) => {
       components={{
         IndicatorSeparator: () => null,
         DropdownIndicator,
-        Option: CustomOption,
       }}
       value={value} // 선택된 값을 반영
       onChange={(selectedOption) => {

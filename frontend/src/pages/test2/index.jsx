@@ -1,6 +1,8 @@
+import React, { useState } from "react";
+
+// component
 import useFormData from "@/component/hooks/useFormData";
-import React, { useEffect, useState } from "react";
-import DatePicker from "@/component/DatePicker";
+import DatePicker from "@/component/Select/DatePicker";
 
 export default function index() {
   const [startDate, setStartDate] = useState("");
