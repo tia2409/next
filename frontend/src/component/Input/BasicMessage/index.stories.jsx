@@ -2,7 +2,7 @@ import React from "react";
 import BasicMessage from ".";
 
 export default {
-  title: "Components/Message/BasicMessage",
+  title: "Components/Input/BasicMessage",
   component: BasicMessage,
 };
 
@@ -11,5 +11,5 @@ const Template = (args) => <BasicMessage {...args} />;
 export const BasicMessage_ = Template.bind({});
 
 BasicMessage_.args = {
-  message: "This is an basic message!",
+  message: "This is an basic message",
 };

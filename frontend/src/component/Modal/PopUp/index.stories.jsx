@@ -1,7 +1,7 @@
 import PopUp from ".";
 
 export default {
-  title: "Components/PopUp/PopUp",
+  title: "Components/Modal/PopUp",
   component: PopUp,
   argTypes: {
     data: {
@@ -39,7 +39,7 @@ export const PopUp_ = Template.bind({});
 
 PopUp_.args = {
   isPopUpOpen: true,
-  togglePopUp: () => alert("PopUp toggled!"),
+  togglePopUp: () => console.log("PopUp toggled!"),
   title: "Title",
   content: "PopUp content 들어갈 영역",
 };

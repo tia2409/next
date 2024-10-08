@@ -9,7 +9,7 @@ import IconCalendar from "../../../../public/images/icons/input/calendar.svg";
 import IconLeftBlack from "../../../../public/images/icons/arrow/left_black.svg";
 import IconRightBlack from "../../../../public/images/icons/arrow/right_black.svg";
 
-function Index({ onchange, startDate, endDate, customId }) {
+function DateSelect({ onchange, startDate, endDate, customId }) {
   const [selectDate, setSelectDate] = useState(new Date());
   const [viewMode, setViewMode] = useState("day"); // "day", "month", "year" 모드 관리
   function getYearRange(selectedYear) {
@@ -62,7 +62,7 @@ function Index({ onchange, startDate, endDate, customId }) {
   }, [startDate, endDate, selectDate]);
 
   return (
-    <label className="flex relative w-[130px]">
+    <label className="flex relative w-[130px] h-[34px]">
       <DatePicker
         id={customId}
         className="datePicker"
@@ -143,4 +143,4 @@ function Index({ onchange, startDate, endDate, customId }) {
   );
 }
 
-export default Index;
+export default DateSelect;

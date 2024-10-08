@@ -1,7 +1,7 @@
 import Modal from ".";
 
 export default {
-  title: "Components/PopUp/Modal",
+  title: "Components/Modal/Modal",
   component: Modal,
   argTypes: {
     modalType: {
@@ -50,9 +50,10 @@ const Template = (args) => {
 export const Modal_ = Template.bind({});
 
 Modal_.args = {
-  isModalOpen: true, // 모달이 열려있는 상태
-  toggleModal: () => alert("Modal toggled!"), // 모달을 닫는 이벤트 실행시
+  isModalOpen: true,
+  toggleModal: () => alert("Modal toggled"),
   title: "모달 제목",
   content: "모달 내용",
   caution: null,
+  modalType: "alert",
 };

@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 
 // image
 import Banner from "../../public/images/banner/banner.png";
-import Logo from "../../public/images/logo/logo-black.svg";
+import Logo from "../../public/images/logo/logo_black.svg";
 import IconId from "../../public/images/icons/input/user.svg";
 import IconPw from "../../public/images/icons/input/password.svg";
 

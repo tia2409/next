@@ -11,6 +11,7 @@ import useFormData from "@/component/hooks/useFormData";
 import BasicButton from "@/component/Button/BasicButton";
 import BasicInput from "@/component/Input/BasicInput";
 import IconButton from "@/component/Button/IconButton";
+import DateSelect from "@/component/Select/DatePicker";
 
 const options = [
   { value: "chocolate", label: "Chocolate" },
@@ -131,6 +132,7 @@ export default function Index({ togglePopUp, toggleModal }) {
         innerText={t("common.delete")}
         rightIcon={true}
       />
+      <DateSelect />
       <div className="flex w-[360px]">
         <div className="flex items-center justify-center">
           <input type="radio" name="testRadio" id="radio1" value="off" />
