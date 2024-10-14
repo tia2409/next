@@ -21,6 +21,7 @@ import BasicSelect from "../Select/BasicSelect";
 import Filter from "./component/Filter";
 import ExcelDownload from "./component/ExcelDownload";
 import FilterSelect from "./component/FilterSelect";
+import BasicInput from "../Input/BasicInput";
 
 const options = [
   { value: "10", label: "10줄" },
@@ -34,10 +35,11 @@ const filterOption = [
 ];
 
 const index = ({
-  headers,
-  data,
-  paginationEnabled = false,
-  checkEnabled = false,
+  headers, // 테이블 header data json
+  data, // 테이블 body data json
+  paginationEnabled = false, // pagination on/off
+  checkEnabled = false, // checkBox on/off
+  headerVisible = true, //header on/off
 }) => {
   const [rowSelection, setRowSelection] = useState({});
   const [globalFilter, setGlobalFilter] = useState("");
@@ -50,6 +52,7 @@ const index = ({
   const inputRef = useRef(null); // Input 값을 위한 ref
   const [mergeKey, setMergeKey] = useState(Date.now());
   const [filterValue, setFilterValue] = useState(1);
+  const [isHeaderVisible, setIsHeaderVisible] = useState(headerVisible); // header 출력여부
 
   useEffect(() => {
     restoreAllData();
@@ -132,6 +135,7 @@ const index = ({
           const rowSpanValue = header.enableRowSpan
             ? calculateRowSpan(table, info.row.index, info.column.id)
             : 1;
+
           if (
             header.enableRowSpan &&
             (rowSpanValue === 0 ||
@@ -142,6 +146,41 @@ const index = ({
             return null;
           }
 
+          // cell에 select 요소 추가
+          if (header.key === "work_status") {
+            const work_status = [
+              { value: "Y", label: "Y" },
+              { value: "N", label: "N" },
+            ];
+            console.log(cellValue, "cellValue");
+            return (
+              <td rowSpan={rowSpanValue} className={styles.td}>
+                <div className="flex items-center justify-center">
+                  <BasicSelect
+                    width={200}
+                    options={work_status}
+                    defaultSelectValue={work_status[0]}
+                  />
+                </div>
+              </td>
+            );
+          }
+          // cell에 input 요소 추가
+          if (
+            header.key === "start_time" ||
+            "end_time" ||
+            "work_time" ||
+            "work_detail" ||
+            "schedule_note"
+          ) {
+            return (
+              <td rowSpan={rowSpanValue} className={styles.td}>
+                <div className="flex items-center justify-center">
+                  <BasicInput width="200" type="text" value={cellValue} />
+                </div>
+              </td>
+            );
+          }
           return (
             <td
               rowSpan={rowSpanValue}
@@ -154,7 +193,7 @@ const index = ({
         },
       })),
     ],
-    [headers, data, mergeKey] // 여기서 mergeKey를 의존성으로 추가
+    [headers, data, mergeKey]
   );
 
   const table = useReactTable({
@@ -203,46 +242,51 @@ const index = ({
   return (
     <div className="block h-full max-w-full">
       <div className="h-2" />
-      <div className="flex justify-between mb-[10px] h-[44px] pt-[10px] items-center">
-        <div className="flex">
-          {paginationEnabled && (
-            <span className="flex text-center items-center text-[14px] mr-[8px]">
-              <div>총</div>
-              <strong>
-                {table.getPageCount()} 페이지 중{" "}
-                {table.getState().pagination.pageIndex + 1}
-              </strong>
-            </span>
-          )}
+      {isHeaderVisible && (
+        <div className="flex justify-between mb-[10px] h-[44px] pt-[10px] items-center">
+          <div className="flex">
+            {paginationEnabled && (
+              <span className="flex text-center items-center text-[14px] mr-[8px]">
+                <div>총</div>
+                <strong>
+                  {table.getPageCount()} 페이지 중{" "}
+                  {table.getState().pagination.pageIndex + 1}
+                </strong>
+              </span>
+            )}
 
-          <BasicSelect
-            width="100"
-            deleteOption={false}
-            placeHolder="줄수"
-            options={options}
-            onchange={(selectedOption) => {
-              table.setPageSize(Number(selectedOption.value));
-              setPerPage(selectedOption.value);
-            }}
-            defaultSelectValue={options[0]}
-            inputId="perPage"
-          />
+            <BasicSelect
+              width="100"
+              deleteOption={false}
+              placeHolder="줄수"
+              options={options}
+              onchange={(selectedOption) => {
+                table.setPageSize(Number(selectedOption.value));
+                setPerPage(selectedOption.value);
+              }}
+              defaultSelectValue={options[0]}
+              inputId="perPage"
+            />
+          </div>
+          <div className={`flex pr-[1px] ${styles.rightContainer}`}>
+            <Filter
+              ref={inputRef}
+              value={globalFilter ?? ""}
+              onChange={(value) => setGlobalFilter(value)}
+              placeholder="Search all columns..."
+              debounce={500}
+            />
+            <ExcelDownload
+              rows={table.getFilteredRowModel().rows}
+              filename="excel_data"
+            />
+            <FilterSelect
+              onchange={setFilterValue}
+              filterOption={filterOption}
+            />
+          </div>
         </div>
-        <div className={`flex pr-[1px] ${styles.rightContainer}`}>
-          <Filter
-            ref={inputRef}
-            value={globalFilter ?? ""}
-            onChange={(value) => setGlobalFilter(value)}
-            placeholder="Search all columns..."
-            debounce={500}
-          />
-          <ExcelDownload
-            rows={table.getFilteredRowModel().rows}
-            filename="excel_data"
-          />
-          <FilterSelect onchange={setFilterValue} filterOption={filterOption} />
-        </div>
-      </div>
+      )}
       <table className={styles.table}>
         <thead className={styles.thead}>
           {table.getHeaderGroups().map((headerGroup) => (

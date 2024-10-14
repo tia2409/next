@@ -1,0 +1,34 @@
+{
+  "headers": [
+    {
+      "key": "start_time",
+      "label": "start_time",
+      "width": 220
+    },
+    {
+      "key": "end_time",
+      "label": "end_time",
+      "width": 220
+    },
+    {
+      "key": "time",
+      "label": "time",
+      "width": 220
+    },
+    {
+      "key": "work_detail",
+      "label": "work_detail",
+      "width": 220
+    },
+    {
+      "key": "work_status",
+      "label": "work_status",
+      "width": 220
+    },
+    {
+      "key": "schedule_note",
+      "label": "note",
+      "width": 220
+    }
+  ]
+}
