@@ -11,7 +11,8 @@ export default function Tabs() {
   const currentPath = router.pathname;
   const [tabs, setTabs] = useState([]);
   const [activeTab, setActiveTab] = useState(0);
-  const [depth, setDepth] = useState(); // 모달 타입 상태
+  // 추가 - 사용하지 않아 주석처리
+  // const [depth, setDepth] = useState(); // 모달 타입 상태
 
   useEffect(() => {
     const existingTabIndex = tabs.findIndex((tab) => tab.path === currentPath);
@@ -30,7 +31,7 @@ export default function Tabs() {
         );
 
         const depth2 = "depth2_" + storedLocale.slice(0, 2);
-        setDepth(res.data[0][depth2]);
+        // setDepth(res.data[0][depth2]); - 사용하지 않아 주석처리
 
         // axios 요청이 끝난 후에 탭을 추가하거나 활성화 처리
         if (existingTabIndex === -1) {
@@ -56,26 +57,32 @@ export default function Tabs() {
     router.push(path); // 탭 클릭 시 해당 경로로 이동
   };
   const handleTabDelete = (index) => {
-    sessionStorage.removeItem(tabs[index].path);
-    const inputs = document.querySelectorAll("input");
+    // 페이지가 main 밖에 존재하지 않을때는 닫히지 않음
+    if (!(currentPath === "/main" && tabs.length === 1)) {
+      sessionStorage.removeItem(tabs[index].path);
+      const inputs = document.querySelectorAll("input");
+  
+      inputs.forEach((input) => {
+        input.value = "";
+      });
+      const updatedTabs = tabs.filter((_, i) => i !== index); // 탭 제거
+      setTabs(updatedTabs);
+      if (updatedTabs.length === 0) {
+        // 기존 - 탭이 모두 삭제되면 /main으로 이동하고 기본 탭 추가
+        // 탭이 모두 삭제되면 /main으로 이동하고 기본 탭 추가
+        // const mainTab = {
+        //   label: depth,
+        //   path: currentPath,
+        // };
+        // setTabs([mainTab]);
 
-    inputs.forEach((input) => {
-      input.value = "";
-    });
-    const updatedTabs = tabs.filter((_, i) => i !== index); // 탭 제거
-    setTabs(updatedTabs);
-    if (updatedTabs.length === 0) {
-      // 탭이 모두 삭제되면 /main으로 이동하고 기본 탭 추가
-      const mainTab = {
-        label: depth,
-        path: currentPath,
-      };
-      setTabs([mainTab]);
-      router.push("/main");
-    } else {
-      router.push(updatedTabs[0].path);
+        // 변경 - 탭이 모두 삭제되면 router에 /main만 추가하고 기본 탭을 추가하는 기능은 추가하는 함수(searchPath)에 위임
+        router.push("/main");
+      } else {
+        router.push(updatedTabs[0].path);
+      }
+      setActiveTab(0);
     }
-    setActiveTab(0);
   };
 
   return (
