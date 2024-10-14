@@ -9,21 +9,24 @@ import IconCalendar from "../../../../public/images/icons/input/calendar.svg";
 import IconLeftBlack from "../../../../public/images/icons/arrow/left_black.svg";
 import IconRightBlack from "../../../../public/images/icons/arrow/right_black.svg";
 
-function DateSelect({ onchange, startDate, endDate, customId }) {
-  const [selectDate, setSelectDate] = useState(new Date());
-  const [viewMode, setViewMode] = useState("day"); // "day", "month", "year" 모드 관리
+function Index({ onchange, startDate, endDate, customId, value }) {
+  const [selectDate, setSelectDate] = useState(
+    value ? new Date(value) : new Date()
+  );
+  const [viewMode, setViewMode] = useState("day");
+
+  useEffect(() => {
+    if (value) {
+      setSelectDate(new Date(value)); // 외부에서 전달된 value가 변경되면 반영
+    }
+  }, [value]);
+
   function getYearRange(selectedYear) {
-    // 12년 단위로 보여질 연도 범위를 계산
     const startYear = selectedYear - ((selectedYear - 1) % 12);
     const endYear = startYear + 11;
-
-    // 연도 범위 배열 생성
-    const years = [startYear, endYear];
-
-    return years;
+    return [startYear, endYear];
   }
 
-  // 날짜 선택 모드를 변경하는 함수
   const toggleViewMode = () => {
     if (viewMode === "day") {
       setViewMode("month");
@@ -33,6 +36,7 @@ function DateSelect({ onchange, startDate, endDate, customId }) {
       setViewMode("day");
     }
   };
+
   const CustomInput = forwardRef(({ value, onClick, className }, ref) => (
     <input
       id={customId}
@@ -42,7 +46,7 @@ function DateSelect({ onchange, startDate, endDate, customId }) {
       value={value}
     />
   ));
-  // 선택한 날짜가 변경될 때마다 날짜 모드를 다시 "day"로 설정
+
   useEffect(() => {
     if (viewMode === "year") {
       setViewMode("month");
@@ -51,7 +55,6 @@ function DateSelect({ onchange, startDate, endDate, customId }) {
     }
   }, [selectDate]);
 
-  // startDate, endDate 범위 내에서 선택된 날짜가 유지되도록 설정
   useEffect(() => {
     if (startDate && selectDate < startDate) {
       setSelectDate(startDate);
@@ -88,21 +91,18 @@ function DateSelect({ onchange, startDate, endDate, customId }) {
           increaseMonth,
           decreaseYear,
           increaseYear,
-          decreaseYearRange,
           prevMonthButtonDisabled,
           nextMonthButtonDisabled,
         }) => (
           <div className={styles.customHeaderContainer}>
-            <div>
-              <button
-                type="button"
-                onClick={viewMode === "day" ? decreaseMonth : decreaseYear}
-                className={styles.monthButton}
-                disabled={prevMonthButtonDisabled}
-              >
-                <Image src={IconLeftBlack} alt="leftArrow" />
-              </button>
-            </div>
+            <button
+              type="button"
+              onClick={viewMode === "day" ? decreaseMonth : decreaseYear}
+              className={styles.monthButton}
+              disabled={prevMonthButtonDisabled}
+            >
+              <Image src={IconLeftBlack} alt="leftArrow" />
+            </button>
             <div className={styles.toggleViewMode} onClick={toggleViewMode}>
               {viewMode === "day" && (
                 <span className={styles.month}>
@@ -119,16 +119,14 @@ function DateSelect({ onchange, startDate, endDate, customId }) {
                 </span>
               )}
             </div>
-            <div>
-              <button
-                type="button"
-                onClick={viewMode === "day" ? increaseMonth : increaseYear}
-                className={styles.monthButton}
-                disabled={nextMonthButtonDisabled}
-              >
-                <Image src={IconRightBlack} alt="rightArrow" />
-              </button>
-            </div>
+            <button
+              type="button"
+              onClick={viewMode === "day" ? increaseMonth : increaseYear}
+              className={styles.monthButton}
+              disabled={nextMonthButtonDisabled}
+            >
+              <Image src={IconRightBlack} alt="rightArrow" />
+            </button>
           </div>
         )}
       />
@@ -143,4 +141,4 @@ function DateSelect({ onchange, startDate, endDate, customId }) {
   );
 }
 
-export default DateSelect;
+export default Index;
