@@ -59,7 +59,7 @@ export default function LocaleSelect() {
   // locale JP 추가시 주석부분 해제, 동일부분 주석처리 전환
   return (
     <div
-      className="relative flex justify-end items-center w-[44px] h-[44px] pr-[12px] cursor-pointer"
+      className="relative flex justify-end items-center w-[24px] h-[24px] cursor-pointer"
       onClick={localeClicked}
     >
       <Image
